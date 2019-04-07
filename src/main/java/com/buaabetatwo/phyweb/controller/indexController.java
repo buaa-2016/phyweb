@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class indexController {
-    @RequestMapping("")
-    public String simple(ModelMap map){
-        map.addAttribute("temp","helloWorld");
+    @RequestMapping("/index")
+    public String index(){
         return "index";
+    }
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 }
