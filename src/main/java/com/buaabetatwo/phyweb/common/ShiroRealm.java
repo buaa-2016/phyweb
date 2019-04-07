@@ -29,6 +29,7 @@ public class ShiroRealm extends AuthenticatingRealm {
         LOGGER.info("doGetAuthenticationInfo");
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         User user = userMapper.getByEamil(token.getUsername());
+        LOGGER.info(token.getUsername());
         if (user == null) {
             return null;
         }

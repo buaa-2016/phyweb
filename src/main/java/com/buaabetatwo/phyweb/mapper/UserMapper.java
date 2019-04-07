@@ -18,6 +18,6 @@ public interface UserMapper {
     @Select("SELECT * FROM users WHERE id = #{id}")
     User getById(int id);
 
-    @Select("SELECT * FROM USERS WHERE email=#{email}")
+    @Select("SELECT * FROM users WHERE email=#{email}")
     User getByEamil(String email);
 }
