@@ -12,13 +12,16 @@ import java.util.List;
 
 @Controller
 public class indexController {
-
-    @RequestMapping(value={"/", "/index"})
-    public String simple(ModelMap map){
-        map.addAttribute("temp","helloWorld");
-
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-
+    @RequestMapping("/index")
+    public String index(){
         return "index";
+    }
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
     }
 }

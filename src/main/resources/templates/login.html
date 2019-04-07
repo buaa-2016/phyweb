@@ -9,7 +9,7 @@
     />
     <link rel="icon" th:href="@{/img/favicon.png}" type="image/png" />
     <title>PhyLab</title>
-     <!--Bootstrap CSS-->
+    <!--Bootstrap CSS-->
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/themify-icons.css}" type="text/css" />
@@ -87,30 +87,46 @@
 
 <!--================ Start Home Banner Area =================-->
 <section class="home_banner_area">
-    <div class="banner_inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="banner_content text-center">
-                        <p class="text-uppercase">
-                            大学物理实验网站
-                        </p>
-                        <h2 class="text-uppercase mt-4 mb-5">
-                            phylab-beta-two
-                        </h2>
-                        <div>
-                            <a href="login" class="primary-btn ml-sm-3 ml-0">登陆</a>
-                        </div>
+    <div class="col-lg-4 of fset-lg-1" style="position:relative;left:500px;top:200px;width:500px;height:50px">
+        <div class="register_form">
+            <h3>登陆</h3>
+            <!-- 修改action ~~~~ -->
+            <form
+                    class="form_area"
+                    id="myForm"
+                    action=""
+                    method="post"
+            >
+                <div class="row">
+                    <div class="col-lg-12 form_group">
+                        <input
+                                name="name"
+                                placeholder="用户名"
+                                required=""
+                                type="text"
+                        />
+                        <input
+                                name="name"
+                                placeholder="密码"
+                                required=""
+                                type="password"
+                        />
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <button type="submit" value="Submit" class="primary-btn" >登陆</button>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <button class="primary-btn" onclick="location.href='register'">注册</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>
 <!--================ End Home Banner Area =================-->
 
- <!--Optional JavaScript -->
- <!--jQuery first, then Popper.js, then Bootstrap JS -->
+<!--Optional JavaScript -->
+<!--jQuery first, then Popper.js, then Bootstrap JS -->
 <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/popper.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
