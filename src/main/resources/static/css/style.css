@@ -14,6 +14,16 @@ theme.
 
 
 =====================================================================*/
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+
 /*----------------------------------------------------*/
 /*font Variables*/
 /*Color Variables*/
@@ -327,7 +337,7 @@ button:focus {
 ============================================================================================ */
 .home_banner_area {
   z-index: 1;
-  min-height: 900px;
+  min-height: 100vh;
   position: relative;
   background: url(../img/banner/home-banner.jpg) no-repeat center;
   background-size: cover; }

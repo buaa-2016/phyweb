@@ -87,46 +87,57 @@
 
 <!--================ Start Home Banner Area =================-->
 <section class="home_banner_area">
-    <div class="col-lg-4 of fset-lg-1" style="position:relative;left:500px;top:200px;width:500px;height:50px">
+    <div class="col-lg-4 of fset-lg-1" style="margin: auto auto; padding-top: 150px;">
         <div class="register_form">
             <h3>注册</h3>
             <!-- 修改action -->
             <form
                     class="form_area"
                     id="myForm"
-                    action="mail.html"
+                    action="/register"
                     method="post"
             >
                 <div class="row">
                     <div class="col-lg-12 form_group">
                         <input
-                                name="name"
-                                placeholder="用户名"
-                                required=""
+                                name="email"
+                                placeholder="邮箱地址"
+                                required
+                                type="email"
+                        />
+                        <input
+                                name="student_id"
+                                placeholder="学号"
+                                pattern="\d{8}"
+                                required
                                 type="text"
                         />
                         <input
-                                name="email"
-                                placeholder="邮箱地址"
-                                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                required=""
-                                type="mail"
+                                name="name"
+                                placeholder="昵称"
+                                required
+                                type="text"
                         />
                         <input
-                                name="name"
+                                name="password"
                                 placeholder="密码"
-                                required=""
+                                required
                                 type="password"
+                                id="password" 
                         />
                         <input
-                                name="name"
+                                name="password_confirm"
                                 placeholder="确认密码"
-                                required=""
+                                required
                                 type="password"
+                                oninput="check(this)" 
                         />
                     </div>
                     <div class="col-lg-12 text-center">
                         <button type="submit" value="Submit" class="primary-btn" >注册</button>
+                    </div>
+                    <div class="col-lg-12 ">
+                        <p>已有账号？<a href='/login'>返回登陆</a></p>
                     </div>
                 </div>
             </form>
@@ -144,9 +155,19 @@
 <script type="text/javascript" th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/owl-carousel-thumb.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/mail-script.js}"></script>
 <!--gmaps Js-->
 <script type="text/javascript" th:src="@{/js/gmaps.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/theme.js}"></script>
+<script>
+    // 密码确认
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('两次输入的密码必须一致');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+</script>
 </body>
 </html>

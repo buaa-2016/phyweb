@@ -15,6 +15,7 @@
     <link rel="stylesheet" th:href="@{/css/themify-icons.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}" type="text/css" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
     <!-- main css -->
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
 </head>
@@ -69,13 +70,22 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index">主页</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="index">物理实验报告中心</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="index">题库</a>
+                        </li>
+                        <li class="nav-item">
+                            <ul class="nav navbar-nav nav-link">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span th:text="${user.name}">User's Name</span><i class="fas fa-user pull-right"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li style="height:20px;"><a href="#">个人中心</a></li>
+                                        <li style="height:20px;"><a href="/logout">取消登录</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -99,7 +109,7 @@
                             phylab-beta-two
                         </h2>
                         <div>
-                            <a href="login" class="primary-btn ml-sm-3 ml-0">登陆</a>
+                            <h2>欢迎您，<span th:text="${user.name}"></span></h2>
                         </div>
                     </div>
                 </div>
@@ -118,7 +128,6 @@
 <script type="text/javascript" th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/owl-carousel-thumb.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/mail-script.js}"></script>
 <!--gmaps Js-->
 <script type="text/javascript" th:src="@{/js/gmaps.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/theme.js}"></script>

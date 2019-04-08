@@ -1,6 +1,11 @@
 package com.buaabetatwo.phyweb.common;
 
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.ShiroFilter;
@@ -53,13 +58,31 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/img/**", "anon");
         filterChainDefinitionMap.put("/scss/**", "anon");
-        filterChainDefinitionMap.put("/index", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         logger.info("Shiro拦截器工厂类注入成功");
         return shiroFilterFactoryBean;
+    }
+
+    public static void main(String[] args) {
+        // Token
+        ShiroConfig config = new ShiroConfig();
+        HashedCredentialsMatcher matcher = config.hashedCredentialsMatcher();
+        AuthenticationToken token = new UsernamePasswordToken("gakki", "gakkigakki");
+
+        // Info
+        SimpleHash hash = new SimpleHash("md5", "gakkigakki");
+        String encodedPassword = hash.toHex();
+        AuthenticationInfo info = new SimpleAuthenticationInfo("", encodedPassword, "Fuck");
+
+        System.out.println(encodedPassword);
+
+        // Match
+        boolean result = matcher.doCredentialsMatch(token, info);
+        System.out.println(result);
     }
 }
