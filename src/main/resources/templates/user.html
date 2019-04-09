@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <title>用户信息</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/bootstrap.min.css"/>
+</head>
+<body>
+<h1>用户信息</h1>
+<ul class="timeline">
+        <p><span th:text="${user.getName()}">SUMMARY</span></p>
+        <p><span th:text="${user.getEmail()}">SUMMARY</span></p>
+        <p><span th:text="${user.getStudent_id()}">SUMMARY</span></p>
+</ul>
+</body>
+</html>
