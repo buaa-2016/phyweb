@@ -29,4 +29,10 @@ public class IndexController {
             model.addAttribute("user", user);
         return "index";
     }
+
+
+    @RequestMapping(value={"/getreport"})
+    public String showReport() {
+        return "report";
+    }
 }
