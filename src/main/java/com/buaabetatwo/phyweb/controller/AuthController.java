@@ -75,7 +75,6 @@ public class AuthController {
         }
         return "login";
     }
-
     /**
      * Logout
      * @return
