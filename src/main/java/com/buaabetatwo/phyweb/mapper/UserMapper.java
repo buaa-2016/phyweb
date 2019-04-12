@@ -30,7 +30,7 @@ public interface UserMapper {
     void insertByUser(User user);
 
     @Insert("UPDATE  users SET name=#{name}  , email=#{email}   WHERE student_id=#{student_id}")
-    void updateUserInfo(String name ,String email,String student_id);
+    void updateUserInfo(String name ,String email,String student_id );
 
     @Insert("UPDATE  users SET password=#{password} WHERE student_id=#{student_id}")
     void updateUserPw(String password,String student_id);
