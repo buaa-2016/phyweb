@@ -24,19 +24,21 @@ import com.buaabetatwo.phyweb.model.Report;
 
 @RestController
 public class ReportController {
-	private static Logger logger = LoggerFactory.getLogger(AuthController.class);
-	@Autowired
+    private static Logger logger = LoggerFactory.getLogger(ReportController.class);
+    @Autowired
     private ReportMapper reportMapper;
-	
-	@GetMapping("/report")
+
+    @GetMapping("/report")
     public String ReportLists() {
-		return reportMapper.findlist().toString();
+        return reportMapper.findlist().toString();
     }
-	
-	@RequestMapping("/findById")
-	public String findById(@RequestParam("id") int id) {
-		return reportMapper.findById(id).toString();
-	}
-	
+
+    @RequestMapping("/findById")
+    public String findById(@RequestParam("id") int id) {
+        return reportMapper.findById(id).toString();
+    }
+
+
+
 }
 

@@ -22,16 +22,16 @@ public class IndexController {
     private UserMapper userMapper;
     private Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-    @RequestMapping(value={"/", "/index"})
-    public String index(Model model){
+    @RequestMapping(value = {"/", "/index"})
+    public String index(Model model) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
-            logger.info(user.toString());
-            model.addAttribute("user", user);
+        logger.info(user.toString());
+        model.addAttribute("user", user);
         return "index";
     }
 
 
-    @RequestMapping(value={"/getreport"})
+    @RequestMapping(value = {"/getreport"})
     public String showReport() {
         return "report";
     }
