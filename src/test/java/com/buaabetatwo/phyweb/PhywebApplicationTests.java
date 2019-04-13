@@ -11,6 +11,7 @@ public class PhywebApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println("Test Success!");
     }
 
 }
