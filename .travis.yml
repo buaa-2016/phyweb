@@ -1,5 +1,8 @@
 language: java
 
+addons:
+    ssh_known_hosts: 114.115.142.227
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_ed0537d0fcc2_key -iv $encrypted_ed0537d0fcc2_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
