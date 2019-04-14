@@ -18,6 +18,7 @@ echo "step 3:"
 re_install() {
     service phyweb stop
     rm /etc/init.d/phyweb
+    systemctl daemon-reload
     cp ${EXECUTABLE_JAR_PATH} /etc/init.d/phyweb
     systemctl daemon-reload
     return 0;
@@ -25,7 +26,7 @@ re_install() {
 re_install;
 
 echo "step 4:"
-service phyweb restart
+service phyweb start
 
 echo "Nice, deploy success~~~"
 
