@@ -1,6 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
 # 让脚本遇到错误就退出
-set -e
 
 # 设置变量
 PROJECT_DIR=~/phyweb/
