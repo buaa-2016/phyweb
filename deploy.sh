@@ -15,14 +15,14 @@ echo "step 2:"
 mvn install
 
 echo "step 3:"
-if [ ! -e "/etc/init.d/phyweb" ] ; then
-    rm /etc/init.d/phyweb
-    ln -s ${EXECUTABLE_JAR_PATH} /etc/init.d/phyweb
-    systemctl daemon-reload
-else
-    systemctl daemon-reload
+re_install() {
     service phyweb stop
-fi
+    rm /etc/init.d/phyweb
+    cp ${EXECUTABLE_JAR_PATH} /etc/init.d/phyweb
+    systemctl daemon-reload
+    return 0;
+}
+re_install;
 
 echo "step 4:"
 service phyweb restart
