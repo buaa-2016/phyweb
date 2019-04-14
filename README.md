@@ -8,6 +8,8 @@ phyweb
 
 A physical lab report generating platform.
 
+[Click here to see this website!](http://114.115.142.227)
+
 Build & Run
 --------
 
