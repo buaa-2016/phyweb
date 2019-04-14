@@ -1,4 +1,4 @@
-﻿<html lang="zh-CN">
+﻿<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -1918,8 +1918,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<img src="../static/img/phylab_logo.svg" href="./index.html" style="float:left;margin:0 0 0 20px;height:50px;"></img>
-			<a class="navbar-brand" href="{{URL::route('index')}}" style="margin:0 40px 0 0px;">PhyLab</a>
+			<img th:src="@{img/phylab_logo.svg}" th:href="@{/index.html}" style="float:left;margin:0 0 0 20px;height:50px;"></img>
+			<a class="navbar-brand" th:href="@{/index.html}" style="margin:0 40px 0 0px;">PhyLab</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-responsive-collapse" style="font-size: 20px;font-weight: bold;">
 			<ul class="nav navbar-nav navbar-left">
@@ -2039,8 +2039,8 @@
 							<!--<iframe id="lab_window" src="lab_report.html" style="width:100%;height:92%;">
 							</iframe>-->
                             <div id="firefox_pdf" style="display:none;">
-								<object data="./prepare_pdf/phylab_test.pdf" type="application/pdf" id="pdf_object">
-									<embed src="./prepare_pdf/phylab_test.pdf" type="application/pdf" id="pdf_embed" style="width:100%;height:92%;min-height:480px;"/>
+								<object th:data="@{/prepare_pdf/phylab_test.pdf}" type="application/pdf" id="pdf_object">
+									<embed th:src="@{/prepare_pdf/phylab_test.pdf}" type="application/pdf" id="pdf_embed" style="width:100%;height:92%;min-height:480px;"/>
 								</object>
 							</div>
 							<div id="chrom_pdf" style="width:100%;height:92%;min-height:500px;display:none">
@@ -2062,13 +2062,13 @@
 	</nav>
 </div>
 
-<script src="./js/jquery-2.1.4.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/global.js"></script>
-<script src="./js/reportCore.js"></script>
-<script src="./js/pdfobject.js"></script>
-<script src="./js/xmlInteraction.js"></script>
-<script src="./js/test.js"></script>
+<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/global.js}"></script>
+<script th:src="@{/js/reportCore.js}"></script>
+<script th:src="@{/js/pdfobject.js}"></script>
+<script th:src="@{/js/xmlInteraction.js}"></script>
+<script th:src="@{/js/test.js}"></script>
 
 </body>
 </html>
