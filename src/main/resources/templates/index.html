@@ -11,9 +11,6 @@
     <title>PhyLab</title>
      <!--Bootstrap CSS-->
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/themify-icons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}" type="text/css" />
     <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
     <!-- main css -->
@@ -46,7 +43,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"
+                <a class="navbar-brand logo_h" href="/"
                 ><img th:src="@{/img/phylab_logo.svg}" height="66" width="66" alt=""
                 /></a>
                 <button
@@ -75,10 +72,10 @@
                             }
                         </style>
                         <li class="nav-item active">
-                            <a class="nav-link" href="index">主页</a>
+                            <a class="nav-link" href="#">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index">物理实验报告中心</a>
+                            <a class="nav-link" href="/report-center">物理实验报告中心</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index">题库</a>
@@ -92,7 +89,7 @@
                                     role="button"
                                     aria-haspopup="true"
                                     aria-expanded="false"
-                            ><span th:text="${user.name}">User's Name</span></a
+                            ><span shiro:principal property="name"></span></a
                             >
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
@@ -128,8 +125,10 @@
                             phylab-beta-two
                         </h2>
                         <div>
-                            <h2>欢迎您，<span th:text="${user.name}"></span></h2>
-
+                            <h2>欢迎您，<span shiro:principal property="name"></span></h2>
+                        </div>
+                        <div style="margin-top: 50px">
+                            <a href="/report-center" class="btn btn-info btn-lg">进入实验报告中心</a>
                         </div>
                     </div>
                 </div>
@@ -142,14 +141,8 @@
  <!--Optional JavaScript -->
  <!--jQuery first, then Popper.js, then Bootstrap JS -->
 <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/popper.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/vendors/nice-select/js/jquery.nice-select.min.js}"></script>
-<script type="text/javascript" th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/owl-carousel-thumb.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
 <!--gmaps Js-->
-<script type="text/javascript" th:src="@{/js/gmaps.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/theme.js}"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.buaabetatwo.phyweb.common;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -84,5 +85,14 @@ public class ShiroConfig {
         // Match
         boolean result = matcher.doCredentialsMatch(token, info);
         System.out.println(result);
+    }
+
+    /**
+     * 为了在themyleaf模板引擎中引用当前登录用户
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
     }
 }

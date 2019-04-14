@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png" />
+    <title>实验报告中心</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.0.0-rc2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/seven-style.css"/>
+	<link rel="stylesheet" href="./css/mystyle.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+
+<body onload="check()">
+<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="/"
+                ><img th:src="@{/img/phylab_logo.svg}" height="66" width="66" alt=""
+                /></a>
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div
+                        class="collapse navbar-collapse offset"
+                        id="navbarSupportedContent"
+                >
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <style>
+                            .nav>li:hover{
+                                padding-top: 10px;
+                                color: azure;
+                                background: #f4bb02;
+                            }
+                        </style>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index">主页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">物理实验报告中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index">题库</a>
+                        </li>
+
+                        <li class="nav-item submenu dropdown">
+                            <a
+                                    href="#"
+                                    class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    role="button"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                            ><span shiro:principal property="name"></span></a
+                            >
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/index/user">个人中心</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout"
+                                    >取消登陆</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================ End Header Menu Area =================-->
+
+<div class="wrapper wrapper_contents" style="padding-top: 120px; min-height: 100vh">
+    <div class="container-fluid" style="margin-left:50px;margin-right:50px;">
+        <div class="row">
+            <div class="col-md-3" style="padding-top:0px;padding-bottom:0px;">
+                <div class="row">
+                    <h2 class="text-left">
+                        <span>物理实验
+                            <small>数据报告中心</small>
+                        </span>
+                        <hr/>
+                    </h2>
+                </div>
+                <div class="row" style="padding-top:0px;">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class="glyphicon glyphicon-th-list">&nbsp </span>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#lab_collapse">
+                                        <span>实验选择<span class="caret" style="float:right;"></span></span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="lab_collapse" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <form class="form-inline container-fluid">
+                                        <div class="row">
+                                            <div class="form-group  col-md-7">
+                                                <label for="InputLabIndex" class="sr-only">LabIndex</label>
+                                                <input type="text" class="form-control lab_input" id="InputLabIndex" onkeypress="labIndexInput()" placeholder="请输入实验编号">
+                                                </div>
+                                            <input type="button" class="btn btn-default-outline col-md-4" id="selectBtn" style="margin-left:10px;" onclick="selectBtnClick()"  value="Select"></input>
+                                        </div>
+                                    </form>
+                                    <div style="display:none" id="back_info" th:each="rept : ${reportTemplates}">
+                                        <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" style="display:none;height:30px;padding:5px;">
+                                        <span class="glyphicon glyphicon-remove-sign"></span><strong>&nbsp Error:</strong><span>&nbsp 请输入正确的实验序号!</span>
+                                    </div>
+                                    <div class="table-autoscroll" style="width:100%;height:29%;">
+                                        <table class="table table-condensed table-hover table-striped" style="width:100%;height:92%;">
+                                        <tbody class="table-small no-decoration" th:each="rept : ${reportTemplates}">
+                                            <tr>
+                                            <td><a href="#" class="lab lab_index" th:text="${rept.getExperiment_id()}">Experiment ID</a></td>
+                                            <td><a href="#" class="lab lab_title" th:title="${rept.getExperiment_id()}" th:text="${rept.getExperiment_name()}">Experiment Name</a></td>
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:20px;">
+                    <button class="btn btn-lg btn-danger btn-block" id="importBtn" disabled="disabled" onclick="importBtnClick()"><span class="glyphicon glyphicon-edit"></span>&nbsp录入实验数据</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-5" style="padding:0;padding-top:10px;">
+                        <button class="btn btn-lg btn-warning btn-block"  type="submit" id="collectBtn"  disabled="disabled" onclick="collectBtnClick()"><span id="collectIco" class="glyphicon glyphicon-star-empty"></span>&nbsp <span id="collectText">收藏</span></button>
+                    </div>
+                    <div class="col-md-offset-1 col-md-6" style="padding:0;padding-top:10px;">
+                        <button class="btn btn-lg btn-info btn-block" type="submit" id="exportBtn" disabled="disabled" onclick="exportBtnClick()"><span class="glyphicon glyphicon-download-alt"></span>&nbsp生成报告</button>
+                    </div>
+                </div>
+                <br/><br/>
+            </div>
+            <div class="col-md-9" style="padding-left:30px;height:82%;">
+                <div class="row"><br/></div>
+                <div class="panel-group row" id="labReport" >
+                    <div class="panel panel-default pannel-autoscroll">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4 class="panel-title text-center">
+                                    <span>实验报告&nbsp <span id="LabText" title="false"></span>&nbsp <span id="LabStatus" class="badge">帮助</span></span>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="padding:5px;">
+                            <!--<iframe id="lab_window" src="lab_report.html" style="width:100%;height:92%;">
+                            </iframe>-->
+                            <div id="firefox_pdf" style="display:none;">
+                                <object data="./prepare_pdf/phylab_test.pdf" type="application/pdf" id="pdf_object">
+                                    <embed src="./prepare_pdf/phylab_test.pdf" type="application/pdf" id="pdf_embed" style="width:100%;height:92%;min-height:480px;"/>
+                                </object>
+                            </div>
+                            <div id="chrom_pdf" style="width:100%;height:92%;min-height:500px;display:none">
+                            </div>
+                        </div>
+                    </div><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================ End Home Banner Area =================-->
+
+
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
+<script src="./js/reportCore.js"></script>
+<script src="./js/pdfobject.js"></script>
+<script src="./js/global.js"></script>
+</body>
+</html>

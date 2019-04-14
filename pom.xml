@@ -57,13 +57,20 @@
             <version>1.4.0</version>
         </dependency>
 
-        <!-- Log4J2: Logging Library -->
+        <!-- For themyleaf with shiro -->
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- Log4J2 Part 1: Logging Library -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>2.11.2</version>
         </dependency>
-        <!-- Log4J2: Logging Library -->
+        <!-- Log4J2 Part 2: Logging Library -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
