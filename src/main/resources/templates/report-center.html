@@ -1960,31 +1960,19 @@
                                             <input type="button" class="btn btn-default-outline col-md-4" id="selectBtn" style="margin-left:10px;" onclick="selectBtnClick()"  value="Select"></input>
                                         </div>
                                     </form>
-                                    <div style="display:none" id="back_info">
-                                        <!-- @foreach ($reportTemplates as $rept)
-                                        <a index="{{$rept['experimentId']}}" prepareLink="{{$rept['prepareLink']}}" db-id="{{$rept['id']}}"></a>
-                                         @endforeach -->
-                                        <a index="0000" prepareLink="{{$rept['prepareLink']}}" db-id="0000"></a> <!--这个地方需要加入数据 -->
+                                    <div style="display:none" id="back_info" th:each="rept : ${reportTemplates}">
+                                        <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
                                     </div>
                                     <div class="alert alert-danger" role="alert" style="display:none;height:30px;padding:5px;">
                                         <span class="glyphicon glyphicon-remove-sign"></span><strong>&nbsp Error:</strong><span>&nbsp 请输入正确的实验序号!</span>
                                     </div>
                                     <div class="table-autoscroll" style="width:100%;height:29%;">
                                         <table class="table table-condensed table-hover table-striped" style="width:100%;height:92%;">
-                                            <tbody class="table-small no-decoration">
-                                            <!-- @foreach ($reportTemplates as $rept)
-                                            <tr>
-                                              <td><a href="#" class="lab lab_index">{{$rept['experimentId']}}</a></td>
-                                              <td><a href="#" class="lab lab_title" title="{{$rept['experimentId']}}">{{$rept['experimentName']}}</a></td>
-                                            </tr>
-                                            @endforeach -->
-                                            <thead><th >&nbsp&nbsp当前实验</th></thead>
-                                            <tr>
-
-                                                <td><a href="#" class="lab lab_index">0000</a></td>        <!--这个地方需要加入数据 -->
-                                                <td><a href="#" class="lab lab_title" title="{{$rept['experimentId']}}">0000</a></td>  <!--这个地方需要加入数据 -->
-                                            </tr>
-
+                                            <tbody class="table-small no-decoration" th:each="rept : ${reportTemplates}">
+                                                <tr>
+                                                <td><a href="#" class="lab lab_index" th:text="${rept.getExperiment_id()}">Experiment ID</a></td>
+                                                <td><a href="#" class="lab lab_title" th:title="${rept.getExperiment_id()}" th:text="${rept.getExperiment_name()}">Experiment Name</a></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
