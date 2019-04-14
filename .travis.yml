@@ -1,13 +1,15 @@
 language: java
 
 addons:
-    ssh_known_hosts: 114.115.142.227
+  ssh_known_hosts: 114.115.142.227
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_ed0537d0fcc2_key -iv $encrypted_ed0537d0fcc2_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- eval $(ssh-agent)
+- openssl aes-256-cbc -K $encrypted_1874105d834c_key -iv $encrypted_1874105d834c_iv
+  -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_rsa
+- ssh-add /tmp/deploy_rsa
 
 after_success:
-  - ssh root@114.115.142.227 "cd ~/phyweb/ && git pull && bash deploy.sh"
+- ssh root@114.115.142.227 "cd ~/phyweb/ && git stash && git pull && bash deploy.sh"
+
