@@ -22,7 +22,7 @@ re_install() {
     systemctl daemon-reload
     return 0;
 }
-re_install()
+re_install;
 
 echo "step 4:"
 service phyweb restart
