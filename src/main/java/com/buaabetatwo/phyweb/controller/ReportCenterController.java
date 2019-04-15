@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -23,7 +26,7 @@ import java.util.Scanner;
 public class ReportCenterController {
     @Value("${phyweb.baseDir}")
     private String baseDir;
-    @Value("${phyweb.scriptsPath")
+    @Value("${phyweb.scriptsPath}")
     private String scriptsPath;
 
     @Autowired
@@ -35,6 +38,13 @@ public class ReportCenterController {
         model.addAttribute("reportTemplates", reports);
         return "report-center";
     }
+
+//    @PostMapping(value="/report", consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public Map generateReport(@RequestBody MultiValueMap<String, String> formData) {
+//        System.out.println("report");
+//        System.out.println(formData.toString());
+//        return null;
+//    }
 
     @PostMapping("/report")
     public Map createReport() throws IOException {
