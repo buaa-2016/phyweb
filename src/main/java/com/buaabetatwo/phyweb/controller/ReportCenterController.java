@@ -2,6 +2,10 @@ package com.buaabetatwo.phyweb.controller;
 
 import com.buaabetatwo.phyweb.mapper.ReportMapper;
 import com.buaabetatwo.phyweb.model.Report;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -13,19 +17,19 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 @Controller
 public class ReportCenterController {
-    @Value("${phyweb.baseDir}")
-    private String baseDir;
+    private static Logger logger = LoggerFactory.getLogger(ReportCenterController.class);
+
     @Value("${phyweb.scriptsPath}")
     private String scriptsPath;
 
@@ -39,27 +43,60 @@ public class ReportCenterController {
         return "report-center";
     }
 
-//    @PostMapping(value="/report", consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public Map generateReport(@RequestBody MultiValueMap<String, String> formData) {
-//        System.out.println("report");
-//        System.out.println(formData.toString());
-//        return null;
-//    }
+    public String getScriptPath(String filename) {
+        return Paths.get(scriptsPath.trim(), filename).toAbsolutePath().toString();
+    }
+
+    public String getWorkingDirectory() {
+        return Paths.get(scriptsPath.trim()).toAbsolutePath().toString();
+    }
+
+    public String readLastLineFromStream(InputStream in) {
+        Scanner sc = new Scanner(in);
+        String lastLine = null;
+        while (sc.hasNext()) {
+            lastLine = sc.nextLine();
+        }
+        return lastLine;
+    }
 
     @PostMapping("/report")
-    public Map createReport() throws IOException {
+    public Map createReport(@RequestParam("xml") String xmlData, @RequestParam("id") int id) throws IOException, InterruptedException {
 
-        String testScript = Paths.get(baseDir, scriptsPath, "test.sh").toString();
-        String cmd = testScript + " " + "gakki";
+        Report report = reportMapper.findById(id);
+        Map<String, String> jsonResponse = new HashMap<>();
+
+        String randomXmlFilename = UUID.randomUUID().toString() + ".xml";
+        String randomLatexFilename = UUID.randomUUID().toString() + ".tex";
+        String randomPdfFilename = randomLatexFilename.replace(".text", ".pdf");
+
+        String xmlLabDataPath = getScriptPath(randomXmlFilename);
+        String createScriptPath = getScriptPath("create.sh");
+        String pythonScriptPath = getScriptPath(report.getScript_link());
+        String latexDocumentPath = getScriptPath(randomLatexFilename);
+
+        // write xml data to file
+        Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
+
+        // step 3: execute command
+        String cmd = createScriptPath + " " + getWorkingDirectory() + " " + pythonScriptPath + " " + xmlLabDataPath + " " + latexDocumentPath;
         Process child = Runtime.getRuntime().exec(cmd);
-        Scanner sc = new Scanner(child.getInputStream());
-        int exitValue = child.exitValue();
-        System.out.printf("exit value: %d%n", exitValue);
-        System.out.println(sc.nextLine());
+        int exitValue = child.waitFor();
+        String output = readLastLineFromStream(child.getInputStream());
+        logger.info("exit value: {}", exitValue);
+        logger.info("output: {}", output);
 
-        Map<String, String> json = new HashMap<>();
-        json.put("status", "testing");
-        return json;
+        JsonNode response = new ObjectMapper().readTree(output);
+        if (exitValue != 0 || !response.at("status").asText().equals("success")) {
+            jsonResponse.put("status", "fail");
+            return jsonResponse;
+        }
+
+        jsonResponse.put("status", "success");
+        jsonResponse.put("link", randomPdfFilename);
+        jsonResponse.put("experimentId", String.valueOf(report.getExperiment_id()));
+        return jsonResponse;
     }
+
 
 }
