@@ -36,8 +36,17 @@ public class UserController {
        return "login";
     }
 
+    @PostMapping("/usercenter/updateemail")
+    public String UserCenterUpdate(String email) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        userMapper.updateUserMail(email,user.getId());
+        return "login";
+    }
+
     @GetMapping("/usercenter")
     public String UserCenter(Model model) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "usercenter";
     }
 

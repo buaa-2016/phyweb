@@ -11,8 +11,18 @@ public class User {
     private String student_id;
     private String password;
 
+    private String introduction;
+
     public int getId() {
         return id;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
     public void setId(int id) {
