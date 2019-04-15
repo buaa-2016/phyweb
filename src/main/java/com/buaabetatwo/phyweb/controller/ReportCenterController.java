@@ -80,6 +80,7 @@ public class ReportCenterController {
 
         // step 3: execute command
         String cmd = createScriptPath + " " + getWorkingDirectory() + " " + pythonScriptPath + " " + xmlLabDataPath + " " + latexDocumentPath;
+        logger.info("command: {}", cmd);
         Process child = Runtime.getRuntime().exec(cmd);
         int exitValue = child.waitFor();
         String output = readLastLineFromStream(child.getInputStream());
