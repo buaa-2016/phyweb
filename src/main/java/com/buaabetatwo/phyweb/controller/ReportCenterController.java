@@ -56,6 +56,7 @@ public class ReportCenterController {
         String lastLine = null;
         while (sc.hasNext()) {
             lastLine = sc.nextLine();
+            logger.info(lastLine);
         }
         return lastLine;
     }
