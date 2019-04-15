@@ -28,6 +28,5 @@ public class ReportController {
         return reportMapper.findById(id).toString();
     }
 
-
 }
 

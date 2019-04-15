@@ -11,5 +11,5 @@ before_install:
 - ssh-add /tmp/deploy_rsa
 
 after_success:
-- ssh root@114.115.142.227 "cd ~/phyweb/ && git stash && git pull && bash deploy.sh"
+    #- ssh root@114.115.142.227 "cd ~/phyweb/ && git stash && git pull && bash deploy.sh"
 

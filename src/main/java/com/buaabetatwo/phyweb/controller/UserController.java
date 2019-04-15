@@ -38,7 +38,7 @@ public class UserController {
 
     @GetMapping("/usercenter")
     public String UserCenter(Model model) {
-        User user
+        return "usercenter";
     }
 
 
