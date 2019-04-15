@@ -9,10 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -39,4 +35,20 @@ public class UserController {
         }
        return "login";
     }
+
+    @PostMapping("/usercenter/updateemail")
+    public String UserCenterUpdate(String email) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        userMapper.updateUserMail(email,user.getId());
+        return "login";
+    }
+
+    @GetMapping("/usercenter")
+    public String UserCenter(Model model) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
+        return "usercenter";
+    }
+
+
 }

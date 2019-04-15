@@ -34,4 +34,9 @@ public interface UserMapper {
 
     @Insert("UPDATE  users SET password=#{password} WHERE student_id=#{student_id}")
     void updateUserPw(String password,String student_id);
+
+    @Update("UPDATE  users SET email=#{email} WHERE id=#{id}")
+    void updateUserMail(String email, int id);
+
+
 }

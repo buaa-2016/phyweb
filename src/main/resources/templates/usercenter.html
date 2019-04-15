@@ -9,7 +9,7 @@
     />
     <link rel="icon" th:href="@{/img/favicon.png}" type="image/png" />
     <title>PhyLab</title>
-     <!--Bootstrap CSS-->
+    <!--Bootstrap CSS-->
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}" type="text/css" />
     <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
@@ -96,23 +96,60 @@
 <!--================ Start Home Banner Area =================-->
 <section class="home_banner_area">
     <div class="banner_inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="banner_content text-center">
-                        <p class="text-uppercase">
-                            大学物理实验网站
-                        </p>
-                        <h2 class="text-uppercase mt-4 mb-5">
-                            phylab-beta-two
-                        </h2>
-                        <div>
-                            <h2>欢迎您，<span shiro:principal property="name"></span></h2>
+        <div class="container" style="margin: auto auto; padding-top: 100px;">
+            <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
+                <div class="col-md-4" style="left: 0%">
+                    <img src = "https://ask.qcloudimg.com/avatar/1149268/06iizvxe0f.png?imageView2/2/w/252" style = "width: 150px ; height: 150px ;">
+                </div>
+            </div>
+            <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
                         </div>
-                        <div style="margin-top: 50px">
-                            <a href="/report-center" class="btn btn-info btn-lg">进入实验报告中心</a>
+                        <input type="text" class="form-control" th:placeholder="${user.getStudent_id()}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">姓名</span>
+                        </div>
+                        <input type="text" class="form-control" th:placeholder="${user.getName()}">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">更改姓名</button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
+                <div class="col-md-8">
+                    <form method="post" action="/usercenter/updateemail">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">邮箱</span>
+                            </div>
+                            <input type="text" name="email" class="form-control" th:placeholder="${user.getEmail()}">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary">更改提醒邮箱</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
+                <div class="col-md-6">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" th:placeholder="${user.getIntroduction()}"></textarea>
+                        </div>
+                        <button class="btn btn-secondary" type="submit">一句话介绍自己～～</button>
+                    </form>
                 </div>
             </div>
         </div>

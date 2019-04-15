@@ -1490,6 +1490,8 @@
                                 </tr>
                                 </tbody>
                             </table>
+                        </table>
+                    </table>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="lab_1082_2">
                     <table class="table table-condensed table-hover table-striped" id="table1082_2_naguangshuangleng1">
@@ -1638,6 +1640,8 @@
                                 </tr>
                                 </tbody>
                             </table>
+                        </table>
+                    </table>
                 </div>
             </div>
             <div id="modal-footer-1082-1">
@@ -1919,7 +1923,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-            <img th:src="@{img/phylab_logo.svg}" th:href="@{/index.html}" style="float:left;margin:0 0 0 20px;height:50px;"></img>
+            <img th:src="@{img/phylab_logo.svg}" th:href="@{/index.html}" style="float:left;margin:0 0 0 20px;height:50px;"/>
             <a class="navbar-brand" th:href="@{/}" style="color: #002347;font-size: 25px">PhyLab</a>
         </div>
         <div class="collapse navbar-collapse navbar-responsive-collapse" style="background: #f2ba01; color: #f2ba01;font-size: 20px;font-weight: bold;">
@@ -1960,7 +1964,13 @@
                                         </div>
                                     </form>
                                     <div style="display:none" id="back_info" th:each="rept : ${reportTemplates}">
+<<<<<<< HEAD
+
                                         <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
+
+=======
+                                        <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
+>>>>>>> d68b7eb68d5b6b1b4d4e0153e7cadd2086029e61
                                     </div>
                                     <div class="alert alert-danger" role="alert" style="display:none;height:30px;padding:5px;">
                                         <span class="glyphicon glyphicon-remove-sign"></span><strong>&nbsp Error:</strong><span>&nbsp 请输入正确的实验序号!</span>
@@ -1973,6 +1983,7 @@
                                                     <td><a href="#" class="lab lab_title" th:title="${rept.getExperiment_id()}" th:text="${rept.getExperiment_name()}">Experiment Name</a></td>
                                                 </tr>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
@@ -1983,16 +1994,13 @@
                 <div class="row" style="padding-top:10px;">
                     <button class="btn btn-lg btn-danger btn-block" id="importBtn" disabled="disabled" onclick="importBtnClick()"><span class="glyphicon glyphicon-edit"></span>录入实验数据</button>
                 </div>
+
                 <div class="row" style="padding-top:10px;">
                     <div >
                         <button class="btn btn-lg btn-info btn-block" type="submit" id="exportBtn" disabled="disabled" onclick="exportBtnClick()"><span class="glyphicon glyphicon-download-alt"></span>生成报告</button>
                     </div>
                 </div>
-                <!--<div class="row">-->
-                    <!--<div  style="padding:0;padding-top:10px;">-->
-                        <!--<button class="btn btn-lg btn-warning btn-block"  type="submit" id="collectBtn"  disabled="disabled" onclick="collectBtnClick()"><span id="collectIco" class="glyphicon glyphicon-star-empty"></span>&nbsp <span id="collectText">收藏</span></button>-->
-                    <!--</div>-->
-                <!--</div>-->
+
                 <br/><br/>
             </div>
             <div class="col-md-9" style="padding-left:30px;height:82%;">
@@ -2010,7 +2018,7 @@
                             <!--<iframe id="lab_window" src="lab_report.html" style="width:100%;height:92%;">
                             </iframe>-->
                             <div id="firefox_pdf" style="display:none;">
-                                <object th:data="@{/prepare_pdf/phylab_test.pdf}" type="application/pdf" id="pdf_object">
+                                <object type="application/pdf" id="pdf_object">
                                     <embed th:src="@{/prepare_pdf/phylab_test.pdf}" type="application/pdf" id="pdf_embed" style="width:100%;height:92%;min-height:480px;"/>
                                 </object>
                             </div>
@@ -2033,4 +2041,5 @@
 <script th:src="@{/js/test.js}"></script>
 
 </body>
+
 </html>
