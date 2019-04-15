@@ -30,9 +30,4 @@ public class IndexController {
         return "index";
     }
 
-
-    @RequestMapping(value = {"/getreport"})
-    public String showReport() {
-        return "report";
-    }
 }
