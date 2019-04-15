@@ -77,12 +77,12 @@
             <version>2.11.2</version>
         </dependency>
 
-        <!-- Jackson: A json parse library -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.8</version>
-        </dependency>
+        <!--&lt;!&ndash; Jackson: A json parse library &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--<artifactId>jackson-core</artifactId>-->
+            <!--<version>2.9.8</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 

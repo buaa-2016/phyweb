@@ -88,8 +88,7 @@ public class ReportCenterController {
         logger.info("exit value: {}", exitValue);
         logger.info("output: {}", output);
 
-        JsonNode response = new ObjectMapper().readTree(output);
-        if (exitValue != 0 || !response.at("status").asText().equals("success")) {
+        if (exitValue != 0 || !output.equals("{\"status\":\"success\"}")) {
             jsonResponse.put("status", "fail");
             return jsonResponse;
         }
