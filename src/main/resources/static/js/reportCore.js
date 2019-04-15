@@ -36,14 +36,13 @@ function check(){
 }	
 function eleDisable(){
 	SetDisable('importBtn',true);
-	SetDisable('collectBtn',true);
 	SetDisable('selectBtn',true);
 	SetDisable('exportBtn',true);
 	SetDisable('InputLabIndex',true);
 }
 function eleEnable(){
 	SetDisable('importBtn',false);
-	SetDisable('collectBtn',false);
+	//SetDisable('collectBtn',false);
 	SetDisable('exportBtn',true);
 }
 function collectLab(ico_id,txt_id){
