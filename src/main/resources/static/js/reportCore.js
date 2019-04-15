@@ -62,7 +62,8 @@ function collectLab(ico_id,txt_id){
 		}
 		else
 			alert("Button text can not be [txt] when use this function!Please Use 收藏/取消收藏");
-}	
+}
+
 function SelectLab(index,ref){
 	var lt = document.getElementById(ref);
 		if((new RegExp("^10(11|12|21|22|31|41|42|51|61|62|71|81|82|91)$")).test(index)){

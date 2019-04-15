@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png" />
+    <title>PhyLab</title>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}" type="text/css" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
+    <!-- main css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+</head>
+
+<body>
+<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <!--<div class="search_input" id="search_input_box">
+            <div class="container">
+                <form class="d-flex justify-content-between" method="" action="">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="search_input"
+                            placeholder="Search Here"
+                    />
+                    <button type="submit" class="btn"></button>
+                    <span
+                            class="ti-close"
+                            id="close_search"
+                            title="Close Search"
+                    ></span>
+                </form>
+            </div>
+        </div>-->
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="/"
+                ><img th:src="@{/img/phylab_logo.svg}" height="66" width="66" alt=""
+                /></a>
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div
+                        class="collapse navbar-collapse offset"
+                        id="navbarSupportedContent"
+                >
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <style>
+                            .nav>li:hover{
+                                padding-top: 10px;
+                                color: azure;
+                                background: #f4bb02;
+                            }
+                        </style>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">主页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/report-center">物理实验报告中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index">题库</a>
+                        </li>
+
+                        <li class="nav-item submenu dropdown">
+                            <a
+                                    href="#"
+                                    class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    role="button"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                            ><span shiro:principal property="name"></span></a
+                            >
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/index/user">个人中心</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout"
+                                    >取消登陆</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================ End Header Menu Area =================-->
+
+<!--================ Start Home Banner Area =================-->
+<section class="home_banner_area">
+    <div class="banner_inner">
+
+    </div>
+</section>
+<!--================ End Home Banner Area =================-->
+
+<!--Optional JavaScript -->
+<!--jQuery first, then Popper.js, then Bootstrap JS -->
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<!--gmaps Js-->
+<script type="text/javascript" th:src="@{/js/theme.js}"></script>
+</body>
+</html>
