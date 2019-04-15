@@ -67,7 +67,7 @@ public class ReportCenterController {
 
         String randomXmlFilename = UUID.randomUUID().toString() + ".xml";
         String randomLatexFilename = UUID.randomUUID().toString() + ".tex";
-        String randomPdfFilename = randomLatexFilename.replace(".text", ".pdf");
+        String randomPdfFilename = randomLatexFilename.replace(".tex", ".pdf");
 
         String xmlLabDataPath = getScriptPath(randomXmlFilename);
         String createScriptPath = getScriptPath("create.sh");
