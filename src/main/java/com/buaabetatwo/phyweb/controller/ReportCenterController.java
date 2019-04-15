@@ -14,10 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,6 +58,7 @@ public class ReportCenterController {
         return lastLine;
     }
 
+    @ResponseBody
     @PostMapping("/report")
     public Map createReport(@RequestParam("xml") String xmlData, @RequestParam("id") int id) throws IOException, InterruptedException {
 
