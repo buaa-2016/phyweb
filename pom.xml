@@ -77,6 +77,19 @@
             <version>2.11.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+        </dependency>
         <!--&lt;!&ndash; Jackson: A json parse library &ndash;&gt;-->
         <!--<dependency>-->
             <!--<groupId>com.fasterxml.jackson.core</groupId>-->

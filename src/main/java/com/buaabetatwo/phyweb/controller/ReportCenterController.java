@@ -2,8 +2,10 @@ package com.buaabetatwo.phyweb.controller;
 
 import com.buaabetatwo.phyweb.mapper.ReportMapper;
 import com.buaabetatwo.phyweb.model.Report;
+import com.buaabetatwo.phyweb.model.User;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,8 +38,11 @@ public class ReportCenterController {
 
     @GetMapping("/report-center")
     public String getReportCenter(Model model) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
         List<Report> reports = reportMapper.findAll();
         model.addAttribute("reportTemplates", reports);
+        model.addAttribute("pic_hash", "http://www.gravatar.com/avatar/"+DigestUtils.md5Hex(user.getEmail())+"?s=55?d=monsterid");
+        model.addAttribute("name",user.getName());
         return "report-center";
     }
 
