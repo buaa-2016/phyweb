@@ -32,9 +32,16 @@ public class AuthController {
         SimpleHash hash = new SimpleHash("md5", user.getPassword());
         String encryptedPassword = hash.toHex();
         user.setPassword(hash.toHex());
-        userMapper.insertByUser(user);
-        model.addAttribute("message", "注册成功，请登录！");
-        return "login";
+        if(userMapper.getByStudentId(user.getStudent_id())==null&&
+        userMapper.getByEmail(user.getEmail())==null){
+            userMapper.insertByUser(user);
+            model.addAttribute("message", "注册成功，请登录！");
+            return "login";
+        }
+        else{
+            model.addAttribute("message", "注册失败，邮箱或学号已存在！");
+        }
+        return "register";
     }
 
 
