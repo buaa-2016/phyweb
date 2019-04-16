@@ -1964,13 +1964,7 @@
                                         </div>
                                     </form>
                                     <div style="display:none" id="back_info" th:each="rept : ${reportTemplates}">
-<<<<<<< HEAD
-
                                         <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
-
-=======
-                                        <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
->>>>>>> d68b7eb68d5b6b1b4d4e0153e7cadd2086029e61
                                     </div>
                                     <div class="alert alert-danger" role="alert" style="display:none;height:30px;padding:5px;">
                                         <span class="glyphicon glyphicon-remove-sign"></span><strong>&nbsp Error:</strong><span>&nbsp 请输入正确的实验序号!</span>
