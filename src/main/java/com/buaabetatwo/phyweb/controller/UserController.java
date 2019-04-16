@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
@@ -16,17 +18,17 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/index/user")
+    @GetMapping("/index/userupdate")
     public String UserShow(Model model) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("user", user);
-        return "user";
+        return "userupdate";
     }
 
-    @PostMapping("/index/user")
-    public String UserUpdate(String name,String email,String student_id,String password3){
+    @PostMapping("/index/userupdate")
+    public String UserUpdate(String name,String email,String student_id,String password3,String introduction){
         if(password3==null) {
-            userMapper.updateUserInfo(name, email, student_id);
+            userMapper.updateUserInfo(name, email, student_id,introduction);
         }
         else {
             SimpleHash hash = new SimpleHash("md5", password3);
@@ -36,19 +38,11 @@ public class UserController {
        return "login";
     }
 
-    @PostMapping("/usercenter/updateemail")
-    public String UserCenterUpdate(String email) {
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-        userMapper.updateUserMail(email,user.getId());
-        return "login";
-    }
-
     @GetMapping("/usercenter")
     public String UserCenter(Model model) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("user", user);
         return "usercenter";
     }
-
 
 }

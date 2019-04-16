@@ -29,14 +29,13 @@ public interface UserMapper {
     @Insert("INSERT INTO users(name, email, student_id, password) VALUES(#{name}, #{email}, #{student_id}, #{password})")
     void insertByUser(User user);
 
-    @Insert("UPDATE  users SET name=#{name}  , email=#{email}   WHERE student_id=#{student_id}")
-    void updateUserInfo(String name ,String email,String student_id );
+    @Insert("UPDATE  users SET name=#{name}  , email=#{email} ,introduction=#{introduction}   WHERE student_id=#{student_id}")
+    void updateUserInfo(String name ,String email,String student_id ,String introduction );
 
     @Insert("UPDATE  users SET password=#{password} WHERE student_id=#{student_id}")
     void updateUserPw(String password,String student_id);
 
-    @Update("UPDATE  users SET email=#{email} WHERE id=#{id}")
-    void updateUserMail(String email, int id);
+
 
 
 }

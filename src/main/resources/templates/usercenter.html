@@ -54,7 +54,7 @@
                             }
                         </style>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">主页</a>
+                            <a class="nav-link" href="index">主页</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/report-center">物理实验报告中心</a>
@@ -75,7 +75,7 @@
                             >
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/index/user">个人中心</a>
+                                    <a class="nav-link" href="/usercenter">个人中心</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/logout"
@@ -106,21 +106,19 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
+                            <span class="input-group-text">学号</span>
                         </div>
-                        <input type="text" class="form-control" th:placeholder="${user.getStudent_id()}">
+                        <input type="text" class="form-control" readonly th:placeholder="${user.getStudent_id()} "/>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">姓名</span>
+                            <span class="input-group-text">用户名</span>
                         </div>
-                        <input type="text" class="form-control" th:placeholder="${user.getName()}">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">更改姓名</button>
-                        </div>
+                        <input type="text" class="form-control" readonly th:placeholder="${user.getName()}   "/>
+
                     </div>
                 </div>
             </div>
@@ -128,27 +126,25 @@
 
             <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
                 <div class="col-md-8">
-                    <form method="post" action="/usercenter/updateemail">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">邮箱</span>
                             </div>
-                            <input type="text" name="email" class="form-control" th:placeholder="${user.getEmail()}">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondary">更改提醒邮箱</button>
-                            </div>
+                            <input type="text" name="email" readonly class="form-control" th:placeholder="${user.getEmail()}"/>
                         </div>
-                    </form>
                 </div>
             </div>
 
             <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
                 <div class="col-md-6">
                     <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3" th:placeholder="${user.getIntroduction()}"></textarea>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">自我介绍</span>
                         </div>
-                        <button class="btn btn-secondary" type="submit">一句话介绍自己～～</button>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" readonly th:placeholder="${user.getIntroduction()}"></textarea>
+                        </div>
+                        <a class="btn btn-secondary" href="/index/userupdate">修改资料</a>
                     </form>
                 </div>
             </div>
