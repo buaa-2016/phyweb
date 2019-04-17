@@ -244,12 +244,7 @@ def Handle10711():
     file_object = open(os.path.dirname(__file__) + "/Handle10711.tex","rb")
     #将模板作为字符串存储在template文件中
     source = file_object.read().decode('utf-8')
-
-    angle_a1_vert = [82.55,120,158.38,43.55,45.57]
-    angle_a2_vert = [323,0.11,38.46,284,287]
-    angle_b1_vert = [262.54,300,338.39,223.55,225.57]
-    angle_b2_vert = [142.56,180.04,218.45,104,106]
-
+    
     ANGLE_A1 = []
     ANGLE_A2 = []
     ANGLE_B1 = []
