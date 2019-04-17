@@ -7,12 +7,12 @@ import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -62,11 +62,11 @@ public class ReportCenterController {
 
 
         // write xml data to file
-        String xmlLabDataPath = Paths.get(path + "/xml", randomXmlFilename).toAbsolutePath().toString();
+        String xmlLabDataPath = path + "/xml/"+ randomXmlFilename;
         Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
 
         // step 3: execute command
-        String cmd = "python3 handler.py " + report.getScript_link() + " " + xmlLabDataPath
+        String cmd = "python3 " + path +"handler.py " + report.getScript_link() + " " + xmlLabDataPath
                  + " " + pdfPath + " " + path;
         logger.info("command: {}", cmd);
         Process child = Runtime.getRuntime().exec(cmd);
