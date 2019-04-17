@@ -1,0 +1,71 @@
+\subsection*{实验3.掠入射法测量棱镜的折射率}
+\subsubsection*{(1)原始数据记录表格}
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{次数} & 1 & 2 & 3 & 4 & 5 \\
+\hline
+\multirow{2}{*}{\text{入射角}}
+& ${\alpha}_1$
+{% for a in ANGLE_A1 %}
+& %% a.angle %%$^{\circ}$%% a.minus %%'
+{%- endfor %}
+\\
+\cline{2-7}
+& ${\beta}_1$
+{% for a in ANGLE_B1 %}
+& %% a.angle %%$^{\circ}$%% a.minus %%'
+{%- endfor %}
+\\
+\hline
+\multirow{2}{*}{\text{折射角}}
+& ${\alpha}_2$
+{% for a in ANGLE_A2 %}
+& %% a.angle %%$^{\circ}$%% a.minus %%'
+{%- endfor %}
+\\
+\cline{2-7}
+& ${\beta}_2$
+{% for a in ANGLE_B2 %}
+& %% a.angle %%$^{\circ}$%% a.minus %%'
+{%- endfor %}
+\\
+\hline
+\multicolumn{2}{|c|}{${i}_{min}$}
+{% for a in ANGLE_I %}
+& %% a.angle %%$^{\circ}$%% a.minus %%'
+{%- endfor %}\\
+\hline
+\end{tabular}
+\end{center}
+\vspace{10pt}
+
+\begin{center}
+有${i}_{min}$ = $\displaystyle\frac{1}{2}[({\alpha}_2-{\alpha_1})+({\beta}_2-{\beta}_1)]$
+\end{center}
+
+${i}_{min}$的平均值为：$$\bar{{i}_{min}}=\displaystyle\frac{1}{5}\sum\limits_{i=1}^{5}{{i}_{min}}=%% AVERAGE_I %%^{\circ}$$
+
+$$ n_2=\sqrt{(\displaystyle\frac{cosA+sin\bar{i_{min}}}{sinA})^2+1}$$
+\subsubsection*{(2)不确定度的计算}
+${i}_{min}$的A类不确定度：
+$$u_a({i}_{min}) = \sqrt{\displaystyle\frac{\sum\limits_{i=1}^{5}({i}_{min}-\bar{{i}_{min}})}{5{\times}(5-1)}^2 } = %% UA_I %%^{\circ} $$
+
+${i}_{min}$的B类不确定度：
+$$u_b({i}_{min})=\displaystyle\frac{\bigtriangleup\text{仪}}{\sqrt{3}}
+= \frac{1'}{\sqrt{3}} = 0.0095^{\circ} $$
+
+${i}_{min}$的不确定度：
+$$u({i}_{min}) = \sqrt{u^2_a({i}_{min})+u^2_b({\delta}_{min})} = %% U_I %%^{\circ}$$
+
+$$u(A) = %% U_A %%^{\circ}$$
+
+$$u(n_2) = \sqrt{(\displaystyle\frac{{\partial}n_1}{{\partial}{\delta}_{min}})^2{\times}u^2({\delta}_{min})+(\displaystyle\frac{{\partial}n_1}{{\partial}A})^2u^2(A)} %% U_N1 %% $$
+$$= \displaystyle\frac{1}{n}\displaystyle\frac{cosA+sin\bar{i_{min}}}{sin^2A}\displaystyle\sqrt{cos\bar{i_{min}}u(\bar{i_{min}})^2+(\frac{1+cosAsin\bar{i_{min}}}{sinA})^2u(A)^2} = %%U_N %%$$
+相对不确定度：
+$$\displaystyle\frac{u(n_2)}{n_2} = %% RE_U %%$$
+
+最终结果:
+$${n_2}{\pm}u({n_2}) = %% RESULT_N %% {\pm} %% RESULT_U_N %% $$

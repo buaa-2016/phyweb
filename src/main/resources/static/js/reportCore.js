@@ -214,7 +214,7 @@ function changePdf(type,pdfName){
 			path = "./prepare_pdf/";
 		}
 		else if(type=="tmp"){
-			path = "./";
+			path = "./script/pdf/";
 		}
 		else if(type=="star"){
 			path = "./star_pdf/"
@@ -243,6 +243,8 @@ function Post_lab(){
 			console.log(this.readyState);
 			console.log(this.status);
 			alert("服务器出错");
+		} else {
+			alter("刷新页面并检查输入输出数据");
 		}
 	});
 }

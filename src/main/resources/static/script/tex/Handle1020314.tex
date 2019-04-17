@@ -1,0 +1,73 @@
+\subsection*{实验1.稳态法测量不良导体的热导率实验}
+\subsubsection*{(1)原始数据记录}
+
+%theta1, theta2, (ave, ua, u)_(hp, dp, hb, db), theta, dt_t, dt_theta, tt
+\noindent
+$m_p = ||mp||g$ \\
+$c = 368 J/(kg\cdot K)$ \\ 
+稳定状态下$\displaystyle \Theta_1 = ||theta1||mV, \Theta_2 = ||theta2||mV$ \\
+\begin{center}
+\begin{tabular}{|c|{% for i in range(len_hp) -%}c|{%- endfor %}c|}
+\hline
+i & {%for i in range(len_hp) -%}||i + 1|| & {%- endfor%} 平均 \\
+\hline
+$h_P/mm$ & {%for i in range(len_hp) -%}||hp[i]|| & {%- endfor%} ||ave_hp|| \\
+\hline
+$d_P/mm$ & {%for i in range(len_dp) -%}||dp[i]|| & {%- endfor%} ||ave_dp|| \\
+\hline
+$h_B/mm$ & {%for i in range(len_hb) -%}||hb[i]|| & {%- endfor%} ||ave_hb|| \\
+\hline
+$d_B/mm$ & {%for i in range(len_db) -%}||db[i]|| & {%- endfor%} ||ave_db|| \\
+\hline
+\end{tabular} 
+\end{center}
+
+散热过程中$\Theta_2$随时间的变化:
+
+\begin{center}
+\begin{tabular}{|c|{% for i in range(len_theta) -%}c|{%- endfor %}}
+\hline
+时间t/s {%for i in range(len_theta) -%} & ||30 * i||{%- endfor%} \\
+\hline
+$\Theta_2/mV$ {%for i in range(len_theta) -%} & ||theta[i]||{%- endfor%} \\
+\hline
+\end{tabular} 
+\end{center}
+
+\subsubsection*{(2)计算热导率}
+\noindent
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=13cm]{||figurename||.png}
+\end{figure}
+
+$$\frac{\delta\Theta}{\delta t} = ||tt||mV/s$$
+$$k = m_pc\frac{\delta\Theta}{\delta t}\frac{d_P+4h_P}{d_P+2h_P}\frac{h_B}{\Theta_1-\Theta_2}\frac{2}{\pi d_B^2} = ||k|| W/(m\cdot s)$$
+
+\subsubsection*{(3)不确定度的计算}
+\noindent
+$\displaystyle u(m_P) = \frac{0.01}{\sqrt3}g = 5.7735\times 10^{-6}kg$ \\
+
+\noindent
+$\displaystyle u_a(h_P) = \sqrt{\frac{\Sigma(h_{Pi} - \overline{d_P})^2}{ ||len_hp|| \times ||len_hp - 1|| } } = ||ua_hp||m$ \\
+$\displaystyle u_a(d_P) = \sqrt{\frac{\Sigma(d_{Pi} - \overline{d_P})^2}{ ||len_dp|| \times ||len_dp - 1|| } } = ||ua_dp||m$ \\
+$\displaystyle u_a(h_B) = \sqrt{\frac{\Sigma(h_{Bi} - \overline{d_B})^2}{ ||len_hb|| \times ||len_hb - 1|| } } = ||ua_hb||m$ \\
+$\displaystyle u_a(d_B) = \sqrt{\frac{\Sigma(d_{Bi} - \overline{d_B})^2}{ ||len_db|| \times ||len_db - 1|| } } = ||ua_db||m$ \\
+$\displaystyle u_b(h_P) = u_b(d_P) = u_b(h_B) = u_b(d_B) = \frac{0.02}{\sqrt 3}mm = 1.1547\times10^{-5}m$ \\
+
+\noindent
+$\displaystyle u(h_P) = \sqrt{u_a(h_P)^2 + u_b(h_P)^2} = ||u_hp||m$ \\
+$\displaystyle u(d_P) = \sqrt{u_a(d_P)^2 + u_b(d_P)^2} = ||u_dp||m$ \\
+$\displaystyle u(h_B) = \sqrt{u_a(h_B)^2 + u_b(h_B)^2} = ||u_hb||m$ \\
+$\displaystyle u(d_B) = \sqrt{u_a(d_B)^2 + u_b(d_B)^2} = ||u_db||m$ \\
+
+\noindent
+$\frac{u(k)}{k} = \sqrt{(\frac{u(m_P}{m_P})^2 + ((\frac{1}{d_P + 4h_P} - \frac{1}{d_P + 2h_P}) * u(d_P))^2 + ((\frac{4}{d_P + 4h_P} - \frac{2}{d_P + 2h_P}) * u(h_P))^2 + (\frac{u(h_B)}{h_B})^2 + (\frac{2u(d_B)}{d_B})^2} \\ \qquad = ||u_k_k||$ \\
+
+\noindent
+$\displaystyle u(k) = k\cdot\frac{u(k)}{k} = ||u_k||W/(m\cdot s)$ \\
+
+
+\subsubsection*{(4)最终结果}
+\noindent
+$$k \pm u(k) = ||final|| W/(m\cdot s)$$

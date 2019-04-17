@@ -3,26 +3,19 @@ package com.buaabetatwo.phyweb.controller;
 import com.buaabetatwo.phyweb.mapper.ReportMapper;
 import com.buaabetatwo.phyweb.model.Report;
 import com.buaabetatwo.phyweb.model.User;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -30,8 +23,7 @@ import java.util.*;
 public class ReportCenterController {
     private static Logger logger = LoggerFactory.getLogger(ReportCenterController.class);
 
-    @Value("${phyweb.scriptsPath}")
-    private String scriptsPath;
+    public static final String path = System.getProperty("user.dir") + "/target/classes/static/script/";
 
     @Autowired
     private ReportMapper reportMapper;
@@ -44,14 +36,6 @@ public class ReportCenterController {
         model.addAttribute("pic_hash", "http://www.gravatar.com/avatar/"+DigestUtils.md5Hex(user.getEmail())+"?s=55?d=monsterid");
         model.addAttribute("name",user.getName());
         return "report-center";
-    }
-
-    public String getScriptPath(String filename) {
-        return Paths.get(scriptsPath.trim(), filename).toAbsolutePath().toString();
-    }
-
-    public String getWorkingDirectory() {
-        return Paths.get(scriptsPath.trim()).toAbsolutePath().toString();
     }
 
     public String readLastLineFromStream(InputStream in) {
@@ -72,19 +56,20 @@ public class ReportCenterController {
         Map<String, String> jsonResponse = new HashMap<>();
 
         String randomXmlFilename = UUID.randomUUID().toString() + ".xml";
-        String randomLatexFilename = UUID.randomUUID().toString() + ".tex";
-        String randomPdfFilename = randomLatexFilename.replace(".tex", ".pdf");
+        String randomPdfFilename = UUID.randomUUID().toString() + ".pdf";
 
-        String xmlLabDataPath = getScriptPath(randomXmlFilename);
-        String createScriptPath = getScriptPath("create.sh");
-        String pythonScriptPath = getScriptPath(report.getScript_link());
-        String latexDocumentPath = getScriptPath(randomLatexFilename);
+        String xmlLabDataPath = path + "xml/" + randomXmlFilename;
+
+        String pdfPath = path + "pdf/" + randomPdfFilename;
+
+        logger.info("pythonScriptPath: {}", xmlLabDataPath);
 
         // write xml data to file
         Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
 
         // step 3: execute command
-        String cmd = createScriptPath + " " + getWorkingDirectory() + " " + pythonScriptPath + " " + xmlLabDataPath + " " + latexDocumentPath;
+        String cmd = "python3 handler.py " + report.getScript_link() + " " + xmlLabDataPath
+                 + " " + pdfPath + " " + path;
         logger.info("command: {}", cmd);
         Process child = Runtime.getRuntime().exec(cmd);
         int exitValue = child.waitFor();
