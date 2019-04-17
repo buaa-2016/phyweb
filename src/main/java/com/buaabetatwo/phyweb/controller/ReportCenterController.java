@@ -58,13 +58,11 @@ public class ReportCenterController {
         String randomXmlFilename = UUID.randomUUID().toString() + ".xml";
         String randomPdfFilename = UUID.randomUUID().toString() + ".pdf";
 
-        String xmlLabDataPath = path + "xml/" + randomXmlFilename;
-
         String pdfPath = path + "pdf/" + randomPdfFilename;
 
-        logger.info("pythonScriptPath: {}", xmlLabDataPath);
 
         // write xml data to file
+        String xmlLabDataPath = Paths.get(path + "/xml", randomXmlFilename).toAbsolutePath().toString();
         Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
 
         // step 3: execute command
