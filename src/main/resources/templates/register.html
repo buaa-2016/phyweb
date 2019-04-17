@@ -107,6 +107,8 @@
                                 name="email"
                                 placeholder="邮箱地址"
                                 required
+                                pattern="([A-Z]|[a-z]|[0-9]|-|_)+@([a-z]|[0-9]){2,}.((com|cn)|edu.cn)"
+                                maxlength="50"
                                 type="email"
                         />
                         <input
@@ -120,12 +122,16 @@
                                 name="name"
                                 placeholder="用户名"
                                 required
+                                minlength="1"
+                                maxlength="30"
                                 type="text"
                         />
                         <input
                                 name="password"
                                 placeholder="密码"
                                 required
+                                minlength="6"
+                                maxlength="20"
                                 type="password"
                                 id="password" 
                         />
@@ -133,6 +139,8 @@
                                 name="password_confirm"
                                 placeholder="确认密码"
                                 required
+                                minlength="6"
+                                maxlength="20"
                                 type="password"
                                 oninput="check(this)" 
                         />
@@ -162,7 +170,8 @@
 <!--gmaps Js-->
 <script type="text/javascript" th:src="@{/js/gmaps.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/theme.js}"></script>
-
+<!--jqeury_validate-->
+<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
 <script>
     function deleteMessage(){
         document.getElementById("demo_1").style.display="none";
