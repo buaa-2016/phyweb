@@ -84,12 +84,12 @@
             <version>1.11</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.projectlombok</groupId>-->
+            <!--<artifactId>lombok</artifactId>-->
+            <!--<version>1.18.2</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <!--&lt;!&ndash; Jackson: A json parse library &ndash;&gt;-->
         <!--<dependency>-->
             <!--<groupId>com.fasterxml.jackson.core</groupId>-->
