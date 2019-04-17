@@ -19,7 +19,7 @@ function lab(index){
 	}
 }
 function getDbId(index){
-	return $('#back_info a[index='+index+']').attr('db-id');
+	return $('#'+index +' a[index='+index+']').attr('db-id');
 }
 function check(){
 	if(browser()=="FF"){
@@ -106,7 +106,6 @@ function selectBtnClick(){
 		}
 }
 function importBtnClick(){
-	console.log(labDoc3dot1415926.getIndex());
 	$("#lab_table_"+labDoc3dot1415926.getIndex()).modal("toggle");
 }
 function collectBtnClick(){
