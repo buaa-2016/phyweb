@@ -106,6 +106,7 @@ function selectBtnClick(){
 		}
 }
 function importBtnClick(){
+	console.log(labDoc3dot1415926.getIndex());
 	$("#lab_table_"+labDoc3dot1415926.getIndex()).modal("toggle");
 }
 function collectBtnClick(){
