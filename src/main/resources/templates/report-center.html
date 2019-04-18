@@ -1931,8 +1931,6 @@
                 <li><a th:href="@{/}">主页</a></li>
                 <li><a th:href="@{#}">题库</a></li>
                 <li><a th:href="@{/logout}">登出</a></li>
-                <li style="padding-bottom: 0px"><img th:src="@{${pic_hash}}"/></li>
-                <li><a th:href="@{/usercenter}" th:text="${name}">name</a>&nbsp</li>
             </ul>
         </div>
     </nav>
@@ -1965,8 +1963,14 @@
                                             <input style="margin-left: 10px;" type="button" class="btn btn-default-outline" id="selectBtn" onclick="selectBtnClick()"  value="Select"></input>
                                         </div>
                                     </form>
-                                    <div style="display:none" th:id="${rept.getExperiment_id()}" th:each="rept : ${reportTemplates}">
+                                    <div style="display:none" id="back_info" th:each="rept : ${reportTemplates}">
+<<<<<<< HEAD
+
                                         <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
+
+=======
+                                        <a th:index="${rept.getExperiment_id()}" th:prepareLink="${rept.getPrepare_link()}" th:db-id="${rept.getId()}"></a>
+>>>>>>> d68b7eb68d5b6b1b4d4e0153e7cadd2086029e61
                                     </div>
                                     <div class="alert alert-danger" role="alert" style="display:none;height:30px;padding:5px;">
                                         <span class="glyphicon glyphicon-remove-sign"></span><strong>&nbsp Error:</strong><span>&nbsp 请输入正确的实验序号!</span>
