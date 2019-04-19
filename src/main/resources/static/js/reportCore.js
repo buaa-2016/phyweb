@@ -251,7 +251,7 @@ function Post_lab(){
 				$('#LabStatus')[0].innerHTML = "终版";
 				eleEnable();
 			} else {
-				alert("请检查数据并刷新页面重新输入")
+				alert("要请检查数据～")
 			}
 		} else if (this.readyState==4) {
 			console.log("服务器出错");
@@ -259,7 +259,7 @@ function Post_lab(){
 			console.log(this.status);
 			alert("服务器出错");
 		} else {
-			alert("刷新页面并检查输入输出数据");
+			alert("要检查数据哦～");
 		}
 	});
 }
