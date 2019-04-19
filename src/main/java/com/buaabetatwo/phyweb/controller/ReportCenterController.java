@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.apache.commons.codec.digest.DigestUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -33,8 +31,6 @@ public class ReportCenterController {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         List<Report> reports = reportMapper.findAll();
         model.addAttribute("reportTemplates", reports);
-        model.addAttribute("pic_hash", "http://www.gravatar.com/avatar/"+DigestUtils.md5Hex(user.getEmail())+"?s=55?d=monsterid");
-        model.addAttribute("name",user.getName());
         return "report-center";
     }
 
@@ -85,6 +81,5 @@ public class ReportCenterController {
         jsonResponse.put("experimentId", String.valueOf(report.getExperiment_id()));
         return jsonResponse;
     }
-
 
 }
