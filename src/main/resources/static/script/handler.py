@@ -8,18 +8,15 @@ import os
 import platform
 import xml.dom.minidom
 
+scriptdir = os.path.dirname(__file__) + '/'
+texdir = scriptdir + 'tex/'
+sys.path.append(scriptdir)
 
 if __name__ == '__main__':
     # 三个命令行参数
     # 第一个argv[1]是实验编号，如1010113
     # 第二个argv[2]是XML文件所在地址，采用绝对路径
     # 第三个argv[3]是最终生成的pdf文件的目标地址，采用绝对路径
-
-    # 将第四个参数作为文件路径传入
-
-    scriptdir = argv[4]
-    texdir = scriptdir + 'tex/'
-    sys.path.append(scriptdir)
 
 
     try:

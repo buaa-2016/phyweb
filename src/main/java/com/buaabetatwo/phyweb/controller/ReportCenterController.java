@@ -23,7 +23,12 @@ import java.util.*;
 public class ReportCenterController {
     private static Logger logger = LoggerFactory.getLogger(ReportCenterController.class);
 
-    public static final String path = System.getProperty("user.dir") + "/target/classes/static/script/";
+    private static final String path = System.getProperty("user.dir") + "/target/classes/static/script/";
+
+    private static HashMap<String,String> reportMap = new HashMap<>();
+    static {
+        reportMap.put("10111","1010113");
+    }
 
     @Autowired
     private ReportMapper reportMapper;
@@ -50,7 +55,7 @@ public class ReportCenterController {
 
     @ResponseBody
     @PostMapping("/report")
-    public Map createReport(@RequestParam("xml") String xmlData, @RequestParam("id") int id) throws IOException, InterruptedException {
+    public Map createReport(@RequestParam("xml") String xmlData, @RequestParam("id") int id, @RequestParam("kind") int kind) throws IOException, InterruptedException {
 
         Report report = reportMapper.findById(id);
         Map<String, String> jsonResponse = new HashMap<>();
@@ -66,8 +71,8 @@ public class ReportCenterController {
         Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
 
         // step 3: execute command
-        String cmd = "python3 " + path +"handler.py " + report.getScript_link() + " " + xmlLabDataPath
-                 + " " + pdfPath + " " + path;
+        String cmd = "python2 " + path +"handler.py " + report.getScript_link() + " " + xmlLabDataPath
+                 + " " + pdfPath;
         logger.info("command: {}", cmd);
         Process child = Runtime.getRuntime().exec(cmd);
         int exitValue = child.waitFor();

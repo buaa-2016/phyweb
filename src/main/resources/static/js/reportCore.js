@@ -5,8 +5,17 @@ function lab(index){
 	this.index = index;
 	this.dbId = getDbId(index);
 	this.xmlTxt;
+	this.inputkind;
 	this.flush = function(){
-		this.xmlTxt=SetXMLDoc_lab(index);
+		var kinds = document.getElementsByName("check_"+index);
+		var i;
+		for(i = 0; i < kinds.length; i++) {
+			if (kinds[i].checked) {
+				break;
+			}
+		}
+		this.inputkind = i+1;
+		this.xmlTxt=SetXMLDoc_lab(index.toString()+this.inputkind);
 	}
 	this.getIndex = function(){
 		return this.index;
@@ -16,6 +25,9 @@ function lab(index){
 	}
 	this.getDbId = function(){
 		return this.dbId;
+	}
+	this.getKind = function () {
+		return this.inputkind;
 	}
 }
 function getDbId(index){
@@ -228,7 +240,8 @@ function changePdf(type,pdfName){
 function Post_lab(){
 	var xmlString = labDoc3dot1415926.getXML();
 	var dbId = labDoc3dot1415926.getDbId();
-	PostXMLDoc("/report",xmlString,dbId,function(){
+	var kind = labDoc3dot1415926.getKind();
+	PostXMLDoc("/report",xmlString,dbId,kind,function(){
 		if (this.readyState==4 && this.status==200){
 			var jsonText = eval("(" + this.responseText + ")");
 			//alert(this.responseText);
