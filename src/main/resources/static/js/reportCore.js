@@ -250,6 +250,8 @@ function Post_lab(){
 				changePdf('tmp',jsonText['link']);
 				$('#LabStatus')[0].innerHTML = "终版";
 				eleEnable();
+			} else {
+				alter("请检查数据并刷新页面重新输入")
 			}
 		} else if (this.readyState==4) {
 			console.log("服务器出错");

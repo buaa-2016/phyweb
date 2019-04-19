@@ -57,7 +57,7 @@ public class ReportCenterController {
         Map<String, String> jsonResponse = new HashMap<>();
 
         String randomXmlFilename = UUID.randomUUID().toString() + ".xml";
-        String randomPdfFilename = UUID.randomUUID().toString() + ".pdf";
+        String randomPdfFilename = UUID.randomUUID().toString();
 
         String pdfPath = path + "pdf/" + randomPdfFilename;
 
