@@ -81,7 +81,7 @@ public class ReportCenterController {
         Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
 
         // step 3: execute command
-        String cmd = "python2 " + path +"handler.py " + reportMap.get(String.valueOf(id) + kind) + " " + xmlLabDataPath
+        String cmd = "python2 " + path +"handler.py " + reportMap.get(String.valueOf(report.getExperiment_id()) + kind) + " " + xmlLabDataPath
                  + " " + pdfPath;
         logger.info("command: {}", cmd);
         Process child = Runtime.getRuntime().exec(cmd);
