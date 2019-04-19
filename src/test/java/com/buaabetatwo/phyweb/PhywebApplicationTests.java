@@ -15,9 +15,4 @@ public class PhywebApplicationTests {
         System.out.println("Test Success!");
     }
 
-    @Test
-    public void TestPath() {
-        System.out.println(ReportCenterController.path);
-    }
-
 }
