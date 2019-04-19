@@ -82,7 +82,7 @@ public class ReportCenterController {
         }
 
         jsonResponse.put("status", "success");
-        jsonResponse.put("link", randomPdfFilename);
+        jsonResponse.put("link", randomPdfFilename+".pdf");
         jsonResponse.put("experimentId", String.valueOf(report.getExperiment_id()));
         return jsonResponse;
     }
