@@ -226,7 +226,7 @@ function changePdf(type,pdfName){
 			path = "./prepare_pdf/";
 		}
 		else if(type=="tmp"){
-			path = "./script/pdf/";
+			path = "./";
 		}
 		else if(type=="star"){
 			path = "./star_pdf/"
