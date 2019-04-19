@@ -15,6 +15,7 @@
     <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
     <!-- main css -->
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/phyweb.css}">
 </head>
 
 <body>
@@ -64,15 +65,16 @@
                         </li>
 
                         <li class="nav-item submenu dropdown">
-                            <a
-                                    href="#"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    role="button"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                            ><span shiro:principal property="name"></span></a
-                            >
+                            <a  
+                                href="#"
+                                class="nav-link dropdown-toggle"
+                                data-toggle="dropdown"
+                                role="button"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            > 
+                                <div class="gravatar"><shiro:principal property="email"></shiro:principal></div>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
                                     <a class="nav-link" href="/usercenter">个人中心</a>
@@ -99,7 +101,7 @@
         <div class="container" style="margin: auto auto; padding-top: 100px;">
             <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
                 <div class="col-md-4" style="left: 0%">
-                    <img src = "https://ask.qcloudimg.com/avatar/1149268/06iizvxe0f.png?imageView2/2/w/252" style = "width: 150px ; height: 150px ;">
+                    <div class="gravatar"  style="width: 150px ; height: 150px ;"><shiro:principal property="email"></div>
                 </div>
             </div>
             <div class="row" style="margin-top: 16px;margin-bottom: 16px;">
@@ -152,5 +154,8 @@
     </div>
 </section>
 
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script th:src="@{/js/global.js}"></script>
 </body>
 </html>
