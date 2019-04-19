@@ -26,6 +26,20 @@ public class ReportCenterController {
     private static HashMap<String,String> reportMap = new HashMap<>();
     static {
         reportMap.put("10111","1010113");
+        reportMap.put("10112","1010212");
+        reportMap.put("10211","1020113");
+        reportMap.put("10212","1020212");
+        reportMap.put("10311","1030113");
+        reportMap.put("10611","1060111");
+        reportMap.put("10612","1060213");
+        reportMap.put("10711","1070212");
+        reportMap.put("10712","1070312");
+        reportMap.put("10811","1080114");
+        reportMap.put("10821","1080215");
+        reportMap.put("10822","1080225");
+        reportMap.put("10911","1090114");
+        reportMap.put("10912","1090212");
+        reportMap.put("10913","1090312");
     }
 
     @Autowired
@@ -67,7 +81,7 @@ public class ReportCenterController {
         Files.write(Paths.get(xmlLabDataPath), xmlData.getBytes());
 
         // step 3: execute command
-        String cmd = "python2 " + path +"handler.py " + report.getScript_link() + " " + xmlLabDataPath
+        String cmd = "python2 " + path +"handler.py " + reportMap.get(String.valueOf(id) + kind) + " " + xmlLabDataPath
                  + " " + pdfPath;
         logger.info("command: {}", cmd);
         Process child = Runtime.getRuntime().exec(cmd);
