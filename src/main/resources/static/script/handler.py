@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
         os.chdir(os.path.dirname(scriptdir + 'pdf/'))
         # 等于１时是错误
-        print "calling procedure  +  "xelatex -interaction=nonstopmode " + sys.argv[3] + ".tex"
+        # print "calling procedure  +  "xelatex -interaction=nonstopmode " + sys.argv[3] + ".tex"
         ret = subprocess.call("xelatex -interaction=nonstopmode " + sys.argv[3] + ".tex", shell=True)
         subprocess.call("rm " + sys.argv[3] + ".aux", shell=True)
         subprocess.call("rm " + sys.argv[3] + ".synctex*", shell=True)
