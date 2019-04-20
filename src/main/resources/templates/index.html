@@ -1,127 +1,48 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png" />
-    <title>PhyLab</title>
-     <!--Bootstrap CSS-->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}" type="text/css" />
-    <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
-    <!-- main css -->
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/phyweb.css}">
-</head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="base">
 
-<body>
-<!--================ Start Header Menu Area =================-->
-<header class="header_area">
-    <div class="main_menu">
-
-        <nav class="navbar navbar-expand-lg navbar-light">
+    <th:block layout:fragment="content">
+        <div class="my-jumbotron">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="/"
-                ><img th:src="@{/img/phylab_logo.svg}" height="66" width="66" alt=""
-                /></a>
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
-                    <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div
-                        class="collapse navbar-collapse offset"
-                        id="navbarSupportedContent"
-                >
-                    <ul class="nav navbar-nav menu_nav ml-auto">
-                        <style>
-                            .nav>li:hover{
-                                padding-top: 10px;
-                                color: azure;
-                                background: #f4bb02;
-                            }
-                        </style>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">主页</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/report-center">物理实验报告中心</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index">题库</a>
-                        </li>
-
-                        <li class="nav-item submenu dropdown">
-                            <a
-                                    href="#"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    role="button"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                            >
-                            <div class="gravatar"><shiro:principal property="email" /></div>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/usercenter">个人中心</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/logout"
-                                    >取消登陆</a
-                                    >
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
-<!--================ End Header Menu Area =================-->
-
-<!--================ Start Home Banner Area =================-->
-<section class="home_banner_area">
-    <div class="banner_inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="banner_content text-center">
-                        <p class="text-uppercase">
-                            大学物理实验网站
-                        </p>
-                        <h2 class="text-uppercase mt-4 mb-5">
-                            phylab-beta-two
-                        </h2>
-                        <div>
-                            <h2>欢迎您，<span shiro:principal property="name"></span></h2>
-                        </div>
-                        <div style="margin-top: 50px">
-                            <a href="/report-center" class="btn btn-info btn-lg">进入实验报告中心</a>
-                        </div>
-                    </div>
-                </div>
+                <h1>物理实验网站</h1>
+                <h2>Phyweb-Beta-Two</h2>
+                <hr class="my-3">
+                <p class="h4 mb-4">欢迎您，Gakki3</p>
+                <p class="lead mt-5">
+                    <a class="btn btn-primary btn-lg" href="/report-center" role="button">进入报告中心</a>
+                </p>
             </div>
         </div>
-    </div>
-</section>
+        <div class="container marketing">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="bd-placeholder-img rounded-circle">
+                        <i class="iconfont icon-bianjie" style="font-size: 80px"></i>
+                    </div>
+                    <h2>便捷</h2>
+                    <p class="lead">再无繁琐的计算，只需提供实验数据，一份实验报告顷刻可得</p>
+                    <!-- <p><a class="btn btn-secondary" href="#" role="button">立即体验 »</a></p> -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="bd-placeholder-img rounded-circle">
+                        <i class="iconfont icon-guifan" style="font-size: 80px"></i>
+                    </div>
+                    <h2>规范</h2>
+                    <p class="lead">精美的 Latex 排版，严格的计算公式，<br>生成的报告美观又规范</p>
+                    <!-- <p><a class="btn btn-secondary" href="#" role="button">立即体验 »</a></p> -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="bd-placeholder-img rounded-circle">
+                        <i class="iconfont icon-jingzhun" style="font-size: 80px"></i>
+                    </div>
+                    <h2>准确</h2>
+                    <p class="lead">预定义的计算步骤，程序精准的计算<br>让计算误差降到最小</p>
+                    <!-- <p><a class="btn btn-secondary" href="#" role="button">立即体验 »</a></p> -->
+                </div>
+            </div><!-- /.row -->
 
-<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-<script th:src="@{/js/global.js}"></script>
-</body>
+            <!-- <hr class="featurette-divider"> -->
+        </div>
+    </th:block>
+
 </html>

@@ -25,7 +25,6 @@ public class IndexController {
     @RequestMapping(value = {"/", "/index"})
     public String index(Model model) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
-        logger.info(user.toString());
         model.addAttribute("user", user);
         return "index";
     }

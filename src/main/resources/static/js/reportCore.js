@@ -204,22 +204,6 @@ $('button.btn-Save').bind('click',function(){
 
 
 // //USE pdfObject v1.2.20111123, xmlInteraction
-function cp(pdfPath, test){
-	var myPDF = new PDFObject({ url: pdfPath }).embed("chrom_pdf");
-	if (test) {
-		return;
-	}
-	if(browser()=="FF"){
-		document.getElementById('firefox_pdf').style.display='block';
-	}
-	else if(browser()=="IE6"||browser()=="IE7"){
-		alert("Please use the above version of IE8 or other browsers");
-	}
-	else {
-		document.getElementById('chrom_pdf').style.display='block';
-		cp(pdfPath, true);
-	}
-}
 function changePdf(type,pdfName){
 		var path = ""
 		if(type=="prepare"){
@@ -231,10 +215,8 @@ function changePdf(type,pdfName){
 		else if(type=="star"){
 			path = "./star_pdf/"
 		}
-		$("#pdf_object").attr("data",path+pdfName);
-		$('#pdf_embed').attr("src",path+pdfName);
 		console.log("changePdf(), uri:" + path + pdfName);
-		cp(path+pdfName);
+		PDFObject.embed(path + pdf, "#pdf-object");
 }
 
 function Post_lab(){
@@ -263,3 +245,12 @@ function Post_lab(){
 		}
 	});
 }
+$(document).ready(function() {
+	PDFObject.embed("./prepare_pdf/物理实验选择策略.pdf", "#pdf-object");
+})
+
+
+$(".view-pdf").click(function() {
+	let pdf = $(this).parent().data("prepare-pdf");
+	PDFObject.embed("./prepare_pdf/" + pdf, "#pdf-object");
+})

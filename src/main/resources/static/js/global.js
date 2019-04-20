@@ -58,19 +58,3 @@
 		alert("滚吧！");
 		window.location = "http://www.taobao.com/"
 	}
-
-function updateGravatarURL() {
-	$("div .gravatar").each(function() {
-		let email = $(this).text();
-		let avatar = 'http://www.gravatar.com/avatar/' + md5(email);
-		let classNames = $(this).attr("class");
-		let style = $(this).attr("style");
-		let img = `<img class="${classNames}" src="${avatar}" style="${style}">`;
-		$(this).replaceWith(img);
-		console.log(email + " " + md5(email));
-	})
-}
-
-$(document).ready(function() {
-	updateGravatarURL();
-})

@@ -1,194 +1,47 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="base">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png" />
-    <title>PhyLab</title>
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/themify-icons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}" type="text/css" />
-    <!-- main css -->
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+    <title>注册账号</title>
 </head>
 
-<body>
-<!--================ Start Header Menu Area =================-->
-<header class="header_area">
-    <div class="main_menu">
-        <div class="search_input" id="search_input_box">
-            <div class="container">
-                <form class="d-flex justify-content-between" method="" action="">
-                    <input
-                            type="text"
-                            class="form-control"
-                            id="search_input"
-                            placeholder="Search Here"
-                    />
-                    <button type="submit" class="btn"></button>
-                    <span
-                            class="ti-close"
-                            id="close_search"
-                            title="Close Search"
-                    ></span>
-                </form>
+<th:block layout:fragment="content">
+    <div class="col-md-8 offset-md-2 my-5 py-5" style="background: #fff; border-radius: 8px; border: 1px solid #eee;">
+
+        <form class="col-md-6 offset-md-3" action="/register" method="post">         
+            <div class="row mb-3">
+                <span class="navbar-brand" style="margin: 0 auto;">
+                    <div style="width:72px; height:72px; display: inline-block; vertical-align: middle;">
+                        <i class="iconfont icon-wuli" style="font-size: 72px; line-height: 70px;"></i>
+                    </div>
+                    <span style="font-size:36px;">PhyLab</span>
+                    <h5 class="mt-2">注册 PhyLab，发现物理实验的乐趣</h5>
+                </span>
             </div>
-        </div>
-
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"
-                ><img th:src="@{/img/phylab_logo.svg}" height="66" width="66" alt=""
-                /></a>
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
-                    <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div
-                        class="collapse navbar-collapse offset"
-                        id="navbarSupportedContent"
-                >
-                    <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index">主页</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="index">物理实验报告中心</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="index">题库</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
-<!--================ End Header Menu Area =================-->
-
-<!--================ Start Home Banner Area =================-->
-<section class="home_banner_area">
-    <div class="col-lg-4 of fset-lg-1" style="margin: auto auto; padding-top: 150px;">
-        <div class="register_form">
-            <h3>注册</h3>
-            <!-- 修改action -->
             <div id="login-message-alert" th:if="${message}" style="text-align:initial; margin-top: 20px;">
                 <button type="button" class="close" data-dismiss="alert" onclick="deleteMessage()" id="demo_1">x</button>
                 <span th:text="${message}" id="demo_2" style="color: red"></span>
+            </div>   
+            <div class="form-group" style="margin-bottom:.5rem">
+                <label for="email">邮箱：</label>
+                <input id="email" name="email" type="email" class="form-control" placeholder="请输入邮箱" required>
             </div>
-            <form
-                    class="form_area"
-                    id="myForm"
-                    action="/register"
-                    method="post"
-            >
-                <div class="row">
-                    <div class="col-lg-12 form_group">
-                        <input
-                                name="email"
-                                placeholder="邮箱地址"
-                                required
-                                pattern="([A-Z]|[a-z]|[0-9]|-|_)+@([a-z]|[0-9]){2,}.((com|cn)|edu.cn)"
-                                maxlength="50"
-                                type="email"
-                        />
-                        <input
-                                name="student_id"
-                                placeholder="学号"
-                                pattern="\d{8}"
-                                required
-                                type="text"
-                        />
-                        <input
-                                name="name"
-                                placeholder="用户名"
-                                required
-                                minlength="1"
-                                maxlength="30"
-                                type="text"
-                        />
-                        <input
-                                name="password"
-                                placeholder="密码"
-                                required
-                                minlength="6"
-                                maxlength="20"
-                                type="password"
-                                id="password" 
-                        />
-                        <input
-                                name="password_confirm"
-                                placeholder="确认密码"
-                                required
-                                minlength="6"
-                                maxlength="20"
-                                type="password"
-                                oninput="check(this)" 
-                        />
-                    </div>
-                    <div class="col-lg-12 text-center">
-                        <button type="submit" value="Submit" class="primary-btn" >注册</button>
-                    </div>
-                    <div class="col-lg-12 ">
-                        <p style="margin-top: 1rem">已有账号？<a href='/login'>返回登陆</a></p>
-                    </div>
-                </div>
-            </form>
-        </div>
+            <div class="form-group" style="margin-bottom:.5rem">
+                <label for="nickname">昵称：</label>
+                <input id="nickname" name="username" type="text" class="form-control" placeholder="请输入邮箱" required>
+            </div>
+            <div class="form-group" style="margin-bottom:.5rem">
+                <label for="password">密码：</label>
+                <input id="password" name="password" type="password" class="form-control" placeholder="请输入密码" required>
+            </div>
+            <div class="form-group" style="margin-bottom:.5rem">
+                <label for="password2">密码：</label>
+                <input id="password2" name="password_confirm" type="password" class="form-control" placeholder="确认密码" required>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">注册</button>
+            <p class="my-3 ml-auto text-muted">已有帐号？<a href="/login">马上登录</a></p>
+        </form>
     </div>
-</section>
-<!--================ End Home Banner Area =================-->
+</th:block>
 
-<!--Optional JavaScript -->
-<!--jQuery first, then Popper.js, then Bootstrap JS -->
-<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/popper.js}"></script>
-<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/vendors/nice-select/js/jquery.nice-select.min.js}"></script>
-<script type="text/javascript" th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/owl-carousel-thumb.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
-<!--gmaps Js-->
-<script type="text/javascript" th:src="@{/js/gmaps.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/theme.js}"></script>
-<!--jqeury_validate-->
-<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
-<script>
-    function deleteMessage(){
-        document.getElementById("demo_1").style.display="none";
-        document.getElementById("demo_2").style.display="none";
-        document.getElementById(" login-message-alert").style.display="none";
-    }
-</script>
-<script>
-    // 密码确认
-    function check(input) {
-        if (input.value != document.getElementById('password').value) {
-            input.setCustomValidity('两次输入的密码必须一致');
-        } else {
-            // input is valid -- reset the error message
-            input.setCustomValidity('');
-        }
-    }
-</script>
-</body>
 </html>

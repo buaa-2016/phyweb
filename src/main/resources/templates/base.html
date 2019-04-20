@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="icon" href="/img/favicon.png" type="image/png" />
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <link href="https://at.alicdn.com/t/font_1153083_j5ucjqyx1qa.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/phyweb.css" rel="stylesheet">
+    <th:block layout:fragment="links">
+        <!-- More Links -->
+    </th:block>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: #343a40">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <div style="width:36px; height:36px; display: inline-block; vertical-align: middle;">
+                        <i class="iconfont icon-wuli" style="font-size: 36px; line-height: 35px;"></i>
+                    </div>
+                    <span>PhyLab</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
+                    aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExample07">
+                    <ul class="navbar-nav mr-auto" th:with="view=${#httpServletRequest.getServletPath()}">
+                        <li class="nav-item" th:classappend="${view=='/'||#strings.startsWith(view,'/index')? 'active' : ''}">
+                            <a class="nav-link mx-2" href="/index">首页</a>
+                        </li>
+                        <li class="nav-item"  th:classappend="${#strings.startsWith(view,'/report-center')? 'active' : ''}">
+                            <a class="nav-link mx-2" href="/report-center">实验报告中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="#">
+                                题库
+                                <span th:if="${#strings.startsWith(view,'/#')}" class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <form shiro:guest="" class="form-inline my-2 my-md-0">
+                        <a href="/register" class="btn btn-primary py-1 mx-1">注册</a>
+                        <span style="color: #ddd;">or</span>
+                        <a href="/login" class="btn btn-outline-light py-1 mx-1">登录</a>
+                    </form>
+                    <ul shiro:user="" class="navbar-nav ml-auto">
+                        <li class="nav-item avatar dropdown">
+                            <a data-toggle="dropdown">
+                                <img class="rounded-circle" alt="avatar image" th:src="${userAvatar}">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mt-3">
+                                <a class="dropdown-item" href="/user-center"><i class="fas fa-user mr-3"></i>个人中心</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout"><i class="fas  fa-sign-out-alt mr-3"></i>退出登录</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <th:block layout:fragment="content">
+            <!-- Main Content -->
+        </th:block>
+    </main>
+    <footer>
+        <div class="footer-main bg-dark py-3 small">
+            <div class="container">
+                <div class="row">
+                        <div class="col mr-auto my-auto">
+                            <a href="/about">Start Bootstrap</a>
+                            is a project created and maintained by
+                            <a href="http://davidmiller.io">David Miller</a>.
+                            <br>
+                            Themes, templates, and snippets licensed
+                            <a href="https://opensource.org/licenses/MIT">MIT</a>, Start Bootstrap website
+                            <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+                            <br>
+                            Copyright @2016-2019 <a href="#">物理实验报告平台</a>.
+                        </div>
+                        <div class="">
+                            <span class="navbar-brand" style="opacity: .5">
+                                <div style="width:66px; height:66px; display: inline-block; vertical-align: middle;">
+                                    <i class="iconfont icon-wuli" style="font-size: 66px; line-height: 65px;"></i>
+                                </div>
+                                <span style="font-size:33px;">PhyLab</span>
+                                <h5 style="font-size:1.15rem" class="mt-2 mb-0">发现物理实验的乐趣</h5>
+                            </span>
+                        </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/pdfobject/2.1.1/pdfobject.min.js"></script>
+    <script src="./js/global.js"></script>
+    <th:block layout:fragment="scripts">
+        <!-- More Scripts -->
+    </th:block>
+</body>
+
+
+</html>
