@@ -103,18 +103,14 @@ function Post_lab(experiment_id){
 			var jsonText = eval("(" + this.responseText + ")");
 			if(jsonText["status"]=='success'){
 				PDFObject.embed("./" + jsonText['link'], "#pdf-object");
-				$('#LabStatus')[0].innerHTML = "终版";
-				eleEnable();
 			} else {
-				alert("要请检查数据～")
+				alert("后端处理失败，请检查数据是否正常\n(常见错误: 某两项数据相等导致除零)!")
 			}
 		} else if (this.readyState==4) {
 			console.log("服务器出错");
 			console.log(this.readyState);
 			console.log(this.status);
 			alert("服务器出错");
-		} else {
-			alert("要检查数据哦～");
 		}
 	});
 }
