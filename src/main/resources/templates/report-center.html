@@ -10,17 +10,17 @@
 <th:block layout:fragment="content">
 <div class="container-fluid">
     <div class="row px-md-5 py-4 px-0" style="background: #e4e4e4">
-        <div class="col-xs-12 col-lg-6 pg-3" style="height: 800px;">
+        <div class="col-xs-12 col-lg-6 pg-3" style="display: flex; flex-direction: column;">
             <h2 class="text-center">
                 数据处理与报告生成
             </h2>
             <hr style="border-top: 1px solid rgba(52,58,64,.5); width: 320px; margin: 12px auto 20px;">
-            <div class="card mt-3 p-3" style="background: #fff; border-radius: 10px;">
+            <div class="card mt-3 p-3" style="background: #fff; border-radius: 10px; flex: 1;">
                 <h5 class="text-center">
                     <i class="far fa-list-alt" style="font-size:90%"></i>
                     实验列表
                 </h5>
-                <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow:scoll;">
+                <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scoll; ">
                     <thead>
                         <tr>
                         <th class="center aligned" style="width: 50px;">编号</th>
@@ -28,21 +28,24 @@
                         <th class="center aligned" style="width: 230px">操作</th>
                         </tr>
                     </thead>
-                    <tbody th:each="rept : ${reportTemplates}">
-                        <tr>
+                    <tbody>
+                        <tr th:each="rept : ${reportTemplates}">
                             <td class="center aligned" th:text="${rept.getExperiment_id()}">Experiment ID</td>
                             <td class="center aligned" th:text="${rept.getExperiment_name()}">Experiment Name</td>
                             <td class="center aligned">
-                                <div class="ui buttons mini" th:attr="data-prepare-pdf=${rept.getPrepare_link()}">
-                                    <button class="ui green basic button view-pdf" style="padding: .45em .8em">查看文档</button>
-                                    <button class="ui blue basic button input-data" style="padding: .45em .8em">录入数据</button>
-                                    <button class="ui red basic button disabled gen-report" style="padding: .45em .8em">生成报告</button>
+                                <div class="ui buttons mini" th:id="${'experiment-data-' + rept.getExperiment_id()}" th:attr="
+                                        data-prepare-pdf=${rept.getPrepare_link()}, 
+                                        data-experiment-id=${rept.getExperiment_id()},
+                                        data-db-id=${rept.getId()}">
+                                    <button class="ui green basic button btn-view-pdf" style="padding: .45em .8em">查看文档</button>
+                                    <button class="ui blue basic button btn-input-data" style="padding: .45em .8em">录入数据</button>
+                                    <button class="ui red basic button disabled btn-gen-report" style="padding: .45em .8em">生成报告</button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="row" style="opacity: .1; height: 335px; display: flex; flex-direction: column; justify-content: center">
+                <div class="row" style="height:100%; opacity: .1; display: flex; flex-direction: column; justify-content: center">
                     <span class="navbar-brand" style="margin: 0 auto;">
                         <div style="width:72px; height:72px; display: inline-block; vertical-align: middle;">
                             <i class="iconfont icon-wuli" style="font-size: 72px; line-height: 70px;"></i>
@@ -64,6 +67,13 @@
                     <div id="pdf-object" style="width: 100%; height: 800px;"/>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div id="report-data-input-modal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
         </div>
     </div>
 </div>

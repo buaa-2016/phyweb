@@ -50,3 +50,27 @@ body {
 .footer-main a {
     color: rgba(255,255,255,.7);
 }
+
+
+/* 实验报告中心 */
+#report-data-input-modal .nav.nav-tabs {
+    width: 100%;
+}
+#report-data-input-modal .modal-body {
+    height: 70vh;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+}
+#report-data-input-modal .modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem -1rem;
+}
+#report-data-input-modal .table>thead:first-child>tr:first-child>th,
+#report-data-input-modal table td {
+    border-top: none;
+}
+
+#report-data-input-modal .table>thead>tr>th,
+#report-data-input-modal table tbody td {
+    border-top: 1px solid #ddd;
+}

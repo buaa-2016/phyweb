@@ -1,5 +1,5 @@
 ﻿
-var labDoc3dot1415926;
+var globalLabDataMap = {};
  
 function lab(index){
 	this.index = index;
@@ -30,206 +30,84 @@ function lab(index){
 		return this.inputkind;
 	}
 }
-function getDbId(index){
-	return $('#'+index +' a[index='+index+']').attr('db-id');
-}
-function check(){
-	if(browser()=="FF"){
-		document.getElementById('firefox_pdf').style.display='block';
-	}
-	else if(browser()=="IE6"||browser()=="IE7"){
-		eleDisable();
-		alert("Please use the above version of IE8 or other browsers");
-	}
-	else {
-		document.getElementById('chrom_pdf').style.display='block';
-		cp('./prepare_pdf/phylab_test.pdf');
-	}
-}	
-function eleDisable(){
-	SetDisable('importBtn',true);
-	SetDisable('selectBtn',true);
-	SetDisable('exportBtn',true);
-	SetDisable('InputLabIndex',true);
-}
-function eleEnable(){
-	SetDisable('importBtn',false);
-	//SetDisable('collectBtn',false);
-	SetDisable('exportBtn',true);
-}
-function collectLab(ico_id,txt_id){
-	var ico = document.getElementById(ico_id);
-	var txt = document.getElementById(txt_id);
-	var check = txt.innerHTML;
-		if(check=="取消收藏"){
-			ico.setAttribute("class","glyphicon glyphicon-star-empty");
-			txt.innerHTML = "收藏";
-			alert("已取消收藏")
-		}
-		else if(check=="收藏"){
-			ico.setAttribute("class","glyphicon glyphicon-star");
-			txt.innerHTML = "取消收藏";
-			alert("已添加至个人收藏夹！");
-		}
-		else
-			alert("Button text can not be [txt] when use this function!Please Use 收藏/取消收藏");
+
+function getDbId(experiment_id){
+	let db_id = $('#experiment-data-' + experiment_id).data('db-id');
+	console.log("getDbId() " + experiment_id + ": " + db_id);
+	return db_id;
 }
 
-function SelectLab(index,ref){
-	var lt = document.getElementById(ref);
-		if((new RegExp("^10(11|12|21|22|31|41|42|51|61|62|71|81|82|91)$")).test(index)){
-			labDoc3dot1415926 = new lab(index);
-			lt.innerHTML = index;
-			return true;
+$(".btn-view-pdf").click(function() {
+	console.log(".btn-view-pdf clicked!");
+	let pdf = $(this).parent().data("prepare-pdf");
+	PDFObject.embed("./prepare_pdf/" + pdf, "#pdf-object");
+})
+
+$('table>tbody button.btn-input-data').click(function() {
+	$("#report-data-input-modal").modal('show');
+	let experiment_id = $(this).parent().data("experiment-id");
+	let remote_form = './lab_data_forms/' + experiment_id + '.html';
+	$("#report-data-input-modal .modal-content").load(remote_form, function( response, status, xhr ) {
+		if (status === 'error') {
+			alert("加载失败，请检查网络连接");
+			return;
 		}
-		else{
-			return false;
+		$('button.btn-Save').click(btnSaveClicked);
+	});
+})
+
+$('table>tbody button.btn-gen-report').click(function() {
+	console.log("btn-gen-report clicked!");
+	let experiment_id = $(this).parent().data("experiment-id");
+	Post_lab(experiment_id);
+})
+
+function checkInput() {
+	let activeTab = $("#report-data-input-modal div.tab-pane.active");
+	if (activeTab.length != 1) {
+		alert("出错啦，请查看控制台输出");
+		console.log("expected 1 active tab, but we got " + activeTab.length);
+	}
+	let invalid_count = 0;
+	let count = 0;
+    let pattern = new RegExp('^\\d+(.\\d+)?$');
+	activeTab.find("input").each(function() {
+		count++;
+		if (!pattern.test($(this).val())) {
+			invalid_count++;
 		}
-}
-	
-//USE jquery version 2.1.4, bootstrap.min.js
-function inputCheck(){
-	var a = $.merge($("input.para"),$("input.var"));
-	for(var i = 0; i<a.length; i++) a[i].setAttribute("value",a[i].getAttribute("aria-label"));
-}
-function labIndexInput(){
-	if(event.keyCode==13) {
-		if(SelectLab($('#InputLabIndex')[0].value,'LabText')){
-			$('.alert').hide();
-			$('#LabStatus')[0].innerHTML = "预览";
-			changePdf('prepare',labDoc3dot1415926.getIndex()+".pdf");
-			eleEnable();
-			return false;
-		}
-		else $('.alert').show();
+	});
+	if (invalid_count > 0) {
+		alert("共" + count + "项输入, 您有" + invalid_count + "项输入不合法");
 		return false;
 	}
-	else return true;
-}
-function selectBtnClick(){
-		if(SelectLab($('#InputLabIndex')[0].value,'LabText')){
-			$('.alert').hide();
-			$('#LabStatus')[0].innerHTML = "预览";
-			changePdf('prepare',labDoc3dot1415926.getIndex()+".pdf");
-			eleEnable();
-		}
-		else{
-			$('.alert').show();
-		}
-}
-function importBtnClick(){
-	$("#lab_table_"+labDoc3dot1415926.getIndex()).modal("toggle");
-}
-function collectBtnClick(){
-	collectLab('collectIco','collectText');
-}
-function exportBtnClick(){
-	eleDisable();
-	try{
-		Post_lab();
-	}catch(e){
-		error();
-	}
+	return true;
 }
 
-$('a.lab_title').bind('click',function(){
-	//USE reportCore.js, bootstrap.min.js
-	if($('#InputLabIndex').attr("disabled")=="disabled")return;
-	if(SelectLab(this.title,'LabText')){
-		$('.alert').hide();
-		$('#LabStatus')[0].innerHTML = "预览";
-		changePdf('prepare',labDoc3dot1415926.getIndex()+".pdf");
-		eleEnable();
+function btnSaveClicked() {
+	console.log("btn-Save clicked");
+	if (!checkInput()) {
+		return;
 	}
-	else $('.alert').show();
-});
-$('a.lab_index').bind('click',function(){
-	//USE reportCore.js, bootstrap.min.js
-	if($('#InputLabIndex').attr("disabled")=="disabled")return;
-	if(SelectLab(this.innerHTML,'LabText')){
-		$('.alert').hide();
-		$('#LabStatus')[0].innerHTML = "预览";
-		changePdf('prepare',labDoc3dot1415926.getIndex()+".pdf");
-		eleEnable();
-	}
-	else $('.alert').show();
-});
-$('input.para').bind('keyup',function(){
-	if((new RegExp("^\\d+(.\\d+)?$")).test(this.value)==false) $(this).addClass("wrong-input");
-	else $(this).removeClass("wrong-input")
-})
-$('input.var').bind('keyup',function(){
-	if((new RegExp("(^\\d+(.\\d+)?$)|(^$)")).test(this.value)==false) $(this).addClass("wrong-input");
-	else $(this).removeClass("wrong-input")
-})	
-$('button.btn-Save').bind('click',function(){
-	var index = labDoc3dot1415926.getIndex();
-	var paraArray,varArray;
-	var labStr = "", wrong_count = 0, i = 1, ErrType = 1;
-	while((tp=document.getElementById("check_"+index+"_"+i))!=null){
-		if(tp.checked)labStr += "input.para"+"."+index+"_"+i+",";
-		i++;
-	}
-	//get selected sublab
-	labStr = labStr.substring(0,labStr.lastIndexOf(','));
-	paraArray = $(labStr);
-	labStr = labStr.replace(new RegExp("para","gm"),"var");
-	varArray = $(labStr);
-	//get data form input, para can't be null
-	paraArray.each(function(){
-		if($(this).hasClass("wrong-input")) wrong_count++;
-		else if(this.value==""){
-			wrong_count++;
-			$(this).addClass("wrong-input");
-		}
-		//else if((new RegExp("(^\\d+(.\\d+)?$)")).test(this.value)==false){error();return false;}
-	})
-	varArray.each(function(){
-		if($(this).hasClass("wrong-input")) wrong_count++;
-		//else if((new RegExp("(^\\d+(.\\d+)?$)|(^$)")).test(this.value)==false){error();return false;}
-	})
-	//check data
-	if(wrong_count==0){
-		$("#lab_table_"+index).modal('toggle');
-		if(labStr!=""){
-			SetDisable('exportBtn',false);
-			labDoc3dot1415926.flush();
-		}//when no selected sublab exist, just close modal
-	}
-	else{
-		document.getElementById("ErrorText_"+index).innerHTML = "有"+wrong_count+"处输入不合法，请检查标红输入框";
-		setShowHide("btnError_"+index,"btnSave_"+index,5000);
-	}
-})	
-
-
-// //USE pdfObject v1.2.20111123, xmlInteraction
-function changePdf(type,pdfName){
-		var path = ""
-		if(type=="prepare"){
-			path = "./prepare_pdf/";
-		}
-		else if(type=="tmp"){
-			path = "./";
-		}
-		else if(type=="star"){
-			path = "./star_pdf/"
-		}
-		console.log("changePdf(), uri:" + path + pdfName);
-		PDFObject.embed(path + pdf, "#pdf-object");
+	let experiment_id = $(this).data('experiment-id');
+	console.log(experiment_id);
+	globalLabDataMap[experiment_id] = new lab(experiment_id);
+	globalLabDataMap[experiment_id].flush();
+	$(`table>tbody div[data-experiment-id="${experiment_id}"] button.btn-gen-report`).removeClass('disabled');
+	// close modal
+	$('#report-data-input-modal').modal('hide');
 }
 
-function Post_lab(){
-	var xmlString = labDoc3dot1415926.getXML();
-	var dbId = labDoc3dot1415926.getDbId();
-	var kind = labDoc3dot1415926.getKind();
+function Post_lab(experiment_id){
+	let curLab = globalLabDataMap[experiment_id];
+	var xmlString = curLab.getXML();
+	var dbId = curLab.getDbId();
+	var kind = curLab.getKind();
 	PostXMLDoc("/report",xmlString,dbId,kind,function(){
 		if (this.readyState==4 && this.status==200){
 			var jsonText = eval("(" + this.responseText + ")");
-			//alert(this.responseText);
-			//alert(jsonText["status"]);
 			if(jsonText["status"]=='success'){
-				changePdf('tmp',jsonText['link']);
+				PDFObject.embed("./" + jsonText['link'], "#pdf-object");
 				$('#LabStatus')[0].innerHTML = "终版";
 				eleEnable();
 			} else {
@@ -245,12 +123,7 @@ function Post_lab(){
 		}
 	});
 }
+
 $(document).ready(function() {
 	PDFObject.embed("./prepare_pdf/物理实验选择策略.pdf", "#pdf-object");
-})
-
-
-$(".view-pdf").click(function() {
-	let pdf = $(this).parent().data("prepare-pdf");
-	PDFObject.embed("./prepare_pdf/" + pdf, "#pdf-object");
 })
