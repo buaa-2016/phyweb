@@ -21,7 +21,7 @@ import java.util.*;
 public class ReportCenterController {
     private static Logger logger = LoggerFactory.getLogger(ReportCenterController.class);
 
-    private static final String path = System.getProperty("user.dir") + "/target/classes/static/script/";
+    private static final String path = System.getProperty("user.dir") + "/classes/static/script/";
 
     private static HashMap<String,String> reportMap = new HashMap<>();
     static {
