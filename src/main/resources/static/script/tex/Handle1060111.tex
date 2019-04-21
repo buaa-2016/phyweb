@@ -1,0 +1,147 @@
+\subsection*{1.物距像距法测凸透镜焦距}
+\subsubsection*{(1)f$<$u$<$2f 成倒立放大的实像}
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+光源/mm & 光屏/mm & 凸透镜1/mm & 凸透镜2/mm & 均值/mm \\ 
+\hline 
+{%for ei in EXPER_1 -%}
+{% for i in ei-%}
+{% if loop.index ==1 -%}
+%% i %%
+{% else -%}
+& %% i %%
+{%- endif %}
+{%- endfor %}
+\\
+\hline
+{%- endfor %}
+\end{tabular}
+\vspace{10pt}
+\end{center}
+\[u = {\mid} {x}_{\text{凸}} - {x}_{\text{光源}} {\mid} - {\delta}\]
+\begin{center}
+${u}_1 = %% U_Convex[0][0] %% mm$          ${u}_2 = %% U_Convex[0][1] %% mm$          ${u}_3 = %% U_Convex[0][2] %% mm$
+\end{center}
+$$v = {\mid} {x}_{\text{屏}} - {x}_{\text{凸}} {\mid}$$
+\begin{center}
+${v}_1 = %% V_Convex[0][0] %% mm$      ${v}_2 = %% V_Convex[0][1] %%  mm$         ${v}_3 = %% V_Convex[0][2] %% mm$
+\end{center}
+$$\because f = \displaystyle\frac{uv}{u+v}$$
+\begin{center}
+$\therefore {f}_1 = \displaystyle\frac{{u}_1{v}_1}{{u}_1+{v}_1} = %% F_Convex[0][0] %% mm$ ${f}_2 = %% F_Convex[0][1] %% mm$      $ {f}_3 = %% F_Convex[0][2] %% mm$
+\end{center}
+$$\therefore {\bar{f}}_1 = \displaystyle\frac{{f}_1+{f}_2+{f}_3}{3} = %% F_Convex[0][3] %% mm$$
+
+\subsubsection*{(2)u=2f 成倒立等大的实像}
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+光源/mm & 光屏/mm & 凸透镜1/mm & 凸透镜2/mm & 均值/mm \\ 
+\hline 
+{%for ei in EXPER_2 -%}
+{% for i in ei-%}
+{% if loop.index ==1 -%}
+%% i %%
+{% else -%}
+& %% i %%
+{%- endif %}
+{%- endfor %}
+\\
+\hline
+{%- endfor %}
+\end{tabular}
+\vspace{10pt}
+\end{center}
+$$u = {\mid} {x}_{\text{凸}} - {x}_{\text{光源}} {\mid} - {\delta}$$
+\begin{center}
+$ {u}_1= %% U_Convex[1][0] %% mm$      ${u}_2 = %% U_Convex[1][1] %% mm$      ${u}_3 = %% U_Convex[1][2] %% mm$
+\end{center}
+$$v = \left | {x}_{\text{屏}} - {x}_{\text{凸}} \right |$$
+\begin{center}
+${v}_1 = %% V_Convex[1][0] %% mm$      ${v}_2 = %% V_Convex[1][1] %%  mm$     ${v}_3 = %% V_Convex[1][2] %% mm$
+\end{center}
+$$\because f = \displaystyle\frac{uv}{u+v}$$
+\begin{center}
+$\therefore {f}_1 = \displaystyle\frac{{u}_1{v}_1}{{u}_1+{v}_1} = %% F_Convex[1][0] %% mm$     $ {f}_2 = %% F_Convex[1][1] %% mm  $       $ {f}_3 = %% F_Convex[1][2] %% mm $
+\end{center}
+$$\therefore {\bar{f}}_2 = \displaystyle\frac{{f}_1+{f}_2+{f}_3}{3} = %% F_Convex[1][3] %% mm$$
+
+\subsubsection*{(3)u $>$ 2f 成倒立缩小的实像}
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+光源/mm & 光屏/mm & 凸透镜1/mm & 凸透镜2/mm & 均值/mm \\ 
+\hline 
+{%for ei in EXPER_3 -%}
+{% for i in ei-%}
+{% if loop.index ==1 -%}
+%% i %%
+{% else -%}
+& %% i %%
+{%- endif %}
+{%- endfor %}
+\\
+\hline
+{%- endfor %}
+\end{tabular}
+\vspace{10pt}
+\end{center}
+$$u = {\mid} {x}_{\text{凸}} - {x}_{\text{光源}} {\mid} - {\delta}$$
+\begin{center}
+${u}_1 = %% U_Convex[2][0] %% mm$          ${u}_2 = %% U_Convex[2][1] %% mm$          ${u}_3 = %% U_Convex[2][2] %% mm$
+\end{center}
+$$ v = {\mid}{x}_{\text{屏}} - {x}_{\text{凸}}{\mid}$$
+\begin{center}
+${v}_1 = %% V_Convex[2][0] %% mm   $       ${v}_2 = %% V_Convex[2][1] %%  mm  $       ${v}_3 = %% V_Convex[2][2] %% mm $
+\end{center}
+$$\because f = \displaystyle\frac{uv}{u+v}$$
+\begin{center}
+$\therefore {f}_1 = \displaystyle\frac{{u}_1{v}_1}{{u}_1+{v}_1} = %% F_Convex[2][0] %% mm$     $ {f}_2 = %% F_Convex[2][1] %% mm$         $ {f}_3 = %% F_Convex[2][2] %% mm$
+\end{center}
+$$\therefore {\bar{f}}_3 = \displaystyle\frac{{f}_1+{f}_2+{f}_3}{3} = %% F_Convex[2][2] %% mm$$
+$$\therefore {\bar{f}} = \displaystyle\frac{\bar{f}_1+\bar{f}_2+\bar{f}_3}{3} = %% Average_F_Convex %% mm$$
+
+\subsection*{2.物距像距法测凹透镜焦距}
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+屏1/mm &  凹透镜1/mm & 凹透镜2/mm & 屏2/mm & 均值/mm \\ 
+\hline 
+{%for ei in EXPER_Concave -%}
+{% for i in ei-%}
+{% if loop.index ==1 -%}
+%% i %%
+{% else -%}
+& %% i %%
+{%- endif %}
+{%- endfor %}
+\\
+\hline
+{%- endfor %}
+\end{tabular}
+\vspace{10pt}
+
+\end{center}
+$$u = {x}_{\text{屏1}} - {x}_{\text{均}}$$
+\begin{center}
+${u}_1 = %% U_Concave[0] %% mm$				${u}_2 = %% U_Concave[1] %% mm$				${u}_3 = %% U_Concave[2] %% mm$
+\end{center}
+$$v = {\mid} {x}_{\text{屏2}} - {x}_{\text{均}}{\mid}$$
+\begin{center}
+${v}_1 = %% V_Concave[0] %%mm$			${v}_2 = %% V_Concave[1] %%mm$			${v}_3 = %% V_Concave[2] %%mm$
+\end{center}
+$${\because} f = \displaystyle\frac{uv}{u+v}$$
+$${\therefore} {f}_1 = \displaystyle\frac{{u}_1{v}_1}{{u}_1+{v}_1} = %% F_Concave[0] %% mm$$	
+\begin{center}
+${f}_2 = %% F_Concave[1] %% mm$			${f}_3 = %% F_Concave[2] %% mm$
+\end{center}
+$${\therefore}{\bar{f}} = \displaystyle\frac{{f}_1+{f}_2+{f}_3}{3}  = %% AVERAGE_F_Concave %% mm$$
