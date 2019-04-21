@@ -7,14 +7,9 @@ function lab(index){
 	this.xmlTxt;
 	this.inputkind;
 	this.flush = function(){
-		var kinds = document.getElementsByName("check_"+index);
-		var i;
-		for(i = 0; i < kinds.length; i++) {
-			if (kinds[i].checked) {
-				break;
-			}
-		}
-		this.inputkind = i+1;
+		this.inputkind = $("#report-data-input-modal div.tab-pane.active").data('lab-kind');
+		console.log("flush, experiment-id=" + this.index);
+		console.log("flush, lab-kind=" + this.inputkind);
 		this.xmlTxt=SetXMLDoc_lab(index.toString()+this.inputkind);
 	}
 	this.getIndex = function(){

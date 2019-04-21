@@ -3,6 +3,7 @@ package com.buaabetatwo.phyweb.common;
 import com.buaabetatwo.phyweb.model.User;
 import com.buaabetatwo.phyweb.util.GravatarAPI;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.UnavailableSecurityManagerException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +22,10 @@ public class GlobalControllerAdvice {
      */
     @ModelAttribute
     public void addUserAttribute(Model model) {
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        User user = null;
+        try {
+            user = (User) SecurityUtils.getSubject().getPrincipal();
+        } catch (UnavailableSecurityManagerException ignored) {};
         if (user != null) {
             String avatar = GravatarAPI.emailToAvatarUrl(user.getEmail());
             model.addAttribute("userAvatar", avatar);
