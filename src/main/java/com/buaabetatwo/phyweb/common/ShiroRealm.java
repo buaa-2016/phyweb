@@ -37,6 +37,7 @@ public class ShiroRealm extends AuthenticatingRealm {
         if (user == null) {
             return null;
         }
+        logger.info(user.toString());
         String salt = String.valueOf(user.getId());
         logger.info("email:{}", user.getEmail());
         logger.info("username:{}", user.getName());

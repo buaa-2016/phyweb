@@ -7,17 +7,16 @@
 
 <th:block layout:fragment="content">
     <div class="col-md-8 offset-md-2 my-5 py-5" style="background: #fff; border-radius: 8px; border: 1px solid #eee;">
-
-        <form class="col-md-6 offset-md-3" action="/register" method="post">         
-            <div class="row mb-3">
-                <span class="navbar-brand" style="margin: 0 auto;">
-                    <div style="width:72px; height:72px; display: inline-block; vertical-align: middle;">
-                        <i class="iconfont icon-wuli" style="font-size: 72px; line-height: 70px;"></i>
-                    </div>
-                    <span style="font-size:36px;">PhyLab</span>
-                    <h5 class="mt-2">注册 PhyLab，发现物理实验的乐趣</h5>
-                </span>
-            </div>
+        <div class="row mb-3">
+            <span class="navbar-brand" style="margin: 0 auto;">
+                <div style="width:72px; height:72px; display: inline-block; vertical-align: middle;">
+                    <i class="iconfont icon-wuli" style="font-size: 72px; line-height: 70px;"></i>
+                </div>
+                <span style="font-size:36px;">PhyLab</span>
+                <h5 class="mt-2">注册 PhyLab，发现物理实验的乐趣</h5>
+            </span>
+        </div>
+        <form class="col-md-6 offset-md-3" action="/register" method="post">
             <div id="login-message-alert" th:if="${message}" style="text-align:initial; margin-top: 20px;">
                 <button type="button" class="close" data-dismiss="alert" onclick="deleteMessage()" id="demo_1">x</button>
                 <span th:text="${message}" id="demo_2" style="color: red"></span>
@@ -28,7 +27,7 @@
             </div>
             <div class="form-group" style="margin-bottom:.5rem">
                 <label for="nickname">昵称：</label>
-                <input id="nickname" name="username" type="text" class="form-control" placeholder="请输入邮箱" required>
+                <input id="nickname" name="name" type="text" class="form-control" placeholder="请输入昵称" required>
             </div>
             <div class="form-group" style="margin-bottom:.5rem">
                 <label for="password">密码：</label>

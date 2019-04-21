@@ -38,11 +38,11 @@ public class UserController {
        return "login";
     }
 
-    @GetMapping("/usercenter")
+    @GetMapping("/user-center")
     public String UserCenter(Model model) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("user", user);
-        return "usercenter";
+        return "user-center";
     }
 
 }

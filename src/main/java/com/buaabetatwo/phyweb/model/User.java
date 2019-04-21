@@ -1,6 +1,8 @@
 package com.buaabetatwo.phyweb.model;
 
-import java.io.Serializable;
+import com.buaabetatwo.phyweb.util.GenderEnum;
+
+import java.sql.Timestamp;
 
 
 public class User {
@@ -12,9 +14,28 @@ public class User {
     private String password;
 
     private String introduction;
-
+    private Timestamp created_at;
+    private String company;
+    private GenderEnum sex;
+    
     public int getId() {
         return id;
+    }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getIntroduction() {
@@ -61,6 +82,14 @@ public class User {
         this.password = password;
     }
 
+    public GenderEnum getSex() {
+        return sex;
+    }
+
+    public void setSex(GenderEnum sex) {
+        this.sex = sex;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -68,6 +97,11 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", student_id='" + student_id + '\'' +
+                ", password='" + password + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", created_at=" + created_at +
+                ", company='" + company + '\'' +
+                ", sex='" + sex + '\'' +
                 '}';
     }
 }

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="base">
 
+<head>
+    <title>PhyLab - 首页</title>
+</head>
+
     <th:block layout:fragment="content">
         <div class="my-jumbotron">
             <div class="container">
                 <h1>物理实验网站</h1>
                 <h2>Phyweb-Beta-Two</h2>
                 <hr class="my-3">
-                <p class="h4 mb-4">欢迎您，Gakki3</p>
+                <p class="h4 mb-4" th:if="${currentUser != null}">
+                    欢迎您，<span th:text="${currentUser.getName()}">UserName</span>！
+                </p>
                 <p class="lead mt-5">
                     <a class="btn btn-primary btn-lg" href="/report-center" role="button">进入报告中心</a>
                 </p>
