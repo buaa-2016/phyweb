@@ -8,11 +8,18 @@
     <th:block layout:fragment="content">
         <div class="my-jumbotron">
             <div class="container">
-                <h1>物理实验网站</h1>
-                <h2>Phyweb-Beta-Two</h2>
+                    <div class="">
+                        <span class="navbar-brand" style="opacity: 1">
+                            <div style="width:90px; height:80px; display: inline-block; vertical-align: middle;">
+                                <i class="iconfont icon-wuli" style="font-size: 90px; line-height: 80px;"></i>
+                            </div>
+                            <span style="font-size:45px;">PhyLab</span>
+                            <h5 style="font-size:1.5rem" class="mt-2 mb-0">发现物理实验的乐趣</h5>
+                        </span>
+                    </div>
                 <hr class="my-3">
-                <p class="h4 mb-4" th:if="${currentUser != null}">
-                    欢迎您，<span th:text="${currentUser.getName()}">UserName</span>！
+                <p class="h3 mb-4" th:if="${currentUser != null}">
+                    欢迎回来，<span th:text="${currentUser.getName()}">UserName</span>！
                 </p>
                 <p class="lead mt-5">
                     <a class="btn btn-primary btn-lg" href="/report-center" role="button">进入报告中心</a>

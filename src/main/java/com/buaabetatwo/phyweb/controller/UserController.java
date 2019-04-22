@@ -1,9 +1,13 @@
 package com.buaabetatwo.phyweb.controller;
 
+import com.buaabetatwo.phyweb.common.ShiroRealm;
 import com.buaabetatwo.phyweb.mapper.UserMapper;
 import com.buaabetatwo.phyweb.model.User;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.credential.PasswordMatcher;
+import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.mgt.RealmSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,4 +49,30 @@ public class UserController {
         return "user-center";
     }
 
+    @GetMapping("/edit-profile")
+    public String getEditUserProfile() {
+        return "edit-profile";
+    }
+
+    @PostMapping("/edit-profile")
+    public String postEditUserProfile(Model model, String nickName, String gender, String introduction, String oldPassword, String newPassword) {
+
+        if (oldPassword != null) {
+            RealmSecurityManager sm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
+            ShiroRealm realm = (ShiroRealm) sm.getRealms().iterator().next();
+            PasswordMatcher matcher = (PasswordMatcher) realm.getCredentialsMatcher();
+            PasswordService passwordService = (PasswordService) matcher.getPasswordService();
+            User currentUser = (User)SecurityUtils.getSubject().getPrincipal();
+            if (!passwordService.passwordsMatch(oldPassword, currentUser.getPassword())) {
+                model.addAttribute("message", "密码不匹配");
+                model.addAttribute("messageType", "error");
+                return "edit-profile";
+            }
+            model.addAttribute("message", "修改密码成功");
+            model.addAttribute("messageType", "success");
+            return "edit-profile#change-password";
+        } else {
+            return "edit-profile";
+        }
+    }
 }

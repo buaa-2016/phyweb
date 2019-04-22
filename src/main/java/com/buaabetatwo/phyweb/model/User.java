@@ -17,7 +17,7 @@ public class User {
     private Timestamp created_at;
     private String company;
     private GenderEnum sex;
-    
+
     public int getId() {
         return id;
     }
