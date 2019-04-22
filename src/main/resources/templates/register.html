@@ -16,7 +16,7 @@
                 <h5 class="mt-2">注册 PhyLab，发现物理实验的乐趣</h5>
             </span>
         </div>
-        <form class="col-md-6 offset-md-3" action="/register" method="post">
+        <form id="register_form" class="col-md-6 offset-md-3" action="/register" method="post">
             <div id="login-message-alert" th:if="${message}" style="text-align:initial; margin-top: 20px;">
                 <button type="button" class="close" data-dismiss="alert" onclick="deleteMessage()" id="demo_1">x</button>
                 <span th:text="${message}" id="demo_2" style="color: red"></span>
@@ -37,10 +37,25 @@
                 <label for="password2">密码：</label>
                 <input id="password2" name="password_confirm" type="password" class="form-control" placeholder="确认密码" required>
             </div>
-            <button class="btn btn-primary btn-block" type="submit">注册</button>
+            <button id="TencentCaptcha" data-appid="2068666293" data-cbfn="callback" class="btn btn-primary btn-block" type="button">注册</button>
             <p class="my-3 ml-auto text-muted">已有帐号？<a href="/login">马上登录</a></p>
         </form>
     </div>
 </th:block>
 
 </html>
+
+<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+<script type="text/javascript">
+    window.callback = function(res){
+        console.log(res)
+        // res（未通过验证）= {ret: 1, ticket: null}
+        // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+        if(res.ret === 0){
+            // alert(res.ticket)   // 票据
+            console.info('验证通过-----');
+            var form_submit = document.getElementById('register_form');
+            form_submit.submit();
+        }
+    }
+</script>
