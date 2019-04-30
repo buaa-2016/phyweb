@@ -15,7 +15,7 @@ public class User {
 
     private String introduction;
     private Timestamp created_at;
-    private String company;
+    private String school;
     private GenderEnum sex;
 
     public int getId() {
@@ -30,13 +30,7 @@ public class User {
         this.created_at = created_at;
     }
 
-    public String getCompany() {
-        return company;
-    }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
 
     public String getIntroduction() {
         return introduction;
@@ -100,8 +94,16 @@ public class User {
                 ", password='" + password + '\'' +
                 ", introduction='" + introduction + '\'' +
                 ", created_at=" + created_at +
-                ", company='" + company + '\'' +
+                ", school='" + school + '\'' +
                 ", sex='" + sex + '\'' +
                 '}';
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 }

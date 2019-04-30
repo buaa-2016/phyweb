@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="base">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 
 <head>
     <title>PhyLab - 修改个人信息</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
 
-<th:block layout:fragment="content">
+<th:block layout:fragment="content"  >
     <div class="container my-container">
         <div class="pl-4 pb-2 mt-3 mb-2 border-bottom d-flex flex-row">
             <h3 style="display: inline-block; flex: 1 ">修改个人信息</h3>
@@ -21,53 +23,44 @@
                 </a>
             </div>
             <div class="col-xs-12 col-md-8">
-                <h3 class="blue">
-                    <span class="middle" th:text="${currentUser.getName()}">Nick Name</span>
-                    </span>
-                    <span class="lead" style="font-size: 60%"
-                        th:text="${currentUser.getIntroduction()} ? ${currentUser.getIntroduction()}: '这人很懒，还没有个人介绍！'">Introduction</span>
-                </h3>
+                <form  action="/edit-profile" method="post">
+                    <input name="email" th:value="${user.getEmail()}" hidden>
                 <div class="profile-user-info" style="width: 100%">
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 用户名 </div>
                         <div class="profile-info-value">
-                            <span th:text="${currentUser.getName()}">alexdoe</span>
+                            <input  name="name" type="text" required th:value="${user.getName()}"
+                                    maxlength="20"
+                            >
                         </div>
                     </div>
-                    <div class="profile-info-row">
-                        <div class="profile-info-name"> 邮箱 </div>
-                        <div class="profile-info-value">
-                            <i class="far fa-envelope" style="color: #337ab7; "></i>
-                            <a th:href="${'mailto:' + currentUser.getEmail()}" th:text="${currentUser.getEmail()}">Email
-                                Address</a>
-                        </div>
-                    </div>
+
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 性别 </div>
                         <div class="profile-info-value">
-                            <span th:text="${currentUser.getSex() != null} ? ${currentUser.getSex().getValue()} : '暂未设置'">Sex</span>
+                            <label class="radio-inline" style="font-size: 20px"><input type="radio" name="sex" value="male">male</label>
+                            <label class="radio-inline" style="font-size: 20px"><input type="radio" name="sex" value="female">female</label>
                         </div>
                     </div>
+
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 学校 </div>
                         <div class="profile-info-value">
-                            <span>北京航空航天大学</span>
+                            <input  name="school" type="text"  required
+                                    maxlength="30" th:value="${user.getSchool()}"
+                            >
                         </div>
                     </div>
                     <div class="profile-info-row">
-                        <div class="profile-info-name"> 注册时间 </div>
+                        <div class="profile-info-name">自我介绍</div>
                         <div class="profile-info-value">
-                            <span th:text="${#dates.format(currentUser.getCreated_at(), 'yyyy/mm/dd HH:MM:SS')}">2010/06/20</span>
+                            <textarea class="profile-info-textarea"  name="introduction" placeholder="一句话介绍自己" rows="4" maxlength="100" required ></textarea>
                         </div>
                     </div>
-                    <div class="profile-info-row">
-                        <div class="profile-info-name"><i class="fab fa-github" style="color: #212529"></i> </div>
-                        <div class="profile-info-value">
-                            <a href="https://github.com/buaa-2016/phyweb/">buaa-2016/phyweb</a>
-                        </div>
-                    </div>
+                    <button  class="btn btn-primary btn-block"  type="submit">确认</button>
                 </div>
                 <div class="hr hr-8 dotted"></div>
+                </form>>
             </div>
         </div>
     </div>

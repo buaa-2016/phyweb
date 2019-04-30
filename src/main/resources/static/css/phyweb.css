@@ -100,6 +100,8 @@ body {
     width: calc(100% - 24px);
     margin: 0 auto;
 }
+
+
 .profile-picture {
     border: 1px solid #CCC;
     background-color: #FFF;
@@ -128,6 +130,9 @@ body {
 .profile-info-value {
     padding: 6px 4px 6px 6px;
 }
+
+
+
 .profile-info-value a {
     color: #337ab7;
     text-decoration: none;
@@ -141,4 +146,14 @@ body {
 }
 .profile-info-row {
     display: table-row;
+}
+.profile-info-textarea {
+    border-style:solid;
+    border-color: #337ab7;
+    border-radius:5px;
+    background-color:white;
+    width: 425px;
+    height: 120px;
+    padding: 5px;
+    resize: none;
 }

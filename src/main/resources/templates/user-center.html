@@ -3,13 +3,19 @@
 
 <head>
     <title>PhyLab - 个人信息</title>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link href="../static/css/phyweb.css" rel="stylesheet" th:href="@{/css/phyweb.css}">
 </head>
 
 <th:block layout:fragment="content">
     <div class="container my-container">
         <div class="pl-4 pb-2 mt-3 mb-2 border-bottom d-flex flex-row">
             <h3 style="display: inline-block; flex: 1 ">个人中心</h3>
-            <a href="/edit-profile" class="btn-sm btn btn-outline-info align-self-center " style="display:none;">修改个人信息</a>
+            <a href="/edit-profile" class="btn-sm btn btn-outline-info align-self-center " style="display: inherit;">修改个人信息</a>
         </div>
         <div class="row py-5 px-2">
             <div class="col-xs-12 col-md-3 offset-md-1 text-center">
@@ -22,51 +28,43 @@
                 </a>
             </div>
             <div class="col-xs-12 col-md-8">
-                <h3 class="blue">
-                    <span class="middle" th:text="${currentUser.getName()}">Nick Name</span>
-                    </span>
-                    <span class="lead" style="font-size: 60%"
-                        th:text="${currentUser.getIntroduction()} ? ${currentUser.getIntroduction()}: '这人很懒，还没有个人介绍！'">Introduction</span>
-                </h3>
                 <div class="profile-user-info" style="width: 100%">
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 用户名 </div>
                         <div class="profile-info-value">
-                            <span th:text="${currentUser.getName()}">alexdoe</span>
+                            <span th:text="${user.getName()}">alexdoe</span>
                         </div>
                     </div>
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 邮箱 </div>
                         <div class="profile-info-value">
                             <i class="far fa-envelope" style="color: #337ab7; "></i>
-                            <a th:href="${'mailto:' + currentUser.getEmail()}" th:text="${currentUser.getEmail()}">Email
+                            <a th:href="${'mailto:' + user.getEmail()}" th:text="${user.getEmail()}">Email
                                 Address</a>
                         </div>
                     </div>
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 性别 </div>
                         <div class="profile-info-value">
-                            <span th:text="${currentUser.getSex() != null} ? ${currentUser.getSex().getValue()} : '暂未设置'">Sex</span>
+                            <span th:text="${user.getSex() != null} ? ${user.getSex().getValue()} : '暂未设置'">Sex</span>
                         </div>
                     </div>
                     <div class="profile-info-row">
                         <div class="profile-info-name"> 学校 </div>
                         <div class="profile-info-value">
-                            <span>北京航空航天大学</span>
+                            <span th:text="${user.getSchool() != null} ? ${user.getSchool()} : '暂未设置'">School</span>
                         </div>
                     </div>
                     <div class="profile-info-row">
-                        <div class="profile-info-name"> 注册时间 </div>
+                        <div class="profile-info-name"> 自我介绍 </div>
                         <div class="profile-info-value">
-                            <span th:text="${#dates.format(currentUser.getCreated_at(), 'yyyy/mm/dd HH:MM:SS')}">2010/06/20</span>
+
+                            <textarea class="profile-info-textarea" placeholder="一句话介绍自己" readonly
+                                      th:text="${user.getIntroduction() != null} ? ${user.getIntroduction()} : '这个人很懒，还没有自我介绍'"
+                            ></textarea>
                         </div>
                     </div>
-                    <div class="profile-info-row">
-                        <div class="profile-info-name"><i class="fab fa-github" style="color: #212529"></i> </div>
-                        <div class="profile-info-value">
-                            <a href="https://github.com/buaa-2016/phyweb/">buaa-2016/phyweb</a>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="hr hr-8 dotted"></div>
             </div>

@@ -17,9 +17,9 @@
             </span>
         </div>
         <form class="col-md-6 offset-md-3" action="/login" method="post">
-            <div id="login-message-alert" th:if="${message}" style="text-align:initial; margin-top: 20px;">
-                <button type="button" class="close" data-dismiss="alert" onclick="deleteMessage()" id="demo_1">x</button>
-                <span th:text="${message}" id="demo_2" style="color: red"></span>
+            <div class="alert alert-danger alert-dismissible"  th:if="${message}" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${message}"></strong>
             </div>
             <div class="form-group">
                 <label for="email">邮箱：</label>

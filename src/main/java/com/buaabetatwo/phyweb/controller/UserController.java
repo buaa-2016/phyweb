@@ -22,41 +22,27 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/index/userupdate")
-    public String UserShow(Model model) {
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-        model.addAttribute("user", user);
-        return "userupdate";
-    }
 
-    @PostMapping("/index/userupdate")
-    public String UserUpdate(String name,String email,String student_id,String password3,String introduction){
-        if(password3==null) {
-            userMapper.updateUserInfo(name, email, student_id,introduction);
-        }
-        else {
-            SimpleHash hash = new SimpleHash("md5", password3);
-            String newPw=(hash.toHex());
-            userMapper.updateUserPw(newPw, student_id);
-        }
-       return "login";
-    }
 
     @GetMapping("/user-center")
     public String UserCenter(Model model) {
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        User user2 = (User) SecurityUtils.getSubject().getPrincipal();
+        String email =user2.getEmail();
+        User user=userMapper.getByEmail(email);
         model.addAttribute("user", user);
         return "user-center";
     }
 
     @GetMapping("/edit-profile")
-    public String getEditUserProfile() {
+    public String getEditUserProfile(Model model) {
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "edit-profile";
     }
 
     @PostMapping("/edit-profile")
-    public String postEditUserProfile(Model model, String nickName, String gender, String introduction, String oldPassword, String newPassword) {
-
+    public String postEditUserProfile(String name,String sex,String school,String introduction,String email,Model model) {
+        /*
         if (oldPassword != null) {
             RealmSecurityManager sm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
             ShiroRealm realm = (ShiroRealm) sm.getRealms().iterator().next();
@@ -74,5 +60,10 @@ public class UserController {
         } else {
             return "edit-profile";
         }
+        */
+        userMapper.updateUserInfo(name,sex,school,introduction,email);
+        User user=userMapper.getByEmail(email);
+        model.addAttribute("user", user);
+        return "user-center";
     }
 }
