@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
+
+<head>
+    <title>登录</title>
+    <meta charset="utf-8" />
+    <script>
+        function copy(){
+            document.getElementById('resetemail').value=document.getElementById('email').value;
+        }
+    </script>
+</head>
+
+<th:block layout:fragment="content">
+    <div class="col-md-8 offset-md-2 my-5 py-4 px-5" style="background: #fff; border-radius: 8px; border: 1px solid #eee;">
+        <div class="row mb-3">
+            <span class="navbar-brand" style="margin: 0 auto;">
+                <div style="width:72px; height:72px; display: inline-block; vertical-align: middle;">
+                    <i class="iconfont icon-wuli" style="font-size: 72px; line-height: 70px;"></i>
+                </div>
+                <span style="font-size:36px;">PhyLab</span>
+                <h5 class="mt-2">登陆 PhyLab，发现物理实验的乐趣</h5>
+            </span>
+        </div>
+        <form class="col-md-6 offset-md-3" action="/reset-email" method="post">
+            <div class="alert alert-danger alert-dismissible"  th:if="${failMessage}" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${failMessage}"></strong>
+            </div>
+
+            <div class="alert alert-success alert-dismissible"  th:if="${successMessage}" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${successMessage}"></strong>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="btn btn-outline-secondary" >请输入邮箱<span>
+                </div>
+                <input type="email"  class="form-control" name="email"  id="email" maxlength="50"  required th:value="${useremail}">
+                    <button class="btn btn-success" type="submit"  >获取验证码</button>
+                </div>
+        </form>
+        <form class="col-md-6 offset-md-3" action="/reset" method="post">
+            <input name="resetemail" hidden id="resetemail" >
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="btn btn-outline-secondary" >请输入6位验证码</span>
+                </div>
+                <input type="text" class="form-control" maxlength="6" required  name="resetCode">
+            </div>
+            <button class="btn mt-2 btn-primary btn-block" type="submit" onclick="copy()">找回密码</button>
+        </form>
+    </div>
+
+</th:block>
+
+</html>

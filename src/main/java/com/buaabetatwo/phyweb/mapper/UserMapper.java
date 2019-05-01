@@ -34,8 +34,8 @@ public interface UserMapper {
     @Update("UPDATE  users SET name=#{name}  , sex=#{sex} ,school=#{school},introduction=#{introduction}   WHERE email=#{email}")
     void updateUserInfo(String name ,String sex,String school,String introduction ,String email );
 
-    @Update("UPDATE  users SET password=#{password} WHERE student_id=#{student_id}")
-    void updateUserPw(String password,String student_id);
+    @Update("UPDATE  users SET password=#{password} WHERE email=#{email}")
+    void updateUserPw(String password,String email);
 
 
 

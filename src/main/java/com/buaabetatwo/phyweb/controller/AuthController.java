@@ -35,7 +35,7 @@ public class AuthController {
         if(userMapper.getByStudentId(user.getStudent_id())==null&&
         userMapper.getByEmail(user.getEmail())==null){
             userMapper.insertByUser(user);
-            model.addAttribute("message", "注册成功，请登录！");
+           // model.addAttribute("message", "注册成功，请登录！");
             return "login";
         }
         else{

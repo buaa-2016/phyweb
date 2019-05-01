@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="base">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 
 <head>
     <title>登录</title>
+    <meta charset="utf-8" />
 </head>
 
 <th:block layout:fragment="content">
@@ -23,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="email">邮箱：</label>
-                <input id="email" name="username" type="email" class="form-control" placeholder="请输入邮箱" required>
+                <input id="email" name="username" type="email" class="form-control" placeholder="请输入邮箱" required >
             </div>
             <div class="form-group">
                 <label for="password">密码：</label>
@@ -34,7 +35,11 @@
                 <label class="form-check-label" for="remember-me">记住我</label>
             </div>
             <button class="btn mt-2 btn-primary btn-block" type="submit">登录</button>
-            <p class="my-3 ml-auto text-muted">没有帐号？<a href="/register">立即注册</a></p>
+            <div class="my-3 ml-auto text-muted">
+                <p style="text-align: left;float: left">没有帐号？<a href="/register">立即注册</a></p>
+                <p style="text-align: right;float: right" ><a href="/reset">忘记密码</a></p>
+            </div>
+
         </form>
     </div>
 </th:block>

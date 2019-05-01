@@ -150,10 +150,7 @@ body {
 .profile-info-textarea {
     border-style:solid;
     border-color: #337ab7;
-    border-radius:5px;
-    background-color:white;
     width: 425px;
     height: 120px;
-    padding: 5px;
     resize: none;
 }
