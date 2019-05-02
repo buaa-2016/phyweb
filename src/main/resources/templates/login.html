@@ -22,6 +22,22 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong th:text="${message}"></strong>
             </div>
+
+            <div class="alert alert-success alert-dismissible"  th:if="${successmessage}" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${successmessage}"></strong>
+            </div>
+
+            <div class="alert alert-primary alert-dismissible"  th:if="${loginoutmessage}" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${loginoutmessage}"></strong>
+            </div>
+
+            <div class="alert alert-success alert-dismissible"  th:if="${resetPwSuccessMessage}" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${resetPwSuccessMessage}"></strong>
+            </div>
+
             <div class="form-group">
                 <label for="email">邮箱：</label>
                 <input id="email" name="username" type="email" class="form-control" placeholder="请输入邮箱" required >

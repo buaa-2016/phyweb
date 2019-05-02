@@ -101,7 +101,6 @@ body {
     margin: 0 auto;
 }
 
-
 .profile-picture {
     border: 1px solid #CCC;
     background-color: #FFF;
@@ -153,4 +152,14 @@ body {
     width: 425px;
     height: 120px;
     resize: none;
+}
+
+.my-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    width: 100px;
+    height: 35px;
+    position: relative;
+    left: 130px;
 }

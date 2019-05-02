@@ -35,11 +35,11 @@ public class AuthController {
         if(userMapper.getByStudentId(user.getStudent_id())==null&&
         userMapper.getByEmail(user.getEmail())==null){
             userMapper.insertByUser(user);
-           // model.addAttribute("message", "注册成功，请登录！");
+            model.addAttribute("successmessage", "注册成功，请登录！");
             return "login";
         }
         else{
-            model.addAttribute("message", "注册失败，邮箱或学号已存在！");
+            model.addAttribute("message", "注册失败，邮箱已存在！");
         }
         return "register";
     }
@@ -87,8 +87,9 @@ public class AuthController {
      * @return
      */
     @RequestMapping("/logout")
-    public String logout() {
+    public String logout(Model model) {
         SecurityUtils.getSubject().logout();
+        model.addAttribute("loginoutmessage","已成功注销！");
         return "login";
     }
 

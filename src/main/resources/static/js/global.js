@@ -58,3 +58,4 @@
 		alert("滚吧！");
 		window.location = "http://www.taobao.com/"
 	}
+
