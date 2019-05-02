@@ -152,6 +152,7 @@ body {
     width: 425px;
     height: 120px;
     resize: none;
+    text-align: left;
 }
 
 .my-button {
