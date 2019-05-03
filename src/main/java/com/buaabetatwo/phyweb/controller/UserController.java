@@ -48,7 +48,8 @@ public class UserController {
     }
 
     @PostMapping("/edit-profile")
-    public String postEditUserProfile(String name,String sex,String school,String introduction,String email,Model model) {
+    public String postEditUserProfile(String name,String sex,String school,String introduction,
+                                      String email,Model model ,String oldPassword,String newPassword2) {
         /*
         if (oldPassword != null) {
             RealmSecurityManager sm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
@@ -68,6 +69,23 @@ public class UserController {
             return "edit-profile";
         }
         */
+        if(oldPassword!=null){
+            User user=userMapper.getByEmail(email);
+            SimpleHash hash = new SimpleHash("md5", oldPassword);
+            String Pw=(hash.toHex());
+            if(user.getPassword().equals(Pw)){
+                SimpleHash hash2 = new SimpleHash("md5", newPassword2);
+                String Pw2=(hash2.toHex());
+                userMapper.updateUserPw(Pw2,email);
+                model.addAttribute("resetPwSuccessMessage","修改成功，请重新登录");
+                return "login";
+            }
+            else{
+                model.addAttribute("user", user);
+                model.addAttribute("failEditPassword","原密码不正确，若忘记密码，可通过登录页面进行重置");
+                return "edit-profile";
+            }
+        }
         userMapper.updateUserInfo(name,sex,school,introduction,email);
         User user=userMapper.getByEmail(email);
         model.addAttribute("user", user);

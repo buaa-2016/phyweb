@@ -147,12 +147,10 @@ body {
     display: table-row;
 }
 .profile-info-textarea {
-    border-style:solid;
-    border-color: #337ab7;
-    width: 425px;
-    height: 120px;
+    width: 1000px;
     resize: none;
     text-align: left;
+    border: none;
 }
 
 .my-button {
@@ -160,7 +158,9 @@ body {
     border: none;
     color: white;
     width: 100px;
-    height: 35px;
+    height: 25px;
     position: relative;
-    left: 130px;
+    left: 500px;
 }
+
+

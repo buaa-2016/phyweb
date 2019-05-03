@@ -5,23 +5,42 @@
     <title>PhyLab - 修改个人信息</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>>
+    <script>
+        $(document).ready(function(){
+            $("#passwordButton").click(function(){
+                $("#messageDiv").hide();
+                $("#passwordDiv").show();
+            });
+
+            $("#messageButton").click(function(){
+                $("#messageDiv").show();
+                $("#passwordDiv").hide();
+            });
+        });
+        function check(input) {
+            if (input.value != document.getElementById('newPassword1').value) {
+                input.setCustomValidity('两次输入的密码必须一致');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+
+    </script>
 </head>
 
 <th:block layout:fragment="content"  >
     <div class="container my-container">
         <div class="pl-4 pb-2 mt-3 mb-2 border-bottom d-flex flex-row">
-            <h3 style="display: inline-block; flex: 1 ">修改个人信息</h3>
+            <button id="messageButton" style="display: inline-block;float: left ;background-color: #337ab7;color: white">修改信息</button>
+            <button id="passwordButton" style="display: inline-block ;float: right;background-color: #337ab7;color: white ">修改密码</button>
         </div>
-        <div class="row py-5 px-2">
-            <div class="col-xs-12 col-md-3 offset-md-1 text-center">
-                <div class="profile-picture">
-                    <img th:src="${userAvatar}">
-                </div>
-                <a href="#" class="btn btn-sm btn-block btn-success mt-2" data-toggle="modal" data-target="#exampleModal">
-                    <i class="ace-icon fa fa-plus-circle"></i>
-                    <span>修改个人头像</span>
-                </a>
-            </div>
+        <div class="alert alert-danger alert-dismissible"  th:if="${failEditPassword}" >
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong th:text="${failEditPassword}"></strong>
+        </div>
+        <div class="row py-5 px-2" id="messageDiv"  >
             <div class="col-xs-12 col-md-8">
                 <form  action="/edit-profile" method="post">
                     <input name="email" th:value="${user.getEmail()}" hidden>
@@ -30,7 +49,7 @@
                         <div class="profile-info-name"> 用户名 </div>
                         <div class="profile-info-value">
                             <input  name="name" type="text" required th:value="${user.getName()}"
-                                    maxlength="20"
+                                    maxlength="20" style="border: none;width: 500px;height: 50px"
                             >
                         </div>
                     </div>
@@ -45,46 +64,74 @@
                         <div class="profile-info-name"> 学校 </div>
                         <div class="profile-info-value">
                             <input  name="school" type="text"  required
-                                    maxlength="30" th:value="${user.getSchool()}"
+                                    maxlength="30" th:value="${user.getSchool()}" style="border: none;width: 500px;height:50px"
                             >
                         </div>
                     </div>
                     <div class="profile-info-row">
                         <div class="profile-info-name">自我介绍</div>
                         <div class="profile-info-value">
-                            <textarea class="profile-info-textarea"  name="introduction" placeholder="一句话介绍自己" rows="4" maxlength="100" required ></textarea>
-                            <br>
-                            <button  class="my-button" type="submit">确认</button>
+                            <input  name="introduction"  placeholder="一句话介绍自己" style="border: none;width: 1000px;height: 50px"
+                                   maxlength="50" required >
                         </div>
                     </div>
-
+                    <br>
+                    <br>
+                     <div>
+                         <button  class="my-button" type="submit">确认</button>
+                     </div>
                 </div>
                 <div class="hr hr-8 dotted"></div>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">修改个人头像</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>我们使用<a href="https://cn.gravatar.com/">Gravatar - 全球通用头像</a>来获取您的个人头像。</p>
-                <p><b>Gravatar</b>是一个根据邮箱地址提供头像的网站，您一旦在这个网站上设置了个人头像，所有使用Gravatar服务的网站都可以根据您的邮箱获取到您的个人头像。</p>
-                <p>有关Gravatar的详细信息，您可以在 <a href="https://zh.wikipedia.org/wiki/Gravatar">维基百科 - Gravatar</a> 里面了解更多。</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <a href="https://cn.gravatar.com/" class="btn btn-primary" target="_blank">前往 Gravatar</a>
-            </div>
+        <div class="row py-5 px-2" id="passwordDiv" style="display: none" >
+            <div class="col-xs-12 col-md-8">
+                <form  action="/edit-profile" method="post">
+                    <input name="email" th:value="${user.getEmail()}" hidden>
+                    <div class="profile-user-info" style="width: 100%">
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 用户名 </div>
+                            <div class="profile-info-value">
+                                <input  name="name" type="text" th:value="${user.getName()}"
+                                        readonly
+                                >
+                            </div>
+                        </div>
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 旧密码 </div>
+                            <div class="profile-info-value">
+                                <input  name="oldPassword" type="password"  required
+                                        maxlength="30"
+                                >
+                            </div>
+                        </div>
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 新密码 </div>
+                            <div class="profile-info-value">
+                                <input  name="newPassword1" type="password"  required id="newPassword1"
+                                        maxlength="30" minlength="6"
+                                >
+                            </div>
+                        </div>
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> 确认新密码 </div>
+                            <div class="profile-info-value">
+                                <input  name="newPassword2" type="password"  required id="newPassword2"
+                                        maxlength="30" oninput="check(this)" minlength="6"
+                                >
+                            </div>
+                        </div>
+                        <br>
+                        <button  class="my-button" type="submit">确认</button>
+                    </div>
+                    <div class="hr hr-8 dotted"></div>
+                </form>
             </div>
         </div>
+
     </div>
+
 </th:block>
 
 </html>
