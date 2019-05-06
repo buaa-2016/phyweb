@@ -3,7 +3,7 @@ package com.buaabetatwo.phyweb.model;
 import java.util.Date;
 
 public class Report {
-	private int id;
+    private int id;
     private String script_link;
     private int experiment_id;
     private String experiment_name;

@@ -32,13 +32,12 @@ public class AuthController {
         SimpleHash hash = new SimpleHash("md5", user.getPassword());
         String encryptedPassword = hash.toHex();
         user.setPassword(hash.toHex());
-        if(userMapper.getByStudentId(user.getStudent_id())==null&&
-        userMapper.getByEmail(user.getEmail())==null){
+        if (userMapper.getByStudentId(user.getStudent_id()) == null &&
+                userMapper.getByEmail(user.getEmail()) == null) {
             userMapper.insertByUser(user);
             model.addAttribute("successmessage", "注册成功，请登录！");
             return "login";
-        }
-        else{
+        } else {
             model.addAttribute("message", "注册失败，邮箱已存在！");
         }
         return "register";
@@ -55,6 +54,7 @@ public class AuthController {
 
     /**
      * Login by post
+     *
      * @param username
      * @param password
      * @param model
@@ -82,14 +82,16 @@ public class AuthController {
         }
         return "login";
     }
+
     /**
      * Logout
+     *
      * @return
      */
     @RequestMapping("/logout")
     public String logout(Model model) {
         SecurityUtils.getSubject().logout();
-        model.addAttribute("loginoutmessage","已成功注销！");
+        model.addAttribute("loginoutmessage", "已成功注销！");
         return "login";
     }
 

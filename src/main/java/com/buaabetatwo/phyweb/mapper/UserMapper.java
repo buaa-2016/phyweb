@@ -32,12 +32,10 @@ public interface UserMapper {
     void insertByUser(User user);
 
     @Update("UPDATE  users SET name=#{name}  , sex=#{sex} ,school=#{school},introduction=#{introduction}   WHERE email=#{email}")
-    void updateUserInfo(String name ,String sex,String school,String introduction ,String email );
+    void updateUserInfo(String name, String sex, String school, String introduction, String email);
 
     @Update("UPDATE  users SET password=#{password} WHERE email=#{email}")
-    void updateUserPw(String password,String email);
-
-
+    void updateUserPw(String password, String email);
 
 
 }

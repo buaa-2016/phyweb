@@ -5,29 +5,7 @@
     <title>PhyLab - 修改个人信息</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>>
-    <script>
-        $(document).ready(function(){
-            $("#passwordButton").click(function(){
-                $("#messageDiv").hide();
-                $("#passwordDiv").show();
-            });
-
-            $("#messageButton").click(function(){
-                $("#messageDiv").show();
-                $("#passwordDiv").hide();
-            });
-        });
-        function check(input) {
-            if (input.value != document.getElementById('newPassword1').value) {
-                input.setCustomValidity('两次输入的密码必须一致');
-            } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
-            }
-        }
-
-    </script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
 <th:block layout:fragment="content"  >
@@ -132,6 +110,30 @@
 
     </div>
 
+</th:block>
+
+<th:block layout:fragment="scripts">
+    <script>
+        $(document).ready(function(){
+            $("#passwordButton").click(function(){
+                $("#messageDiv").hide();
+                $("#passwordDiv").show();
+            });
+
+            $("#messageButton").click(function(){
+                $("#messageDiv").show();
+                $("#passwordDiv").hide();
+            });
+        });
+        function check(input) {
+            if (input.value != document.getElementById('newPassword1').value) {
+                input.setCustomValidity('两次输入的密码必须一致');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+    </script>
 </th:block>
 
 </html>
