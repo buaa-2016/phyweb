@@ -25,12 +25,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr th:each="question : ${questionList}">
                 <td class="center aligned">No.1</td>
-                <td class="center aligned">这是一道物理实验题</td>
+                <td class="center aligned" th:text="${question.title}">这是一道物理实验题</td>
                 <td class="center aligned">
                     <div class="ui buttons">
-                        <button class="ui green basic button enter-questoion" style="padding: .45em .8em">进入做题</button>
+                        <button class="ui green basic button enter-question" style="padding: .45em .8em">进入做题</button>
                     </div>
                 </td>
             </tr>
