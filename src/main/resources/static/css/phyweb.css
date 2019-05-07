@@ -146,12 +146,7 @@ body {
 .profile-info-row {
     display: table-row;
 }
-.profile-info-textarea {
-    width: 1000px;
-    resize: none;
-    text-align: left;
-    border: none;
-}
+
 
 .my-button {
     background-color: #4CAF50;

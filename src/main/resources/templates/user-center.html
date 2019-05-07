@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="base">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 
 <head>
     <title>PhyLab - 个人信息</title>
@@ -26,10 +26,14 @@
                     <span>修改个人头像</span>
                 </a>
             </div>
+
             <div class="col-xs-12 col-md-8">
+                <form  action="/edit-profile" method="post">
                 <div class="profile-user-info" style="width: 100%">
                     <div class="profile-info-row">
-                        <div class="profile-info-name"> 用户名 </div>
+                        <div class="profile-info-name">
+                        <span>用户名</span>
+                        </div>
                         <div class="profile-info-value">
                             <span th:text="${user.getName()}">alexdoe</span>
                         </div>
@@ -55,10 +59,10 @@
                         </div>
                     </div>
                     <div class="profile-info-row">
-                        <div class="profile-info-name"> 自我介绍 </div>
+                        <div class="profile-info-name" > 自我介绍 </div>
                         <div class="profile-info-value">
 
-                            <textarea class="profile-info-textarea" placeholder="一句话介绍自己" readonly
+                            <textarea   readonly rows="3" style="resize: none;width: 500px"
                                       th:text="${user.getIntroduction() != null} ? ${user.getIntroduction()} : '这个人很懒，还没有自我介绍'"
                             ></textarea>
                         </div>
@@ -66,6 +70,7 @@
 
                 </div>
                 <div class="hr hr-8 dotted"></div>
+                </form>
             </div>
         </div>
     </div>
