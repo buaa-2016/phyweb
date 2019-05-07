@@ -19,6 +19,7 @@ public class QuestionController {
     @GetMapping("/question")
     public String getQuestion(Model model) {
         List<Question> questionList = questionMapper.findAll();
+        processQuestion(questionList);
         model.addAttribute("questionList", questionList);
         return "questionAll";
     }
@@ -28,5 +29,11 @@ public class QuestionController {
         Question question = questionMapper.findById(id);
         model.addAttribute("question", question);
         return "question-detail";
+    }
+
+    private void processQuestion(List<Question> list) {
+        for (Question ques : list) {
+            ques.setTitle(ques.getTitle().substring(0,25) + "......");
+        }
     }
 }

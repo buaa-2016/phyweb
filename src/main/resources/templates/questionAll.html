@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <tr th:each="question : ${questionList}">
-                <td class="center aligned">No.1</td>
+                <td class="center aligned" th:text="${question.id}">No.1</td>
                 <td class="center aligned" th:text="${question.title}">这是一道物理实验题</td>
                 <td class="center aligned">
                     <div class="ui buttons">
