@@ -24,11 +24,11 @@ public class QuestionController {
         return "questionAll";
     }
 
-    @GetMapping("/question-detail")
-    public String getQuestion(int id, Model model) {
-        Question question = questionMapper.findById(id);
-        model.addAttribute("question", question);
-        return "question-detail";
+    @GetMapping("/questionDetail")
+    public String getQuestionDetail(Model model) {
+//        Question question = questionMapper.findById(id);
+//        model.addAttribute("question", question);
+        return "questionDetail";
     }
 
     private void processQuestion(List<Question> list) {
