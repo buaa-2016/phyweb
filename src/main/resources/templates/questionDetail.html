@@ -6,14 +6,88 @@
     <title>题目</title>
 </head>
 
+<th:block layout:fragment="links">
+    <!-- fomantic-ui table -->
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/table.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/button.min.css" rel="stylesheet">
+    <link href="../static/css/phyweb.css" rel="stylesheet" th:href="@{/css/phyweb.css}">
+</th:block>
+
 <th:block layout:fragment="content">
-    <div class="card" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto;margin-top: auto">
-        <h5 class="text-center" style="margin-top: auto">
+    <div class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+        <h5 class="text-center">
             <i class="far fa-list-alt" style="font-size:90%"></i>
-            <span th:text="'第'+${question.id}+'题'"></span>
+            选择题内容
         </h5>
-        <>
+        <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+            <tbody>
+            <tr>
+                <td class="center aligned" th:text="${question.title}">No.1</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <input type="checkbox" id="A" class="regular-checkbox big-checkbox" /><label id="chooseA" for="A" th:text="'A：'+${question.getA()}"></label>
+        <input type="checkbox" id="B" class="regular-checkbox big-checkbox" /><label id="chooseB" for="B" th:text="'B：'+${question.getB()}"></label>
+        <input type="checkbox" id="C" class="regular-checkbox big-checkbox" /><label id="chooseC" for="C" th:text="'C：'+${question.getC()}"></label>
+        <input type="checkbox" id="D" class="regular-checkbox big-checkbox" /><label id="chooseD" for="D" th:text="'D：'+${question.getD()}"></label>
+
     </div>
+
+    <div class = "row">
+        <div style="margin-left: auto;margin-right: auto;margin-top: 20px" class="ui buttons">
+            <a th:href='@{/questionDetail(id=${question.id} - 1)}'>
+                <button type="button" class="ui green basic button enter-question">
+                    前一题
+                </button>
+            </a>
+        </div>
+
+        <div style="margin-left: auto;margin-right: auto;margin-top: 20px" class="ui buttons">
+            <a>
+                <button type="button" class="ui blue basic button enter-question">
+                    提交答案
+                </button>
+            </a>
+        </div>
+
+        <div style="margin-right: auto;margin-left: auto;margin-top: 20px" class="ui buttons">
+            <a th:href='@{/questionDetail(id=${question.id} + 1)}'>
+                <button type="button" class="ui green basic button enter-question">
+                    后一题
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="ui buttons" style="margin-right: auto;margin-left: auto;margin-top: 20px" >
+            <button type="button" class="ui orange basic button enter-question" data-toggle="collapse" data-target="#comment" >
+                该题讨论内容
+            </button>
+        </div>
+    </div>
+
+    <div id="comment" class="collapse in">
+        <div class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                选择题内容
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                    <tr>
+                        <td class="center aligned" th:text="${question.title}">No.1</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+        </div>
+    </div>
+
+
+
 </th:block>
 
 </html>
