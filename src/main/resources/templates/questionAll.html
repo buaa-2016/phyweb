@@ -31,7 +31,9 @@
                 <td class="center aligned" th:text="${question.title}">这是一道物理实验题</td>
                 <td class="center aligned">
                     <div class="ui buttons">
-                        <button class="ui green basic button enter-question" style="padding: .45em .8em">进入做题</button>
+                        <a th:href='@{/questionDetail(id=${question.id})}'>
+                            <button class="ui green basic button enter-question" style="padding: .45em .8em">进入做题</button>
+                        </a>
                     </div>
                 </td>
             </tr>

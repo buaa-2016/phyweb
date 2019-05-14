@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,9 +26,12 @@ public class QuestionController {
     }
 
     @GetMapping("/questionDetail")
-    public String getQuestionDetail(Model model) {
-//        Question question = questionMapper.findById(id);
-//        model.addAttribute("question", question);
+    public String getQuestionDetail(@RequestParam(name = "id") int id, Model model) {
+        Question question = questionMapper.findById(id);
+        if (question == null) {
+            return "forward:/question";
+        }
+        model.addAttribute("question", question);
         return "questionDetail";
     }
 
