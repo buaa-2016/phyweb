@@ -10,7 +10,7 @@
     <!-- fomantic-ui table -->
     <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/table.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/button.min.css" rel="stylesheet">
-    <link href="../static/css/phyweb.css" rel="stylesheet" th:href="@{/css/phyweb.css}">
+    <link th:href="@{/css/phyweb.css}"  rel="stylesheet" >
 </th:block>
 
 <th:block layout:fragment="content">
@@ -109,7 +109,11 @@
 
     </div>
 
-    <script src="./js/global.js" th:src="@{/js/global.js}"></script>
+    <th:block layout:fragment="scripts">
+        <!-- More Scripts -->
+        <script src="./js/global.js" th:src="@{/js/global.js}"></script>
+    </th:block>
+
 
 </th:block>
 
