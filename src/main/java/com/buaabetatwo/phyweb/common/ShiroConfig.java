@@ -63,6 +63,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/reset-email", "anon");
         filterChainDefinitionMap.put("/question*", "anon");
         filterChainDefinitionMap.put("/index", "anon");
+        filterChainDefinitionMap.put("/comment", "anon");
 
         filterChainDefinitionMap.put("/**", "authc");
 

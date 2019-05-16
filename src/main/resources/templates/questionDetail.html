@@ -93,10 +93,23 @@
             </table>
             <br>
 
+            <div class="input-group mb-3">
+                <input id="commentInput" type="text" class="form-control" name="comment">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" onclick="insertComment()">添加评论</button>
+                </div>
+            </div>
+
         </div>
+
+        <p class="modal fade" id="questionId" th:text="${question.getId()}"></p>
+        <p class="modal fade" id="questionAns" th:text="${question.getAnswer()}"></p>
+
+
+
     </div>
 
-
+    <script src="./js/global.js" th:src="@{/js/global.js}"></script>
 
 </th:block>
 

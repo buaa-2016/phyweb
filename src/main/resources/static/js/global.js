@@ -59,3 +59,33 @@
 		window.location = "http://www.taobao.com/"
 	}
 
+
+	function httpPost(URL, PARAMS) {
+		var temp = document.createElement("form");
+		temp.action = URL;
+		temp.method = "post";
+		temp.style.display = "none";
+
+		for (var x in PARAMS) {
+			var opt = document.createElement("textarea");
+			opt.name = x;
+			opt.value = PARAMS[x];
+			temp.appendChild(opt);
+		}
+
+		document.body.appendChild(temp);
+		temp.submit();
+
+		return temp;
+	}
+
+	function insertComment(){
+
+		var params = {
+			"comment": document.getElementById("commentInput").value,
+			"id":document.getElementById("questionId").textContent
+		};
+
+		httpPost("/comment", params);
+	}
+
