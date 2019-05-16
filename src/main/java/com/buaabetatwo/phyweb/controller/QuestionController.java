@@ -2,7 +2,9 @@ package com.buaabetatwo.phyweb.controller;
 
 
 import com.buaabetatwo.phyweb.mapper.QuestionMapper;
+import com.buaabetatwo.phyweb.mapper.CommentMapper;
 import com.buaabetatwo.phyweb.model.Question;
+import com.buaabetatwo.phyweb.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ public class QuestionController {
 
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private CommentMapper commentMapper;
 
     @GetMapping("/question")
     public String getQuestion(Model model) {
@@ -28,10 +32,13 @@ public class QuestionController {
     @GetMapping("/questionDetail")
     public String getQuestionDetail(@RequestParam(name = "id") int id, Model model) {
         Question question = questionMapper.findById(id);
+        List<Comment> commentList = commentMapper.findAllById(id);
         if (question == null) {
             return "forward:/question";
         }
+
         model.addAttribute("question", question);
+        model.addAttribute("commentList", commentList);
         return "questionDetail";
     }
 
@@ -40,4 +47,5 @@ public class QuestionController {
             ques.setTitle(ques.getTitle().substring(0,25) + "......");
         }
     }
+    
 }

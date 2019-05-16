@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 
 <head>
@@ -72,13 +72,23 @@
         <div class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
             <h5 class="text-center">
                 <i class="far fa-list-alt" style="font-size:90%"></i>
-                选择题内容
+                讨论内容
             </h5>
             <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
-                <tbody>
-                    <tr>
-                        <td class="center aligned" th:text="${question.title}">No.1</td>
-                    </tr>
+                <thead>
+				<tr>
+					<th class="center aligned">编号</th>
+					<th class="center aligned">用户名</th>
+					<th class="center aligned">评论内容</th>
+					<th class="center aligned">评论时间</th>
+				</tr>
+				<tbody>
+                    <tr th:each="comment : ${commentList}">
+						<td class="center aligned" th:text="${comment.content_id}">No.1</td>
+						<td class="center aligned" th:text="${comment.name}">用户名</td>
+						<td class="center aligned" th:text="${comment.content}">评论内容</td>
+						<td class="center aligned" th:text="${comment.time}">评论时间</td>
+					</tr>
                 </tbody>
             </table>
             <br>
