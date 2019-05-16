@@ -89,3 +89,22 @@
 		httpPost("/comment", params);
 	}
 
+	function judgeAns() {
+		var ans = document.getElementById("questionAns").textContent;
+		//获取ans的值
+		if(ans == 'A') document.getElementById("chooseA").style.backgroundColor="#21ba45";
+		else if(ans == 'B') document.getElementById("chooseB").style.backgroundColor="#21ba45";
+		else if(ans == 'C') document.getElementById("chooseC").style.backgroundColor="#21ba45";
+		else if(ans == 'D') document.getElementById("chooseD").style.backgroundColor="#21ba45";
+
+		if (document.getElementById("A").checked == true && ans != 'A') {
+			document.getElementById("chooseA").style.backgroundColor="#f2711c";
+		} else if (document.getElementById("B").checked == true && ans != 'B') {
+			document.getElementById("chooseB").style.backgroundColor="#f2711c";
+		} else if (document.getElementById("C").checked == true && ans != 'C') {
+			document.getElementById("chooseB").style.backgroundColor="#f2711c";
+		} else if (document.getElementById("D").checked == true && ans != 'D') {
+			document.getElementById("chooseD").style.backgroundColor="#f2711c";
+		}
+	}
+

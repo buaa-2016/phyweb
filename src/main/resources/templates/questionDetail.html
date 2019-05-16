@@ -31,7 +31,7 @@
         <input type="checkbox" id="B" class="regular-checkbox big-checkbox" /><label id="chooseB" for="B" th:text="'B：'+${question.getB()}"></label>
         <input type="checkbox" id="C" class="regular-checkbox big-checkbox" /><label id="chooseC" for="C" th:text="'C：'+${question.getC()}"></label>
         <input type="checkbox" id="D" class="regular-checkbox big-checkbox" /><label id="chooseD" for="D" th:text="'D：'+${question.getD()}"></label>
-
+        <!--#cc3c3c-->
     </div>
 
     <div class = "row">
@@ -45,7 +45,7 @@
 
         <div style="margin-left: auto;margin-right: auto;margin-top: 20px" class="ui buttons">
             <a>
-                <button type="button" class="ui blue basic button enter-question">
+                <button type="button" class="ui blue basic button enter-question" onclick="judgeAns()">
                     提交答案
                 </button>
             </a>
