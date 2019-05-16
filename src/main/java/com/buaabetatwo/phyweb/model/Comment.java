@@ -1,11 +1,12 @@
 package com.buaabetatwo.phyweb.model;
 
-import java.sql.Timestamp;
+
+import java.util.Date;
 
 public class Comment {
     private int id;
     private String name;
-    private Timestamp time;
+    private Date time;
     private String content;
     private int content_id;
     
@@ -17,11 +18,11 @@ public class Comment {
         return content_id;
     }
         
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
     
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
     
