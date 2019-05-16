@@ -102,7 +102,7 @@
 		} else if (document.getElementById("B").checked == true && ans != 'B') {
 			document.getElementById("chooseB").style.backgroundColor="#f2711c";
 		} else if (document.getElementById("C").checked == true && ans != 'C') {
-			document.getElementById("chooseB").style.backgroundColor="#f2711c";
+			document.getElementById("chooseC").style.backgroundColor="#f2711c";
 		} else if (document.getElementById("D").checked == true && ans != 'D') {
 			document.getElementById("chooseD").style.backgroundColor="#f2711c";
 		}
