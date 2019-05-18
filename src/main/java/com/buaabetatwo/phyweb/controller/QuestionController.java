@@ -61,6 +61,7 @@ public class QuestionController {
 
     private void processQuestion(List<Question> list) {
         for (Question ques : list) {
+            if(ques.getTitle().length() <= 25) continue;
             ques.setTitle(ques.getTitle().substring(0,25) + "......");
         }
     }
