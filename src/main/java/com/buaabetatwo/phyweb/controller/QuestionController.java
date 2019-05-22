@@ -58,6 +58,30 @@ public class QuestionController {
 
         return "questionDetail";
     }
+    
+    @PostMapping("/comment_1")
+    public String changeComment(@RequestParam(name = "content_id") String content_id,
+            @RequestParam(name = "comment_co") String comment, 
+            @RequestParam(name = "id") int id , Model model) {
+        int num = 0;
+        try {
+            num = Integer.parseInt(content_id);
+        }catch(NumberFormatException e){
+            String result = getModel(model, id);
+            if (result != null) return result;
+        }
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        Comment newCom = new Comment();
+        newCom.setId(id);
+        newCom.setContent(comment);
+        newCom.setName(user.getName());
+        newCom.setContent_id(num);        
+        commentMapper.changecomment(newCom);
+        String result = getModel(model, id);
+        if (result != null) return result;
+
+        return "questionDetail";
+    }
 
     private void processQuestion(List<Question> list) {
         for (Question ques : list) {

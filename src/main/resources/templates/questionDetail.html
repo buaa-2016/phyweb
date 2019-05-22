@@ -94,9 +94,17 @@
             <br>
 
             <div class="input-group mb-3">
-                <input id="commentInput" type="text" class="form-control" name="comment">
+                评论内容：<input id="commentInput" type="text" class="form-control" name="comment">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" onclick="insertComment()">添加评论</button>
+                </div>
+            </div>
+			
+			<div class="input-group mb-3">
+				编号：<input id="commentUpdate_1" type="text" class="form-control" name="content_id">
+                修改的评论内容：<input id="commentUpdate_2" type="text" class="form-control" name="comment_co">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" onclick="changeComment()">修改评论</button>
                 </div>
             </div>
 

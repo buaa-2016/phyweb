@@ -1,4 +1,4 @@
-	function browser(){
+﻿	function browser(){
 		var userAgent = navigator.userAgent; 
 		var isOpera = userAgent.indexOf("Opera") > -1;
 		var browser_name=navigator.appName
@@ -87,6 +87,17 @@
 		};
 
 		httpPost("/comment", params);
+	}
+
+	function changeComment(){
+
+		var params = {
+			"content_id": document.getElementById("commentUpdate_1").value,
+			"comment_co": document.getElementById("commentUpdate_2").value,
+			"id":document.getElementById("questionId").textContent
+		};
+
+		httpPost("/comment_1", params);
 	}
 
 	function judgeAns() {
