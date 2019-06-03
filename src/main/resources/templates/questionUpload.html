@@ -51,7 +51,7 @@
                     <form method="POST">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">题干</span>
+                                <span class="input-group-text">题目题干</span>
                             </div>
                             <textarea class="form-control" rows="1" placeholder="在这里输入题干内容" name="title" required></textarea>
                         </div>
@@ -113,13 +113,51 @@
     
                 <!--填空题-->
                 <div class="tab-pane fade" id="pills-blank" role="tabpanel" aria-labelledby="pills-blank-tab">
-                    
+                    <form method="POST">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">题目题干</span>
+                            </div>
+                            <textarea class="form-control" rows="1" placeholder="在这里输入题干内容" name="title" required></textarea>
+
+                        </div>
+                        <small><strong>注意：</strong>请将题干的待填写空白处用8个下划线表示</small><br>
+                        <small><strong>示例：</strong>新垣结衣在2016年主演了日剧《________》，在日本和天朝都获得了极高的口碑及人气。</small>
+                        <div class="input-group mb-3 mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >正确答案</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="在这里输入正确答案" name="answer" required>
+                        </div>
+                        <input type="text" name="type" value="BLANK" class="d-none">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">上传题目</button>
+                        </div>
+                    </form>
                 </div><!--填空题-->
     
     
                 <!--简答题-->
                 <div class="tab-pane fade" id="pills-answer" role="tabpanel" aria-labelledby="pills-answer-tab">
-                
+                    <form method="POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">题目题干</span>
+                            </div>
+                            <textarea class="form-control" rows="2" placeholder="在这里输入题干内容" name="title" required></textarea>
+
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">参考答案</span>
+                            </div>
+                            <textarea class="form-control" rows="3" placeholder="在这里输入题干内容" name="answer" required></textarea>
+                        </div>
+                        <input type="text" name="type" value="ANSWER" class="d-none">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">上传题目</button>
+                        </div>
+                    </form>
                 </div><!--简答题-->
             </div><!--tab-content-->
         </div>

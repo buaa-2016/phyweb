@@ -32,6 +32,7 @@ public class UploadQuestion {
     @PostMapping("/questionUpload")
     public String postQuestionUpload(Question question, Model model) {
         System.out.println(question.toString());
+        question.setAnswer(question.getAnswer().trim());
         try {
             questionMapper.insertQuestion(question);
             model.addAttribute("message_success", "上传成功！");
