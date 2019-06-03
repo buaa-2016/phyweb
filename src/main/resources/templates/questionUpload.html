@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
+
+<head>
+    <title>题目</title>
+</head>
+
+<th:block layout:fragment="links">
+    <!-- fomantic-ui table -->
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/table.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/button.min.css" rel="stylesheet">
+</th:block>
+
+<th:block layout:fragment="content">
+
+
+</th:block>
+
+<th:block layout:fragment="scripts">
+        <script th:inline="javascript">
+            const questionDetail = [[${question}]] ;
+            console.log(questionDetail);
+        </script>
+</th:block>
+
+
+</html>

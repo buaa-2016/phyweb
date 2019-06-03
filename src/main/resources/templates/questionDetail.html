@@ -14,25 +14,110 @@
 </th:block>
 
 <th:block layout:fragment="content">
-    <div class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
-        <h5 class="text-center">
-            <i class="far fa-list-alt" style="font-size:90%"></i>
-            选择题内容
-        </h5>
-        <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
-            <tbody>
-            <tr>
-                <td class="center aligned" th:text="${question.title}">No.1</td>
-            </tr>
-            </tbody>
-        </table>
-        <br>
-        <input type="checkbox" id="A" class="regular-checkbox big-checkbox" /><label id="chooseA" for="A" th:text="'A：'+${question.getA()}"></label>
-        <input type="checkbox" id="B" class="regular-checkbox big-checkbox" /><label id="chooseB" for="B" th:text="'B：'+${question.getB()}"></label>
-        <input type="checkbox" id="C" class="regular-checkbox big-checkbox" /><label id="chooseC" for="C" th:text="'C：'+${question.getC()}"></label>
-        <input type="checkbox" id="D" class="regular-checkbox big-checkbox" /><label id="chooseD" for="D" th:text="'D：'+${question.getD()}"></label>
-        <!--#cc3c3c-->
-    </div>
+    <th:block th:switch="${question.getType()}">
+        <!--选择题-->
+        <div th:case="'CHOICE'"  class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                第 <span th:text="${question.getId()}"></span> 题
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                <tr>
+                    <td class="center aligned">
+                        <span><span class="badge badge-pill badge-success">选择题</span>
+                        <span th:text="${question.title}">题目内容</span></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <input type="checkbox" id="A" class="regular-checkbox big-checkbox" /><label id="chooseA" for="A" th:text="'A：'+${question.getA()}"></label>
+            <input type="checkbox" id="B" class="regular-checkbox big-checkbox" /><label id="chooseB" for="B" th:text="'B：'+${question.getB()}"></label>
+            <input type="checkbox" id="C" class="regular-checkbox big-checkbox" /><label id="chooseC" for="C" th:text="'C：'+${question.getC()}"></label>
+            <input type="checkbox" id="D" class="regular-checkbox big-checkbox" /><label id="chooseD" for="D" th:text="'D：'+${question.getD()}"></label>
+        </div>
+        <!--填空题-->
+        <div th:case="'BLANK'"  class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                第 <span th:text="${question.getId()}"></span> 题
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                <tr>
+                    <td class="center aligned">
+                        <span><span class="badge badge-pill badge-success">填空题</span>
+                        <span th:text="${question.title}">题目内容</span></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <div>
+                <label for="blank_answer">在下面输入您的答案</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">您的答案</span>
+                  </div>
+                  <input type="text" class="form-control" id="blank_answer">
+                </div>
+                <div class="collapse" id="answer-incorrect">
+                    <div class="card card-body">
+                        <p class="text-danger">答案有误</p>
+                        <p>
+                            <span class="text-success">正确答案: </span>
+                            <span th:text="${question.answer}"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="collapse" id="answer-correct">
+                    <div class="card card-body">
+                        <p class="text-success">答案正确</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--简答题-->
+        <div th:case="'ANSWER'"  class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                第 <span th:text="${question.getId()}"></span> 题
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                <tr>
+                    <td class="center aligned">
+                        <span><span class="badge badge-pill badge-success">简答题</span>
+                        <span th:text="${question.title}">题目内容</span></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <div>
+                <label for="blank_answer">在下面输入您的答案</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">你的答案</span>
+                    </div>
+                    <textarea class="form-control" rows="4"></textarea>
+                </div>
+                <div class="collapse mt-3" id="answer">
+                    <div class="card card-body">
+                        <div class="alert alert-info" role="alert">
+                            简答题不必完全一样，意思对即可，你可以自行对照判断
+                        </div>
+                        <div>
+                            <span class="text-success">参考答案：</span>
+                            <span th:text="${question.answer}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--简答题-->
+
+    </th:block>
 
     <div class = "row">
         <div style="margin-left: auto;margin-right: auto;margin-top: 20px" class="ui buttons">
@@ -119,6 +204,13 @@
 
 
 </th:block>
-<script src="./js/global.js" th:src="@{/js/global.js}"></script>
+
+<th:block layout:fragment="scripts">
+        <script th:inline="javascript">
+            const questionDetail = [[${question}]] ;
+            console.log(questionDetail);
+        </script>
+</th:block>
+
 
 </html>

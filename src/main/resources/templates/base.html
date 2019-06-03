@@ -3,6 +3,7 @@
       xmlns:shiro="http://www.w3.org/1999/xhtml">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="icon" href="/img/favicon.png" type="image/png" />
     <meta http-equiv=Content-Type content="text/html;charset=utf-8">
@@ -107,86 +108,7 @@
     <script src="https://cdn.bootcss.com/pdfobject/2.1.1/pdfobject.min.js" th:src="@{https://cdn.bootcss.com/pdfobject/2.1.1/pdfobject.min.js}"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js" th:src="@{https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js}" ></script>
     <script src="./js/global.js" th:src="@{/js/global.js}"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" th:src="@{https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js}"></script>
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js" th:src="@{https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js}"></script>
-    <script language="javascript">
-
-        $(function () {
-            //点击发送验证码
-            $('body').on('click', '#btnSend', function () {
-                $('body').off('click', '#btnSend');
-                var form= document.getElementById("myForm");
-                form.submit();
-                LockButton('#btnSend', 60);
-            })
-
-            //读取cookie
-            if ($.cookie("djsendtime") != undefined && !isNaN($.cookie("djsendtime"))) {  //读取到了cookie值
-                var djsendtime = $.cookie("djsendtime");
-                var now = new Date().getTime();  //当前时间戳
-                var locksecends = parseInt((djsendtime - now) / 1000);
-                if (locksecends <= 0) {
-                    $.cookie("djsendtime", null);
-                } else {
-                    LockButton('#btnSend', locksecends);
-                }
-            }
-
-        })
-
-        // 按钮倒计时
-        var LockButton = function (btnObjId, locksecends) {
-            //1.获取当前系统时间
-            //2.获取 locksecends 后的系统时间
-            //3.用cookie保存到期时间
-            //4.每次加载后获取cookie中保存的时间
-            //5.用到期时间减去当前时间获取倒计时
-            var djsendtime = $.cookie("djsendtime");
-            if (djsendtime == null || djsendtime == undefined || djsendtime == 'undefined' || djsendtime == 'null') {
-                var now = new Date().getTime();  //当前时间戳
-                var endtime = locksecends * 1000 + now;  //结束时间戳
-                $.cookie("djsendtime", endtime);  //将结束时间保存到cookie
-            }
-            $(btnObjId).addClass('disabled').attr('disabled', 'disabled').text('(' + locksecends + ')秒后重新获取');
-            $('body').off('click', '#btnSendSMS');
-            var timer = setInterval(function () {
-                locksecends--;
-                $(btnObjId).text('(' + locksecends + ')秒后重新获取');
-                if (locksecends <= 0) {
-                    //倒计时结束清除cookie值
-                    $.cookie("djsendtime", null);
-                    $(btnObjId).removeClass('disabled').removeAttr('disabled').text('重新获取');
-                    $('body').on('click', '#btnSend', function () {
-                        $('body').off('click', '#btnSend');
-                        LockButton('#btnSend', 60);
-                    })
-                    clearInterval(timer);
-                }
-            }, 1000);
-        };
-    </script>
-    <script>
-        $(document).ready(function(){
-            $("#passwordButton").click(function(){
-                $("#messageDiv").hide();
-                $("#passwordDiv").show();
-            });
-
-            $("#messageButton").click(function(){
-                $("#messageDiv").show();
-                $("#passwordDiv").hide();
-            });
-        });
-        function check(input) {
-            if (input.value != document.getElementById('newPassword1').value) {
-                input.setCustomValidity('两次输入的密码必须一致');
-            } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
-            }
-        }
-
-    </script>
 
     <th:block layout:fragment="scripts">
         <!-- More Scripts -->

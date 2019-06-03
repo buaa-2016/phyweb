@@ -99,8 +99,22 @@
 
 		httpPost("/comment_1", params);
 	}
+	
+	function judgeAnswerQuestion() {
+		$('div#answer').collapse('show');
+	}
 
-	function judgeAns() {
+	function judgeBlankQuestion() {
+		const ans = $('input#blank_answer').val().replace(' ', '');
+		if (ans === questionDetail.answer) {
+			$('div#answer-correct').collapse('show');
+		} else {
+			$('div#answer-incorrect').collapse('show');
+		}
+	}
+
+
+	function judgeChoiceQuestion() {
 		var ans = document.getElementById("questionAns").textContent;
 		//获取ans的值
 		if(ans == 'A') document.getElementById("chooseA").style.backgroundColor="#21ba45";
@@ -119,3 +133,89 @@
 		}
 	}
 
+	function judgeAns() {
+		switch (questionDetail.type) {
+			case 'BLANK': judgeBlankQuestion(); break;
+			case 'CHOICE': judgeChoiceQuestion(); break;
+			case 'ANSWER': judgeAnswerQuestion(); break;
+			default: console.log("error"); break;
+		}
+		return;
+	}
+
+
+	$(document).ready(function(){
+		$("#passwordButton").click(function(){
+			$("#messageDiv").hide();
+			$("#passwordDiv").show();
+		});
+
+		$("#messageButton").click(function(){
+			$("#messageDiv").show();
+			$("#passwordDiv").hide();
+		});
+	});
+	function check(input) {
+		if (input.value != document.getElementById('newPassword1').value) {
+			input.setCustomValidity('两次输入的密码必须一致');
+		} else {
+			// input is valid -- reset the error message
+			input.setCustomValidity('');
+		}
+	}
+
+
+
+	$(function () {
+		//点击发送验证码
+		$('body').on('click', '#btnSend', function () {
+			$('body').off('click', '#btnSend');
+			var form= document.getElementById("myForm");
+			form.submit();
+			LockButton('#btnSend', 60);
+		})
+
+		//读取cookie
+		if ($.cookie("djsendtime") != undefined && !isNaN($.cookie("djsendtime"))) {  //读取到了cookie值
+			var djsendtime = $.cookie("djsendtime");
+			var now = new Date().getTime();  //当前时间戳
+			var locksecends = parseInt((djsendtime - now) / 1000);
+			if (locksecends <= 0) {
+				$.cookie("djsendtime", null);
+			} else {
+				LockButton('#btnSend', locksecends);
+			}
+		}
+
+	})
+
+	// 按钮倒计时
+	var LockButton = function (btnObjId, locksecends) {
+		//1.获取当前系统时间
+		//2.获取 locksecends 后的系统时间
+		//3.用cookie保存到期时间
+		//4.每次加载后获取cookie中保存的时间
+		//5.用到期时间减去当前时间获取倒计时
+		var djsendtime = $.cookie("djsendtime");
+		if (djsendtime == null || djsendtime == undefined || djsendtime == 'undefined' || djsendtime == 'null') {
+			var now = new Date().getTime();  //当前时间戳
+			var endtime = locksecends * 1000 + now;  //结束时间戳
+			$.cookie("djsendtime", endtime);  //将结束时间保存到cookie
+		}
+		$(btnObjId).addClass('disabled').attr('disabled', 'disabled').text('(' + locksecends + ')秒后重新获取');
+		$('body').off('click', '#btnSendSMS');
+		var timer = setInterval(function () {
+			locksecends--;
+			$(btnObjId).text('(' + locksecends + ')秒后重新获取');
+			if (locksecends <= 0) {
+				//倒计时结束清除cookie值
+				$.cookie("djsendtime", null);
+				$(btnObjId).removeClass('disabled').removeAttr('disabled').text('重新获取');
+				$('body').on('click', '#btnSend', function () {
+					$('body').off('click', '#btnSend');
+					LockButton('#btnSend', 60);
+				})
+				clearInterval(timer);
+			}
+		}, 1000);
+	};
