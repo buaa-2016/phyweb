@@ -16,7 +16,7 @@ public class PhywebApplicationTests {
     @Autowired
     private QuestionMapper questionMapper;
 
-    @Test
+    //@Test
     public void insertQues() {
         //添加填空题的测试
 
@@ -29,7 +29,7 @@ public class PhywebApplicationTests {
         questionMapper.insertQuestion(ques);
     }
 
-    @Test
+    //@Test
     public void insertQuesAnswer() {
         Question ques = new Question();
         //下方三项内容为简答题必填内容

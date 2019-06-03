@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 
 <head>
-    <title>题目</title>
+    <title>上传题目</title>
 </head>
 
 <th:block layout:fragment="links">
@@ -13,6 +13,117 @@
 
 <th:block layout:fragment="content">
 
+    <div class="container my-container">
+        <div class="pl-4 pb-2 mt-3 mb-2 border-bottom d-flex flex-row">
+            <h3 style="display: inline-block; flex: 1 ">上传题目</h3>
+        </div>
+        <div class="inner-content p-4">
+            
+            <div th:if="${message_error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>粗错啦！</strong><span th:text="${message_error}"></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div th:if="${message_success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>恭喜！</strong><span th:text="${message_success}"></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h5 class="mb-3">1. 选择题目类型</h5>
+            <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-choice-tab" data-toggle="pill" href="#pills-choice" role="tab">选择题</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-blank-tab" data-toggle="pill" href="#pills-blank" role="tab">填空题</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-answer-tab" data-toggle="pill" href="#pills-answer" role="tab">简答题</a>
+                </li>
+            </ul>
+            
+            <h5 class="mb-3">2. 输入题目内容</h5>
+            <div class="tab-content" id="pills-tabContent">
+                <!--选择题-->
+                <div class="tab-pane fade show active" id="pills-choice" role="tabpanel" aria-labelledby="pills-choice-tab">
+                    <form method="POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">题干</span>
+                            </div>
+                            <textarea class="form-control" rows="1" placeholder="在这里输入题干内容" name="title" required></textarea>
+                        </div>
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >选项A</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="第一个选项" name="A" required>
+                        </div>
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >选项B</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="第二个选项" name="B" required>
+                        </div>
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >选项C</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="第三个选项" name="C" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >选项D</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="第四个选项" name="D" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >正确选项</span>
+                            </div>
+                            <div class="form-control">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="A" name="answer" class="custom-control-input" value="A">
+                                    <label class="custom-control-label" for="A">A</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="B" name="answer" class="custom-control-input" value="B">
+                                    <label class="custom-control-label" for="B">B</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="C" name="answer" class="custom-control-input" value="C">
+                                    <label class="custom-control-label" for="C">C</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="D" name="answer" class="custom-control-input" value="D">
+                                    <label class="custom-control-label" for="D">D</label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" name="type" value="CHOICE" class="d-none">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">上传题目</button>
+                        </div>
+                        
+    
+                    </form>
+                </div><!--选择题-->
+    
+                <!--填空题-->
+                <div class="tab-pane fade" id="pills-blank" role="tabpanel" aria-labelledby="pills-blank-tab">
+                    
+                </div><!--填空题-->
+    
+    
+                <!--简答题-->
+                <div class="tab-pane fade" id="pills-answer" role="tabpanel" aria-labelledby="pills-answer-tab">
+                
+                </div><!--简答题-->
+            </div><!--tab-content-->
+        </div>
+    </div>
 
 </th:block>
 
