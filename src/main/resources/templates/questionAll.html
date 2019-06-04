@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 <head>
     <title>题库页面</title>
@@ -13,7 +13,12 @@
 
 <th:block layout:fragment="content">
     <div class="card my-4 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
-        <h5 class="text-center">
+        <div class="ui buttons">
+            <a th:href='@{/questionDetail(id=${question_id})}'>
+				<button class="ui green basic button enter-question" style="padding: .45em .8em">最近做题处</button>
+            </a>
+        </div>
+		<h5 class="text-center">
             <i class="far fa-list-alt" style="font-size:90%"></i>
             题目列表
             <div class="float-right">
