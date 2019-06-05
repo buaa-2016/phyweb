@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>题库页面</title>
+    <meta charset="utf-8" />
 </head>
-<body>
 
-</body>
+<th:block layout:fragment="links">
+    <!-- fomantic-ui table -->
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/table.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/button.min.css" rel="stylesheet">
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="card my-4 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+        <div class="ui buttons">
+            <a th:href='@{/questionDetail(id=${question_id})}'>
+                <button class="ui green basic button enter-question" style="padding: .45em .8em">最近做题处</button>
+            </a>
+        </div>
+        <h5 class="text-center">
+            <i class="far fa-list-alt" style="font-size:90%"></i>
+            题目列表
+            <div class="float-right">
+                <a th:href='@{/questionUpload}' class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>&nbsp;上传题目</a>
+            </div>
+        </h5>
+        <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+            <thead>
+            <tr>
+                <th class="center aligned">编号</th>
+                <th class="center aligned">题目</th>
+                <th class="center aligned">做题</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="question : ${questionList}">
+                <td class="center aligned" th:text="${question.id}">No.1</td>
+                <td class="center aligned" th:text="${question.title}">这是一道物理实验题</td>
+                <td class="center aligned">
+                    <div class="ui buttons">
+                        <a th:href='@{/questionDetail(id=${question.id})}'>
+                            <button class="ui green basic button enter-question" style="padding: .45em .8em">进入做题</button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
 </html>
