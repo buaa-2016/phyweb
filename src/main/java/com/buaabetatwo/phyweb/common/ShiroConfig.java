@@ -51,6 +51,8 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/");
 
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
@@ -61,9 +63,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/reset", "anon");
         filterChainDefinitionMap.put("/reset-email", "anon");
-        filterChainDefinitionMap.put("/question*", "anon");
         filterChainDefinitionMap.put("/index", "anon");
         filterChainDefinitionMap.put("/comment", "anon");
+
+        //管理员权限才能够更改
+        filterChainDefinitionMap.put("/editQuestion", "authc,roles[Admin]");
 
         filterChainDefinitionMap.put("/**", "authc");
 
