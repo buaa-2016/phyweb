@@ -113,14 +113,6 @@
 		}
 	}
 
-	function insertQuestion() {
-		var params = {
-			"id":document.getElementById("questionId").textContent
-		};
-
-		httpPost("/editQuestionDetail",params)
-	}
-
 	function judgeChoiceQuestion() {
 		var ans = document.getElementById("questionAns").textContent;
 		//获取ans的值

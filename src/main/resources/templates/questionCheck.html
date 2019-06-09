@@ -79,8 +79,8 @@
 
 
         <div style="margin-left: auto;margin-right: auto;margin-top: 20px" class="ui buttons">
-            <a>
-                <button type="button" class="ui blue basic button enter-question" onclick="insertQuestion()">
+            <a th:href='@{/editDetails(id=${question.id})}'>
+                <button type="button" class="ui blue basic button enter-question">
                     审核通过
                 </button>
             </a>

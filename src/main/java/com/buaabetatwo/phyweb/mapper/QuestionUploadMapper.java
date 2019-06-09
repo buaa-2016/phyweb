@@ -1,6 +1,7 @@
 package com.buaabetatwo.phyweb.mapper;
 
 import com.buaabetatwo.phyweb.model.Question;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -19,5 +20,8 @@ public interface QuestionUploadMapper {
     @Insert("insert into question_upload(title,A,B,C,D,answer,source,tag,other,hint,type) " +
             "values(#{title},#{A},#{B},#{C},#{D},#{answer},#{source},#{tag},#{other},#{hint},#{type})")
     void insertQuestion(Question question);
+
+    @Delete("delete from question_upload where id = #{id}")
+    void deleteQuestionById(int id);
 
 }

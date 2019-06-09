@@ -51,11 +51,12 @@ public class AdminController {
         return "questionCheck";
     }
 
-    @PostMapping("/editQuestionDetail")
-    public void changeData(@RequestParam("id") int id) {
+    @GetMapping("/editDetails")
+    public String changeData(@RequestParam("id") int id) {
         Question question = questionUploadMapper.findById(id);
-        question.setId(0);
         questionMapper.insertQuestion(question);
+        questionUploadMapper.deleteQuestionById(id);
+        return "forward:/editQuestoinAll";
     }
 
     @GetMapping("/editQuestion")
