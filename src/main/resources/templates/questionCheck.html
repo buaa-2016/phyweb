@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="base">
+
+<head>
+    <meta charset="UTF-8">
+    <title>题目</title>
+    <link href="../static/css/phyweb.css" rel="stylesheet" th:href="@{/css/phyweb.css}">
+</head>
+
+<th:block layout:fragment="links">
+    <!-- fomantic-ui table -->
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/table.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.4/dist/components/button.min.css" rel="stylesheet">
+</th:block>
+
+<th:block layout:fragment="content">
+    <th:block th:switch="${question.getType()}">
+        <!--选择题-->
+        <div th:case="'CHOICE'"  class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                第 <span th:text="${question.getId()}"></span> 题
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                <tr>
+                    <td class="center aligned">
+                        <span><span class="badge badge-pill badge-success">选择题</span>
+                        <span th:text="${question.title}">题目内容</span></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <input type="checkbox" id="A" class="regular-checkbox big-checkbox" /><label id="chooseA" for="A" th:text="'A：'+${question.getA()}"></label>
+            <input type="checkbox" id="B" class="regular-checkbox big-checkbox" /><label id="chooseB" for="B" th:text="'B：'+${question.getB()}"></label>
+            <input type="checkbox" id="C" class="regular-checkbox big-checkbox" /><label id="chooseC" for="C" th:text="'C：'+${question.getC()}"></label>
+            <input type="checkbox" id="D" class="regular-checkbox big-checkbox" /><label id="chooseD" for="D" th:text="'D：'+${question.getD()}"></label>
+        </div>
+        <!--填空题-->
+        <div th:case="'BLANK'"  class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                第 <span th:text="${question.getId()}"></span> 题
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                <tr>
+                    <td class="center aligned">
+                        <span><span class="badge badge-pill badge-success">填空题</span>
+                        <span th:text="${question.title}">题目内容</span></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+        </div>
+        <!--简答题-->
+        <div th:case="'ANSWER'"  class="card mt-3 p-3 shadow-sm" style="background: #fff; border-radius: 10px; flex: 1; width: 80%;margin-left: auto;margin-right: auto">
+            <h5 class="text-center">
+                <i class="far fa-list-alt" style="font-size:90%"></i>
+                第 <span th:text="${question.getId()}"></span> 题
+            </h5>
+            <table class="ui selectable compact celled stripped table" style="margin-top: 4px; width:100%; overflow-y:scroll; ">
+                <tbody>
+                <tr>
+                    <td class="center aligned">
+                        <span><span class="badge badge-pill badge-success">简答题</span>
+                        <span th:text="${question.title}">题目内容</span></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div><!--简答题-->
+
+    </th:block>
+
+    <div class = "row">
+
+
+        <div style="margin-left: auto;margin-right: auto;margin-top: 20px" class="ui buttons">
+            <a>
+                <button type="button" class="ui blue basic button enter-question" onclick="insertQuestion()">
+                    审核通过
+                </button>
+            </a>
+        </div>
+
+    </div>
+
+
+    <p class="modal fade" id="questionId" th:text="${question.getId()}"></p>
+    <p class="modal fade" id="questionAns" th:text="${question.getAnswer()}"></p>
+
+
+
+</th:block>
+
+<th:block layout:fragment="scripts">
+    <script th:inline="javascript">
+        const questionDetail = [[${question}]] ;
+        console.log(questionDetail);
+    </script>
+</th:block>
+
+
+</html>

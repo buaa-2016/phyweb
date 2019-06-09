@@ -1,6 +1,7 @@
 package com.buaabetatwo.phyweb.controller;
 
 import com.buaabetatwo.phyweb.mapper.QuestionMapper;
+import com.buaabetatwo.phyweb.mapper.QuestionUploadMapper;
 import com.buaabetatwo.phyweb.model.Question;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class UploadQuestion {
     private static Logger logger = LoggerFactory.getLogger(UploadQuestion.class);
 
     @Autowired
-    private QuestionMapper questionMapper;
+    private QuestionUploadMapper questionMapper;
 
     @GetMapping("/questionUpload")
     public String getQuestionUpload() {
@@ -41,21 +42,6 @@ public class UploadQuestion {
             model.addAttribute("message_error", "插入题目出错: " + e.toString());
         }
         return "questionUpload";
-    }
-
-    //插入题目控制器
-    @ResponseBody
-    @PostMapping("/insertQues")
-    public Map insertQues(@RequestBody Question question) {
-        Map<String,String> ans = new HashMap<>();
-        try {
-            questionMapper.insertQuestion(question);
-        } catch (Exception e) {
-            logger.error("插入题目错误！错误为：" + e.toString());
-            ans.put("result","fail");
-        }
-        ans.put("result","success");
-        return ans;
     }
 
 }

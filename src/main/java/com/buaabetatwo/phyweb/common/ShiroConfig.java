@@ -67,7 +67,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/comment", "anon");
 
         //管理员权限才能够更改
-        filterChainDefinitionMap.put("/editQuestion", "authc,roles[Admin]");
+        filterChainDefinitionMap.put("/edit*", "authc,roles[Admin]");
 
         filterChainDefinitionMap.put("/**", "authc");
 
